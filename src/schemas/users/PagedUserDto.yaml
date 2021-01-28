@@ -1,0 +1,13 @@
+type: object
+properties:
+  _embedded:
+    type: object
+    properties:
+      scripts:
+        type: array
+        items:
+          $ref: '../../schemas/users/UserDto.yaml'
+  _links:
+    $ref: '../../schemas/pagination/PageLinks.yaml'
+  page:
+    $ref: '../../schemas/pagination/PaginationProperties.yaml'

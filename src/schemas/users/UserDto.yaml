@@ -1,0 +1,19 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  username:
+    type: string
+  enabled:
+    type: boolean
+  expired:
+    type: boolean
+  credentialsExpired:
+    type: boolean
+  locked:
+    type: boolean
+  roles:
+    type: array
+    items:
+      $ref: '../../schemas/users/UserRoleDto.yaml'

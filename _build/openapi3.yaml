@@ -120,7 +120,7 @@ paths:
         '200':
           description: Expected response to a valid request
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/DatasetDto'
         '400':
@@ -132,7 +132,7 @@ paths:
         - datasets
       operationId: datasetsFetchById
       parameters:
-        - $ref: '#/components/parameters/PathDatasetsUuid'
+        - $ref: '#/components/parameters/PathUsersUuid'
       responses:
         '200':
           description: Expected response to a valid request
@@ -148,7 +148,7 @@ paths:
         - datasets
       operationId: datasetsUpdateByUuid
       parameters:
-        - $ref: '#/components/parameters/PathDatasetsUuid'
+        - $ref: '#/components/parameters/PathUsersUuid'
       requestBody:
         content:
           application/json:
@@ -159,7 +159,7 @@ paths:
         '200':
           description: Expected response to a valid request
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/DatasetDto'
         '400':
@@ -172,12 +172,89 @@ paths:
         - datasets
       operationId: datasetsDeleteById
       parameters:
-        - $ref: '#/components/parameters/PathDatasetsUuid'
+        - $ref: '#/components/parameters/PathUsersUuid'
       responses:
         '200':
           description: Expected response to a valid request
         '404':
           description: no dataset found with specified uuid
+  /users:
+    get:
+      summary: Fetch all users
+      tags:
+        - users
+      operationId: usersFetchAll
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedUserDto'
+    post:
+      summary: Create a user
+      tags:
+        - users
+      operationId: usersCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPostDto'
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '400':
+          description: bad request
+  /users/login:
+    post:
+      summary: Login a user
+      tags:
+        - users
+      operationId: usersLogin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticationRequestDto'
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponseDto'
+        '400':
+          description: bad request
+  '/users/{uuid}':
+    get:
+      summary: fetch user with sepcified uuid
+      tags:
+        - users
+      operationId: usersFetchById
+      parameters:
+        - name: uuid
+          description: uuid of the user
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '404':
+          description: no user found with specified uuid
 components:
   parameters:
     PathScriptsName:
@@ -242,13 +319,7 @@ components:
         default: 20
       description: detemines how many scripts are included in a page
     PathDatasetsUuid:
-      name: uuid
-      description: uuid of the dataset
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
+      $ref: '#/components/parameters/PathUsersUuid'
     QueryDatasetsUuid:
       name: name
       in: query
@@ -256,6 +327,14 @@ components:
       schema:
         type: string
       description: allow for filtering based on dataset name. Only dataset containing the provided value in its name will be returned
+    PathUsersUuid:
+      name: uuid
+      description: uuid of the dataset
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
   schemas:
     ScriptDto:
       type: object
@@ -522,6 +601,93 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/InMemoryDatasetImplementationPostDto'
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        username:
+          type: string
+        enabled:
+          type: boolean
+        expired:
+          type: boolean
+        credentialsExpired:
+          type: boolean
+        locked:
+          type: boolean
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserRoleDto'
+    UserPostDto:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+          format: password
+    UserRoleDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        team:
+          $ref: '#/components/schemas/UserRoleTeamDto'
+        privileges:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              privilege:
+                type: string
+    UserRoleTeamDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    PagedUserDto:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            scripts:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserDto'
+        _links:
+          $ref: '#/components/schemas/PageLinks'
+        page:
+          $ref: '#/components/schemas/PaginationProperties'
+    PrivilegeDto:
+      $ref: '#/components/schemas/UserDto'
+    AuthenticationResponseDto:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        expiresIn:
+          type: integer
+    AuthenticationRequestDto:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+          format: password
     Error:
       type: object
       required:

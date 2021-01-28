@@ -22,3 +22,16 @@
     $ref: "./datasets/updateByUuid.yaml"
   delete:
     $ref: "./datasets/deleteByUuid.yaml"
+
+# Users
+'/users':
+  get:
+    $ref: "./users/fetchAll.yaml"
+  post:
+    $ref: "./users/create.yaml"
+'/users/login':
+  post:
+    $ref: "./users/login.yaml"
+'/users/{uuid}':
+  get:
+    $ref: "./users/fetchByUuid.yaml"

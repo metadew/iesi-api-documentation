@@ -1,12 +1,12 @@
-summary: Create a dataset
+summary: Login a user
 tags:
-  - datasets
-operationId: datasetsCreate
+  - users
+operationId: usersLogin
 requestBody:
   content:
     application/json:
       schema:
-        $ref: '../../schemas/datasets/DatasetPostDto.yaml'
+        $ref: '../../schemas/users/AuthenticationRequestDto.yaml'
   required: true
 responses:
   '200':
@@ -14,6 +14,6 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '../../schemas/datasets/DatasetDto.yaml'
+          $ref: '../../schemas/users/AuthenticationResponseDto.yaml'
   '400':
     description: bad request

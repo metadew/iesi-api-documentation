@@ -1,0 +1,13 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  name:
+    type: string
+  team:
+    $ref: '../../schemas/users/UserRoleTeamDto.yaml'
+  privileges:
+    type: array
+    items:
+      $ref: '../../schemas/users/PrivilegeDto.yaml'

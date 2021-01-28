@@ -24,7 +24,7 @@ QueryPaginationPage:
 QueryPaginationSize:
   $ref: './query/pagination/Size.yaml'
 
-# Scripts
+# Datasets
 ## Path
 PathDatasetsUuid:
   $ref: './path/datasets/Uuid.yaml'
@@ -32,3 +32,8 @@ PathDatasetsUuid:
 ## Query
 QueryDatasetsUuid:
   $ref: './query/datasets/Name.yaml'
+
+# Users
+## Path
+PathUsersUuid:
+  $ref: './path/datasets/Uuid.yaml'

@@ -1,0 +1,16 @@
+summary: fetch user with sepcified uuid
+tags:
+  - users
+operationId: usersFetchById
+parameters:
+  - $ref: "../../parameters/path/users/Uuid.yaml"
+
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/users/UserDto.yaml"
+  '404':
+    description: no user found with specified uuid

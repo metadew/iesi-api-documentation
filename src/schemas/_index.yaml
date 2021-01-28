@@ -44,6 +44,24 @@ InMemoryDatasetImplementationKeyValuePostDto:
 DatasetPutDto:
   $ref: "./datasets/DatasetPutDto.yaml"
 
+# Users
+UserDto:
+  $ref: "./users/UserDto.yaml"
+UserPostDto:
+  $ref: "./users/UserPostDto.yaml"
+UserRoleDto:
+  $ref: "./users/UserRoleDto.yaml"
+UserRoleTeamDto:
+  $ref: "./users/UserRoleTeamDto.yaml"
+PagedUserDto:
+  $ref: "./users/PagedUserDto.yaml"
+PrivilegeDto:
+  $ref: "./users/UserDto.yaml"
+AuthenticationResponseDto:
+  $ref: "./users/AuthenticationResponseDto.yaml"
+AuthenticationRequestDto:
+  $ref: "./users/AuthenticationRequestDto.yaml"
+
 # Errors
 Error:
   $ref: "./Error.yaml"

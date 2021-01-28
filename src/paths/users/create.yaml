@@ -1,12 +1,12 @@
-summary: Create a dataset
+summary: Create a user
 tags:
-  - datasets
-operationId: datasetsCreate
+  - users
+operationId: usersCreate
 requestBody:
   content:
     application/json:
       schema:
-        $ref: '../../schemas/datasets/DatasetPostDto.yaml'
+        $ref: '../../schemas/users/UserPostDto.yaml'
   required: true
 responses:
   '200':
@@ -14,6 +14,6 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '../../schemas/datasets/DatasetDto.yaml'
+          $ref: '../../schemas/users/UserDto.yaml'
   '400':
     description: bad request

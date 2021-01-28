@@ -1,0 +1,11 @@
+summary: Fetch all users
+tags:
+  - users
+operationId: usersFetchAll
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/users/PagedUserDto.yaml"
