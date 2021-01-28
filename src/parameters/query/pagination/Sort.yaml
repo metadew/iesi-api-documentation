@@ -1,0 +1,13 @@
+in: query
+name: sort
+required: false
+schema:
+  type: array
+  items:
+    type: string
+    items:
+      enum: [name]
+explode: false
+description: >
+  See https://stackoverflow.com/questions/33018127/spring-data-rest-sort-by-multiple-properties for query parameter formatting. Sort the result set according to the provided keywords. The order of sorting follows the order of the list. By default sorting is applied in the ascending direction but this can be altered by explicitly providing the sorting direction:
+   * `name[,desc|,asc]` - Sort by script name.

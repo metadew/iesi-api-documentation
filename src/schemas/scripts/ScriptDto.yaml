@@ -1,0 +1,58 @@
+type: object
+properties:
+  name:
+    type: string
+  description:
+    type: string
+  version:
+    $ref: '../../schemas/scripts/ScriptVersionDto.yaml'
+  parameters:
+    type: array
+    items:
+      $ref: '../../schemas/scripts/ScriptParameterDto.yaml'
+  actions:
+    type: array
+    items:
+      $ref: '../../schemas/scripts/ActionDto.yaml'
+  labels:
+    type: array
+    items:
+      $ref: '../../schemas/scripts/ScriptLabelDto.yaml'
+  execution:
+    type: object
+    properties:
+      total:
+        type: number
+      mostRecent:
+        type: array
+        items:
+          type: object
+          properties:
+            startTimestamp:
+              type: string
+            endTimestamp:
+              type: string
+            runStatus:
+              type: string
+            runId:
+              type: string
+            environment:
+              type: string
+  scheduling:
+    type: array
+    items:
+      type: object
+      properties:
+        environment:
+          type: string
+        frequency:
+          type: number
+  _links:
+    type: object
+    properties:
+      self:
+        $ref: '../../schemas/pagination/Link.yaml'
+      scripts:
+        $ref: '../../schemas/pagination/Link.yaml'
+      AllVersionOfTheScript:
+        $ref: '../../schemas/pagination/Link.yaml'

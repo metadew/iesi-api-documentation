@@ -1,0 +1,9 @@
+'/scripts':
+  get:
+    $ref: "./scripts/fetchAll.yaml"
+'/scripts/{name}':
+  get:
+    $ref: "./scripts/fetchByName.yaml"
+'/scripts/{name}/{version}':
+  get:
+    $ref: "./scripts/fetchByNameAndVersion.yaml"

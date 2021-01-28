@@ -1,0 +1,27 @@
+# Scripts
+ScriptDto:
+  $ref: "./scripts/ScriptDto.yaml"
+ScriptVersionDto:
+  $ref: "./scripts/ScriptVersionDto.yaml"
+ScriptParameterDto:
+  $ref: "./scripts/ScriptParameterDto.yaml"
+ScriptLabelDto:
+  $ref: "./scripts/ScriptLabelDto.yaml"
+ActionDto:
+  $ref: "./scripts/ActionDto.yaml"
+ActionParameterDto:
+  $ref: "./scripts/ActionParameterDto.yaml"
+PagedScriptDto:
+  $ref: "./scripts/PagedScriptDto.yaml"
+
+# Pagination
+Link:
+  $ref: "./pagination/Link.yaml"
+PageLinks:
+  $ref: "./pagination/PageLinks.yaml"
+PaginationProperties:
+  $ref: "./pagination/PaginationProperties.yaml"
+
+# Errors
+Error:
+  $ref: "./Error.yaml"

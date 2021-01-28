@@ -1,0 +1,14 @@
+type: object
+properties:
+  size:
+    type: integer
+    description: Number of element displayed on the page
+  totalElements:
+    type: integer
+    description: Number of element Avalaible in the API through this endpoint
+  totalPages:
+    type: integer
+    description: Number of page with the parameter size and totalElements
+  number:
+    type: integer
+    description: Actual Number of the page (starts from 1 to n)

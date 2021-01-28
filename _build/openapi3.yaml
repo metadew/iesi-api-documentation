@@ -1,0 +1,317 @@
+openapi: 3.0.1
+info:
+  title: IESI API
+  license:
+    name: MIT
+    url: 'https://github.com/metadew/iesi-doc/blob/master/LICENSE'
+  version: 0.6.0
+servers:
+  - url: 'http://localhost:8080/api'
+    description: Generated server url
+tags:
+  - name: scripts
+    description: Everything about scripts
+  - name: impersonations
+    description: Everything about impersonations
+  - name: execution requests
+    description: Everything about execution requests
+  - name: environments
+    description: Everything about environments
+  - name: connections
+    description: Everything about connections
+  - name: components
+    description: Everything about components
+  - name: action-types
+    description: Everything about action types
+  - name: connection-types
+    description: Everything about connection types
+  - name: users
+    description: Everything about users
+  - name: datasets
+    description: Everything about datasets
+paths:
+  /scripts:
+    get:
+      summary: Fetch all scripts
+      tags:
+        - scripts
+      operationId: scriptsFetchAll
+      parameters:
+        - ../../parameters/query/scripts/Version.yaml
+        - ../../parameters/query/scripts/Name.yaml
+        - ../../parameters/query/scripts/Label.yaml
+        - ../../parameters/query/pagination/Page.yaml
+        - ../../parameters/query/pagination/Size.yaml
+        - ../../parameters/query/pagination/Sort.yaml
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedScriptDto'
+  '/scripts/{name}':
+    get:
+      summary: All versions of a script with a sepcified name
+      tags:
+        - scripts
+      operationId: scriptsFetchByName
+      parameters:
+        - $ref: '#/components/parameters/ScriptName'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedScriptDto'
+  '/scripts/{name}/{version}':
+    get:
+      summary: Info of a specific script
+      tags:
+        - scripts
+      operationId: scriptsFetchByNameAndVersion
+      parameters:
+        - $ref: '#/components/parameters/ScriptName'
+        - $ref: '#/components/parameters/ScriptVersion'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScriptDto'
+        '404':
+          description: no script found with specified name and version
+components:
+  parameters:
+    ScriptName:
+      name: name
+      description: name of the script
+      in: path
+      required: true
+      schema:
+        type: string
+    ScriptVersion:
+      name: version
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    Page:
+      in: query
+      name: page
+      required: false
+      schema:
+        type: number
+        default: 1
+      description: determines the page being returned
+    Sort:
+      in: query
+      name: sort
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+          items:
+            enum:
+              - name
+      explode: false
+      description: |
+        See https://stackoverflow.com/questions/33018127/spring-data-rest-sort-by-multiple-properties for query parameter formatting. Sort the result set according to the provided keywords. The order of sorting follows the order of the list. By default sorting is applied in the ascending direction but this can be altered by explicitly providing the sorting direction:
+         * `name[,desc|,asc]` - Sort by script name.
+    Size:
+      in: query
+      name: size
+      required: false
+      schema:
+        type: number
+        default: 20
+      description: detemines how many scripts are included in a page
+  schemas:
+    ScriptDto:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        version:
+          $ref: '#/components/schemas/ScriptVersionDto'
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScriptParameterDto'
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActionDto'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScriptLabelDto'
+        execution:
+          type: object
+          properties:
+            total:
+              type: number
+            mostRecent:
+              type: array
+              items:
+                type: object
+                properties:
+                  startTimestamp:
+                    type: string
+                  endTimestamp:
+                    type: string
+                  runStatus:
+                    type: string
+                  runId:
+                    type: string
+                  environment:
+                    type: string
+        scheduling:
+          type: array
+          items:
+            type: object
+            properties:
+              environment:
+                type: string
+              frequency:
+                type: number
+        _links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/Link'
+            scripts:
+              $ref: '#/components/schemas/Link'
+            AllVersionOfTheScript:
+              $ref: '#/components/schemas/Link'
+    ScriptVersionDto:
+      type: object
+      properties:
+        number:
+          type: integer
+          format: int64
+        description:
+          type: string
+    ScriptParameterDto:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    ScriptLabelDto:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    ActionDto:
+      type: object
+      properties:
+        number:
+          type: integer
+          format: int64
+        name:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        component:
+          type: string
+        condition:
+          type: string
+        iteration:
+          type: string
+        errorExpected:
+          type: boolean
+        errorStop:
+          type: boolean
+        retries:
+          type: integer
+          format: int32
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActionParameterDto'
+    ActionParameterDto:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    PagedScriptDto:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            scripts:
+              type: array
+              items:
+                $ref: '#/components/schemas/ScriptDto'
+        _links:
+          $ref: '#/components/schemas/PageLinks'
+        page:
+          $ref: '#/components/schemas/PaginationProperties'
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+    PageLinks:
+      type: object
+      properties:
+        first:
+          $ref: '#/components/schemas/Link'
+        prev:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+        next:
+          $ref: '#/components/schemas/Link'
+        last:
+          $ref: '#/components/schemas/Link'
+    PaginationProperties:
+      type: object
+      properties:
+        size:
+          type: integer
+          description: Number of element displayed on the page
+        totalElements:
+          type: integer
+          description: Number of element Avalaible in the API through this endpoint
+        totalPages:
+          type: integer
+          description: Number of page with the parameter size and totalElements
+        number:
+          type: integer
+          description: Actual Number of the page (starts from 1 to n)
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+  responses:
+    UnexpectedError:
+      description: unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NullResponse:
+      description: Null response

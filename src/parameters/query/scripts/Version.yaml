@@ -1,0 +1,8 @@
+in: query
+name: version
+required: false
+schema:
+  type: string
+  enum:
+    - latest
+description: allow for selection of only the latest version of all scripts when given the value 'latest'

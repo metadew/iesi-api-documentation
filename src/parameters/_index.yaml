@@ -1,0 +1,19 @@
+
+# Scripts
+## Path
+ScriptName:
+  $ref: './path/scripts/ScriptName.yaml'
+
+ScriptVersion:
+  $ref: './path/scripts/ScriptVersion.yaml'
+
+## Query
+
+# Pagination
+## Query
+Page:
+  $ref: './query/pagination/Page.yaml'
+Sort:
+  $ref: './query/pagination/Sort.yaml'
+Size:
+  $ref: './query/pagination/Size.yaml'

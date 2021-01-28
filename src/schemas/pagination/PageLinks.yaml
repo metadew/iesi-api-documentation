@@ -1,0 +1,12 @@
+type: object
+properties:
+  first:
+    $ref: '../../schemas/pagination/Link.yaml'
+  prev:
+    $ref: '../../schemas/pagination/Link.yaml'
+  self:
+    $ref: '../../schemas/pagination/Link.yaml'
+  next:
+    $ref: '../../schemas/pagination/Link.yaml'
+  last:
+    $ref: '../../schemas/pagination/Link.yaml'

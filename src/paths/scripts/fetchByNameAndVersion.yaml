@@ -1,0 +1,17 @@
+summary: Info of a specific script
+tags:
+  - scripts
+operationId: scriptsFetchByNameAndVersion
+parameters:
+  - $ref: "../../parameters/path/scripts/ScriptName.yaml"
+  - $ref: "../../parameters/path/scripts/ScriptVersion.yaml"
+
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/scripts/ScriptDto.yaml"
+  '404':
+    description: no script found with specified name and version

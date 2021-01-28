@@ -1,0 +1,6 @@
+in: query
+name: label
+required: false
+schema:
+  type: string
+description: "allow for filtering based on script label. Format: `label_key:label_value`. Only scripts having a label with name `label_name` having a value containing `label_value`"

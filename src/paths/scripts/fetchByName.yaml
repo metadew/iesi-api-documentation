@@ -1,0 +1,14 @@
+summary: All versions of a script with a sepcified name
+tags:
+  - scripts
+operationId: scriptsFetchByName
+parameters:
+  - $ref: "../../parameters/path/scripts/ScriptName.yaml"
+
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/scripts/PagedScriptDto.yaml"

@@ -1,0 +1,6 @@
+in: query
+name: name
+required: false
+schema:
+  type: string
+description: allow for filtering based on script name. Only scripts containing the provided value in its script name will be returned

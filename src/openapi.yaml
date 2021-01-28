@@ -1,0 +1,45 @@
+openapi: 3.0.1
+
+info:
+  title: IESI API
+  license:
+    name: MIT
+    url: 'https://github.com/metadew/iesi-doc/blob/master/LICENSE'
+  version: 0.6.0
+
+servers:
+  - url: 'http://localhost:8080/api'
+    description: Generated server url
+
+tags:
+  - name: scripts
+    description: Everything about scripts
+  - name: impersonations
+    description: Everything about impersonations
+  - name: execution requests
+    description: Everything about execution requests
+  - name: environments
+    description: Everything about environments
+  - name: connections
+    description: Everything about connections
+  - name: components
+    description: Everything about components
+  - name: action-types
+    description: Everything about action types
+  - name: connection-types
+    description: Everything about connection types
+  - name: users
+    description: Everything about users
+  - name: datasets
+    description: Everything about datasets
+
+paths:
+  $ref: "./paths/_index.yaml"
+components:
+  parameters:
+    $ref: "./parameters/_index.yaml"
+  schemas:
+    $ref: "./schemas/_index.yaml"
+  responses:
+    $ref: "./responses/_index.yaml"
+

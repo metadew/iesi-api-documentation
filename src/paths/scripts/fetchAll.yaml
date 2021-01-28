@@ -1,0 +1,18 @@
+summary: Fetch all scripts
+tags:
+  - scripts
+operationId: scriptsFetchAll
+parameters:
+  - "../../parameters/query/scripts/Version.yaml"
+  - "../../parameters/query/scripts/Name.yaml"
+  - "../../parameters/query/scripts/Label.yaml"
+  - "../../parameters/query/pagination/Page.yaml"
+  - "../../parameters/query/pagination/Size.yaml"
+  - "../../parameters/query/pagination/Sort.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/scripts/PagedScriptDto.yaml"

@@ -1,0 +1,7 @@
+in: query
+name: page
+required: false
+schema:
+  type: number
+  default: 1
+description: determines the page being returned
