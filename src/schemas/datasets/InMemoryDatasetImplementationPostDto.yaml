@@ -1,0 +1,10 @@
+type: object
+properties:
+  keyValues:
+    type: array
+    items:
+      $ref: '../../schemas/datasets/InMemoryDatasetImplementationKeyValuePostDto.yaml'
+  labels:
+    type: array
+    items:
+      $ref: '../../schemas/datasets/DatasetImplementationLabelPostDto.yaml'

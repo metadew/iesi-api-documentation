@@ -1,0 +1,23 @@
+summary: update a dataset
+tags:
+  - datasets
+operationId: datasetsUpdateByUuid
+parameters:
+  - $ref: "../../parameters/path/datasets/Uuid.yaml"
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: '../../schemas/datasets/DatasetPutDto.yaml'
+  required: true
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      '*/*':
+        schema:
+          $ref: '../../schemas/datasets/DatasetDto.yaml'
+  '400':
+    description: bad request
+  '404':
+    description: specified dataset not found

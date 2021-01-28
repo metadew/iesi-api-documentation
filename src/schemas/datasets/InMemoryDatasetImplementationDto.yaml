@@ -1,0 +1,13 @@
+type: object
+properties:
+  uuid:
+    type: string
+    format: uuid
+  keyValues:
+    type: array
+    items:
+      $ref: '../../schemas/datasets/InMemoryDatasetImplementationKeyValueDto.yaml'
+  labels:
+    type: array
+    items:
+      $ref: '../../schemas/datasets/DatasetImplementationLabelDto.yaml'

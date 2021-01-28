@@ -37,12 +37,17 @@ paths:
         - scripts
       operationId: scriptsFetchAll
       parameters:
-        - ../../parameters/query/scripts/Version.yaml
-        - ../../parameters/query/scripts/Name.yaml
-        - ../../parameters/query/scripts/Label.yaml
-        - ../../parameters/query/pagination/Page.yaml
-        - ../../parameters/query/pagination/Size.yaml
-        - ../../parameters/query/pagination/Sort.yaml
+        - $ref: '#/components/parameters/QueryScriptsVersion'
+        - $ref: '#/components/parameters/QueryScriptsName'
+        - in: query
+          name: label
+          required: false
+          schema:
+            type: string
+          description: 'allow for filtering based on script label. Format: `label_key:label_value`. Only scripts having a label with name `label_name` having a value containing `label_value`'
+        - $ref: '#/components/parameters/QueryPaginationPage'
+        - $ref: '#/components/parameters/QueryPaginationSize'
+        - $ref: '#/components/parameters/QueryScriptsSort'
       responses:
         '200':
           description: Expected response to a valid request
@@ -57,7 +62,7 @@ paths:
         - scripts
       operationId: scriptsFetchByName
       parameters:
-        - $ref: '#/components/parameters/ScriptName'
+        - $ref: '#/components/parameters/PathScriptsName'
       responses:
         '200':
           description: Expected response to a valid request
@@ -72,8 +77,8 @@ paths:
         - scripts
       operationId: scriptsFetchByNameAndVersion
       parameters:
-        - $ref: '#/components/parameters/ScriptName'
-        - $ref: '#/components/parameters/ScriptVersion'
+        - $ref: '#/components/parameters/PathScriptsName'
+        - $ref: '#/components/parameters/PathScriptsVersion'
       responses:
         '200':
           description: Expected response to a valid request
@@ -83,31 +88,129 @@ paths:
                 $ref: '#/components/schemas/ScriptDto'
         '404':
           description: no script found with specified name and version
+  /datasets:
+    get:
+      summary: Fetch all datasets
+      tags:
+        - datasets
+      operationId: datasetsFetchAll
+      parameters:
+        - $ref: '#/components/parameters/QueryDatasetsUuid'
+        - $ref: '#/components/parameters/QueryPaginationPage'
+        - $ref: '#/components/parameters/QueryPaginationSize'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedDatasetDto'
+    post:
+      summary: Create a dataset
+      tags:
+        - datasets
+      operationId: datasetsCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatasetPostDto'
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DatasetDto'
+        '400':
+          description: bad request
+  '/datasets/{uuid}':
+    get:
+      summary: fetch dataset with sepcified uuid
+      tags:
+        - datasets
+      operationId: datasetsFetchById
+      parameters:
+        - $ref: '#/components/parameters/PathDatasetsUuid'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetDto'
+        '404':
+          description: no dataset found with specified uuid
+    put:
+      summary: update a dataset
+      tags:
+        - datasets
+      operationId: datasetsUpdateByUuid
+      parameters:
+        - $ref: '#/components/parameters/PathDatasetsUuid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatasetPutDto'
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DatasetDto'
+        '400':
+          description: bad request
+        '404':
+          description: specified dataset not found
+    delete:
+      summary: delete dataset with sepcified uuid
+      tags:
+        - datasets
+      operationId: datasetsDeleteById
+      parameters:
+        - $ref: '#/components/parameters/PathDatasetsUuid'
+      responses:
+        '200':
+          description: Expected response to a valid request
+        '404':
+          description: no dataset found with specified uuid
 components:
   parameters:
-    ScriptName:
+    PathScriptsName:
       name: name
       description: name of the script
       in: path
       required: true
       schema:
         type: string
-    ScriptVersion:
+    PathScriptsVersion:
       name: version
       in: path
       required: true
       schema:
         type: integer
         format: int64
-    Page:
+    QueryScriptsName:
       in: query
-      name: page
+      name: name
       required: false
       schema:
-        type: number
-        default: 1
-      description: determines the page being returned
-    Sort:
+        type: string
+      description: allow for filtering based on script name. Only scripts containing the provided value in its script name will be returned
+    QueryScriptsVersion:
+      in: query
+      name: version
+      required: false
+      schema:
+        type: string
+        enum:
+          - latest
+      description: allow for selection of only the latest version of all scripts when given the value 'latest'
+    QueryScriptsSort:
       in: query
       name: sort
       required: false
@@ -122,7 +225,15 @@ components:
       description: |
         See https://stackoverflow.com/questions/33018127/spring-data-rest-sort-by-multiple-properties for query parameter formatting. Sort the result set according to the provided keywords. The order of sorting follows the order of the list. By default sorting is applied in the ascending direction but this can be altered by explicitly providing the sorting direction:
          * `name[,desc|,asc]` - Sort by script name.
-    Size:
+    QueryPaginationPage:
+      in: query
+      name: page
+      required: false
+      schema:
+        type: number
+        default: 1
+      description: determines the page being returned
+    QueryPaginationSize:
       in: query
       name: size
       required: false
@@ -130,6 +241,21 @@ components:
         type: number
         default: 20
       description: detemines how many scripts are included in a page
+    PathDatasetsUuid:
+      name: uuid
+      description: uuid of the dataset
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    QueryDatasetsUuid:
+      name: name
+      in: query
+      required: false
+      schema:
+        type: string
+      description: allow for filtering based on dataset name. Only dataset containing the provided value in its name will be returned
   schemas:
     ScriptDto:
       type: object
@@ -295,6 +421,107 @@ components:
         number:
           type: integer
           description: Actual Number of the page (starts from 1 to n)
+    DatasetDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/InMemoryDatasetImplementationDto'
+    DatasetImplementationLabelDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+        label:
+          type: string
+    InMemoryDatasetImplementationDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        keyValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/InMemoryDatasetImplementationKeyValueDto'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatasetImplementationLabelDto'
+    InMemoryDatasetImplementationKeyValueDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        key:
+          type: string
+        value:
+          type: string
+    PagedDatasetDto:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            scripts:
+              type: array
+              items:
+                $ref: '#/components/schemas/DatasetDto'
+        _links:
+          $ref: '#/components/schemas/PageLinks'
+        page:
+          $ref: '#/components/schemas/PaginationProperties'
+    DatasetPostDto:
+      type: object
+      properties:
+        name:
+          type: string
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/InMemoryDatasetImplementationPostDto'
+    DatasetImplementationLabelPostDto:
+      type: object
+      properties:
+        label:
+          type: string
+    InMemoryDatasetImplementationPostDto:
+      type: object
+      properties:
+        keyValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/InMemoryDatasetImplementationKeyValuePostDto'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatasetImplementationLabelPostDto'
+    InMemoryDatasetImplementationKeyValuePostDto:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    DatasetPutDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/InMemoryDatasetImplementationPostDto'
     Error:
       type: object
       required:

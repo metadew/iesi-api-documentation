@@ -1,0 +1,15 @@
+summary: Fetch all datasets
+tags:
+  - datasets
+operationId: datasetsFetchAll
+parameters:
+  - $ref: "../../parameters/query/datasets/Name.yaml"
+  - $ref: "../../parameters/query/pagination/Page.yaml"
+  - $ref: "../../parameters/query/pagination/Size.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/datasets/PagedDatasetDto.yaml"

@@ -3,8 +3,8 @@ tags:
   - scripts
 operationId: scriptsFetchByNameAndVersion
 parameters:
-  - $ref: "../../parameters/path/scripts/ScriptName.yaml"
-  - $ref: "../../parameters/path/scripts/ScriptVersion.yaml"
+  - $ref: "../../parameters/path/scripts/Name.yaml"
+  - $ref: "../../parameters/path/scripts/Version.yaml"
 
 responses:
   '200':

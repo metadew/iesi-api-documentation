@@ -1,19 +1,34 @@
 
 # Scripts
 ## Path
-ScriptName:
-  $ref: './path/scripts/ScriptName.yaml'
+PathScriptsName:
+  $ref: './path/scripts/Name.yaml'
 
-ScriptVersion:
-  $ref: './path/scripts/ScriptVersion.yaml'
+PathScriptsVersion:
+  $ref: './path/scripts/Version.yaml'
 
 ## Query
+QueryScriptsName:
+  $ref: './query/scripts/Name.yaml'
+
+QueryScriptsVersion:
+  $ref: './query/scripts/Version.yaml'
+
+QueryScriptsSort:
+  $ref: './query/scripts/Sort.yaml'
 
 # Pagination
 ## Query
-Page:
+QueryPaginationPage:
   $ref: './query/pagination/Page.yaml'
-Sort:
-  $ref: './query/pagination/Sort.yaml'
-Size:
+QueryPaginationSize:
   $ref: './query/pagination/Size.yaml'
+
+# Scripts
+## Path
+PathDatasetsUuid:
+  $ref: './path/datasets/Uuid.yaml'
+
+## Query
+QueryDatasetsUuid:
+  $ref: './query/datasets/Name.yaml'

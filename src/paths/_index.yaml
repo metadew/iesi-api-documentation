@@ -1,3 +1,4 @@
+# Scripts
 '/scripts':
   get:
     $ref: "./scripts/fetchAll.yaml"
@@ -7,3 +8,17 @@
 '/scripts/{name}/{version}':
   get:
     $ref: "./scripts/fetchByNameAndVersion.yaml"
+
+# Datasets
+'/datasets':
+  get:
+    $ref: "./datasets/fetchAll.yaml"
+  post:
+    $ref: "./datasets/create.yaml"
+'/datasets/{uuid}':
+  get:
+    $ref: "./datasets/fetchByUuid.yaml"
+  put:
+    $ref: "./datasets/updateByUuid.yaml"
+  delete:
+    $ref: "./datasets/deleteByUuid.yaml"

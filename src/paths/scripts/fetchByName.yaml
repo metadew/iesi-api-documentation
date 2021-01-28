@@ -3,7 +3,7 @@ tags:
   - scripts
 operationId: scriptsFetchByName
 parameters:
-  - $ref: "../../parameters/path/scripts/ScriptName.yaml"
+  - $ref: "../../parameters/path/scripts/Name.yaml"
 
 responses:
   '200':

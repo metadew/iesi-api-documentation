@@ -1,0 +1,6 @@
+name: name
+in: query
+required: false
+schema:
+  type: string
+description: allow for filtering based on dataset name. Only dataset containing the provided value in its name will be returned

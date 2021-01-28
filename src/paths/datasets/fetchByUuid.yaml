@@ -1,0 +1,16 @@
+summary: fetch dataset with sepcified uuid
+tags:
+  - datasets
+operationId: datasetsFetchById
+parameters:
+  - $ref: "../../parameters/path/datasets/Uuid.yaml"
+
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/datasets/DatasetDto.yaml"
+  '404':
+    description: no dataset found with specified uuid
