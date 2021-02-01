@@ -508,7 +508,7 @@ components:
           format: uuid
         name:
           type: string
-        labels:
+        implementations:
           type: array
           items:
             $ref: '#/components/schemas/InMemoryDatasetImplementationDto'
@@ -525,6 +525,10 @@ components:
         uuid:
           type: string
           format: uuid
+        type:
+          type: string
+          enum:
+            - in_memory
         keyValues:
           type: array
           items:
@@ -562,7 +566,7 @@ components:
       properties:
         name:
           type: string
-        labels:
+        implementations:
           type: array
           items:
             $ref: '#/components/schemas/InMemoryDatasetImplementationPostDto'
@@ -597,7 +601,7 @@ components:
           format: uuid
         name:
           type: string
-        labels:
+        implementations:
           type: array
           items:
             $ref: '#/components/schemas/InMemoryDatasetImplementationPostDto'
@@ -642,13 +646,7 @@ components:
         privileges:
           type: array
           items:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-              privilege:
-                type: string
+            $ref: '#/components/schemas/PrivilegeDto'
     UserRoleTeamDto:
       type: object
       properties:
@@ -671,8 +669,6 @@ components:
           $ref: '#/components/schemas/PageLinks'
         page:
           $ref: '#/components/schemas/PaginationProperties'
-    PrivilegeDto:
-      $ref: '#/components/schemas/UserDto'
     AuthenticationResponseDto:
       type: object
       properties:
@@ -688,6 +684,14 @@ components:
         password:
           type: string
           format: password
+    PrivilegeDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        privilege:
+          type: string
     Error:
       type: object
       required:

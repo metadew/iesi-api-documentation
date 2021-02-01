@@ -55,12 +55,14 @@ UserRoleTeamDto:
   $ref: "./users/UserRoleTeamDto.yaml"
 PagedUserDto:
   $ref: "./users/PagedUserDto.yaml"
-PrivilegeDto:
-  $ref: "./users/UserDto.yaml"
 AuthenticationResponseDto:
   $ref: "./users/AuthenticationResponseDto.yaml"
 AuthenticationRequestDto:
   $ref: "./users/AuthenticationRequestDto.yaml"
+
+# Teams
+PrivilegeDto:
+  $ref: "./teams/PrivilegeDto.yaml"
 
 # Errors
 Error:

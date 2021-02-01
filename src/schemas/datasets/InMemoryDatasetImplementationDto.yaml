@@ -3,6 +3,10 @@ properties:
   uuid:
     type: string
     format: uuid
+  type:
+    type: string
+    enum:
+      - in_memory
   keyValues:
     type: array
     items:

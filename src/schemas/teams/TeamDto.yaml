@@ -1,0 +1,15 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  teamName:
+    type: string
+  securityGroups:
+    type: array
+    items:
+      $ref: '../../schemas/teams/TeamSecurityGroupDto.yaml'
+  roles:
+    type: array
+    items:
+      $ref: '../../schemas/teams/RoleDto.yaml'

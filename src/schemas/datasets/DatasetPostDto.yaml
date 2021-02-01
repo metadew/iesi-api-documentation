@@ -2,7 +2,7 @@ type: object
 properties:
   name:
     type: string
-  labels:
+  implementations:
     type: array
     items:
       $ref: '../../schemas/datasets/InMemoryDatasetImplementationPostDto.yaml'

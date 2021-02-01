@@ -5,8 +5,10 @@ properties:
     format: uuid
   name:
     type: string
-  team:
-    $ref: '../../schemas/users/UserRoleTeamDto.yaml'
+  users:
+    type: array
+    items:
+      $ref: '../../schemas/users/RoleUserDto.yaml'
   privileges:
     type: array
     items:
