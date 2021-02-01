@@ -39,12 +39,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/QueryScriptsVersion'
         - $ref: '#/components/parameters/QueryScriptsName'
-        - in: query
-          name: label
-          required: false
-          schema:
-            type: string
-          description: 'allow for filtering based on script label. Format: `label_key:label_value`. Only scripts having a label with name `label_name` having a value containing `label_value`'
+        - $ref: '#/components/parameters/QueryScriptsLabel'
         - $ref: '#/components/parameters/QueryPaginationPage'
         - $ref: '#/components/parameters/QueryPaginationSize'
         - $ref: '#/components/parameters/QueryScriptsSort'
@@ -287,6 +282,13 @@ components:
         enum:
           - latest
       description: allow for selection of only the latest version of all scripts when given the value 'latest'
+    QueryScriptsLabel:
+      in: query
+      name: label
+      required: false
+      schema:
+        type: string
+      description: 'allow for filtering based on script label. Format: `label_key:label_value`. Only scripts having a label with name `label_name` having a value containing `label_value`'
     QueryScriptsSort:
       in: query
       name: sort
@@ -586,6 +588,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DatasetImplementationLabelPostDto'
+        type:
+          type: string
+          enum:
+            - in_memory
     InMemoryDatasetImplementationKeyValuePostDto:
       type: object
       properties:

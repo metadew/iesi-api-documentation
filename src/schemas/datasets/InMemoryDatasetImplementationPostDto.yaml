@@ -8,3 +8,7 @@ properties:
     type: array
     items:
       $ref: '../../schemas/datasets/DatasetImplementationLabelPostDto.yaml'
+  type:
+    type: string
+    enum:
+      - in_memory

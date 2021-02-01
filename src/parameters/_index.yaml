@@ -14,6 +14,9 @@ QueryScriptsName:
 QueryScriptsVersion:
   $ref: './query/scripts/Version.yaml'
 
+QueryScriptsLabel:
+  $ref: './query/scripts/Label.yaml'
+
 QueryScriptsSort:
   $ref: './query/scripts/Sort.yaml'
 
