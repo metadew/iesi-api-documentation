@@ -1,0 +1,18 @@
+summary: delete a team from a security group
+tags:
+  - security_groups
+operationId: securityGroupsAddTeam
+parameters:
+  - $ref: "../../parameters/path/security_groups/Uuid.yaml"
+  - $ref: "../../parameters/path/security_groups/TeamUuid.yaml"
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: '../../schemas/security_groups/SecurityGroupTeamPutDto.yaml'
+  required: true
+responses:
+  '200':
+    description: Expected response to a valid request
+  '404':
+    description: no security group found with specified uuid

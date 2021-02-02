@@ -1,0 +1,19 @@
+summary: Create a security group
+tags:
+  - security_groups
+operationId: securityGroupsCreate
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: '../../schemas/security_groups/SecurityGroupPostDto.yaml'
+  required: true
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/security_groups/SecurityGroupDto.yaml'
+  '400':
+    description: bad request

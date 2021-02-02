@@ -1,0 +1,12 @@
+summary: delete security group with specified uuid
+tags:
+  - security_groups
+operationId: securityGroupsDeleteById
+parameters:
+  - $ref: "../../parameters/path/security_groups/Uuid.yaml"
+
+responses:
+  '200':
+    description: Expected response to a valid request
+  '404':
+    description: no security group found with specified uuid

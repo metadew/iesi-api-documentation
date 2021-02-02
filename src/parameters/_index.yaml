@@ -47,3 +47,10 @@ PathTeamsUuid:
   $ref: './path/teams/Uuid.yaml'
 PathTeamsRoleUuid:
   $ref: './path/teams/RoleUuid.yaml'
+PathTeamsUserUuid:
+  $ref: './path/teams/UserUuid.yaml'
+
+# Security Groups
+## Path
+PathSecurityGroupsUuid:
+  $ref: './path/security_groups/Uuid.yaml'

@@ -1,0 +1,7 @@
+name: uuid
+description: uuid of the security group
+in: path
+required: true
+schema:
+  type: string
+  format: uuid

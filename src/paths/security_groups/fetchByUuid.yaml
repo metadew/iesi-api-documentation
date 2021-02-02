@@ -1,0 +1,16 @@
+summary: fetch security group with sepcified uuid
+tags:
+  - security_groups
+operationId: securityGroupsFetchById
+parameters:
+  - $ref: "../../parameters/path/security_groups/Uuid.yaml"
+
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/security_groups/SecurityGroupDto.yaml"
+  '404':
+    description: no team found with specified uuid

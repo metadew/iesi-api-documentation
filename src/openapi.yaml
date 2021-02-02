@@ -34,6 +34,8 @@ tags:
     description: Everything about teams
   - name: datasets
     description: Everything about datasets
+  - name: security_groups
+    description: Everthing about security groups
 
 paths:
   $ref: "./paths/_index.yaml"

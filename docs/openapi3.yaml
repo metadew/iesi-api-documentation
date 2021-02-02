@@ -31,6 +31,8 @@ tags:
     description: Everything about teams
   - name: datasets
     description: Everything about datasets
+  - name: security_groups
+    description: Everthing about security groups
 paths:
   /scripts:
     get:
@@ -402,18 +404,147 @@ paths:
       parameters:
         - $ref: '#/components/parameters/PathTeamsUuid'
         - $ref: '#/components/parameters/PathTeamsRoleUuid'
-        - name: user-uuid
-          description: uuid of the user
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+        - $ref: '#/components/parameters/PathTeamsUserUuid'
       responses:
         '200':
           description: Expected response to a valid request
         '400':
           description: bad request
+  /security-groups:
+    get:
+      summary: Fetch all security groups
+      tags:
+        - security_groups
+      operationId: securityGroupsFetchAll
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityGroupDtoList'
+    post:
+      summary: Create a security group
+      tags:
+        - security_groups
+      operationId: securityGroupsCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityGroupPostDto'
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityGroupDto'
+        '400':
+          description: bad request
+  '/security-groups/{uuid}':
+    get:
+      summary: fetch security group with sepcified uuid
+      tags:
+        - security_groups
+      operationId: securityGroupsFetchById
+      parameters:
+        - $ref: '#/components/parameters/PathSecurityGroupsUuid'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityGroupDto'
+        '404':
+          description: no team found with specified uuid
+    put:
+      summary: update a security group
+      tags:
+        - security_groups
+      operationId: securityGRoupsUpdateByUuid
+      parameters:
+        - $ref: '#/components/parameters/PathSecurityGroupsUuid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityGroupPutDto'
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityGroupDto'
+        '400':
+          description: bad request
+        '404':
+          description: specified security group not found
+    delete:
+      summary: delete security group with specified uuid
+      tags:
+        - security_groups
+      operationId: securityGroupsDeleteById
+      parameters:
+        - $ref: '#/components/parameters/PathSecurityGroupsUuid'
+      responses:
+        '200':
+          description: Expected response to a valid request
+        '404':
+          description: no security group found with specified uuid
+  '/security-groups/{uuid}/teams':
+    post:
+      summary: Add a team to the security group
+      tags:
+        - security_groups
+      operationId: securityGroupsAddTeam
+      parameters:
+        - $ref: '#/components/parameters/PathSecurityGroupsUuid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityGroupTeamPutDto'
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityGroupDto'
+        '404':
+          description: no security group found with specified uuid
+  '/security-groups/{uuid}/teams/{team-uuid}':
+    delete:
+      summary: delete a team from a security group
+      tags:
+        - security_groups
+      operationId: securityGroupsAddTeam
+      parameters:
+        - $ref: '#/components/parameters/PathSecurityGroupsUuid'
+        - name: team-uuid
+          description: uuid of the team
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityGroupTeamPutDto'
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+        '404':
+          description: no security group found with specified uuid
 components:
   parameters:
     PathScriptsName:
@@ -518,6 +649,22 @@ components:
     PathTeamsRoleUuid:
       name: role-uuid
       description: uuid of the team"s role
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    PathTeamsUserUuid:
+      name: user-uuid
+      description: uuid of the user
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    PathSecurityGroupsUuid:
+      name: uuid
+      description: uuid of the security group
       in: path
       required: true
       schema:
@@ -1020,6 +1167,75 @@ components:
           format: uuid
         name:
           type: string
+    SecurityObjectDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        type:
+          type: string
+    SecurityObjectPutDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+    SecurityGroupDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityGroupTeamDto'
+        securityObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityObjectDto'
+    SecurityGroupPostDto:
+      type: object
+      properties:
+        name:
+          type: string
+    SecurityGroupPutDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityGroupTeamPutDto'
+        securityObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityObjectPutDto'
+    SecurityGroupTeamDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        teamName:
+          type: string
+    SecurityGroupTeamPutDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    SecurityGroupDtoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/SecurityGroupDto'
     Error:
       type: object
       required:

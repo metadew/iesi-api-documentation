@@ -88,6 +88,26 @@ RoleUserDto:
 TeamSecurityGroupDto:
   $ref: "./teams/TeamSecurityGroupDto.yaml"
 
+# Security Groups
+SecurityObjectDto:
+  $ref: "./security_groups/SecurityObjectDto.yaml"
+SecurityObjectPutDto:
+  $ref: "./security_groups/SecurityObjectPutDto.yaml"
+SecurityGroupDto:
+  $ref: "./security_groups/SecurityGroupDto.yaml"
+SecurityGroupPostDto:
+  $ref: "./security_groups/SecurityGroupPostDto.yaml"
+SecurityGroupPutDto:
+  $ref: "./security_groups/SecurityGroupPutDto.yaml"
+SecurityGroupTeamDto:
+  $ref: "./security_groups/SecurityGroupTeamDto.yaml"
+SecurityGroupTeamPutDto:
+  $ref: "./security_groups/SecurityGroupTeamPutDto.yaml"
+SecurityGroupDtoList:
+  $ref: "./security_groups/SecurityGroupDtoList.yaml"
+
+
+
 # Errors
 Error:
   $ref: "./Error.yaml"

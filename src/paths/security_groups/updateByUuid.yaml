@@ -1,0 +1,23 @@
+summary: update a security group
+tags:
+  - security_groups
+operationId: securityGRoupsUpdateByUuid
+parameters:
+  - $ref: "../../parameters/path/security_groups/Uuid.yaml"
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: '../../schemas/security_groups/SecurityGroupPutDto.yaml'
+  required: true
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/security_groups/SecurityGroupDto.yaml'
+  '400':
+    description: bad request
+  '404':
+    description: specified security group not found

@@ -61,3 +61,23 @@
 '/teams/{uuid}/roles/{role-uuid}/users/{user-uuid}':
   delete:
     $ref: "./teams/deleteUserFromRole.yaml"
+
+# Security Groups
+'/security-groups':
+  get:
+    $ref: "./security_groups/fetchAll.yaml"
+  post:
+    $ref: "./security_groups/create.yaml"
+'/security-groups/{uuid}':
+  get:
+    $ref: "./security_groups/fetchByUuid.yaml"
+  put:
+    $ref: "./security_groups/updateByUuid.yaml"
+  delete:
+    $ref: "./security_groups/deleteByUuid.yaml"
+'/security-groups/{uuid}/teams':
+  post:
+    $ref: "./security_groups/addTeam.yaml"
+'/security-groups/{uuid}/teams/{team-uuid}':
+  delete:
+    $ref: "./security_groups/deleteTeam.yaml"

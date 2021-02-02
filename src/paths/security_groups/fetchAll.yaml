@@ -1,0 +1,11 @@
+summary: Fetch all security groups
+tags:
+  - security_groups
+operationId: securityGroupsFetchAll
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/security_groups/SecurityGroupDtoList.yaml"

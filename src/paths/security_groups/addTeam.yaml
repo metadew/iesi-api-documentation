@@ -1,0 +1,21 @@
+summary: Add a team to the security group
+tags:
+  - security_groups
+operationId: securityGroupsAddTeam
+parameters:
+  - $ref: "../../parameters/path/security_groups/Uuid.yaml"
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: '../../schemas/security_groups/SecurityGroupTeamPutDto.yaml'
+  required: true
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/security_groups/SecurityGroupDto.yaml'
+  '404':
+    description: no security group found with specified uuid
