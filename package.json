@@ -4,8 +4,8 @@
   "description": "Multi-file boilerplate for Open API Specification.",
   "main": "index.js",
   "scripts": {
-    "test": "swagger-cli validate _build/openapi3.yaml",
-    "build": "swagger-cli bundle src/openapi.yaml --outfile _build/openapi3.yaml --type yaml",
+    "test": "swagger-cli validate docs/openapi3.yaml",
+    "build": "swagger-cli bundle src/openapi.yaml --outfile docs/openapi3.yaml --type yaml",
     "postman": "openapi2postmanv2 -s src/openapi.yaml -o _build/postman.json -p"
   },
   "repository": {

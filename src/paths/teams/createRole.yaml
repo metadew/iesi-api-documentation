@@ -1,0 +1,21 @@
+summary: Create a role for team
+tags:
+  - teams
+operationId: teamsCreateRole
+parameters:
+  - $ref: "../../parameters/path/teams/Uuid.yaml"
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: '../../schemas/teams/RolePostDto.yaml'
+  required: true
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/teams/TeamDto.yaml'
+  '400':
+    description: bad request

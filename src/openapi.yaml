@@ -30,6 +30,8 @@ tags:
     description: Everything about connection types
   - name: users
     description: Everything about users
+  - name: teams
+    description: Everything about teams
   - name: datasets
     description: Everything about datasets
 

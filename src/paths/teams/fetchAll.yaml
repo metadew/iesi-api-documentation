@@ -1,11 +1,11 @@
-summary: Fetch all users
+summary: Fetch all teams
 tags:
-  - users
-operationId: usersFetchAll
+  - teams
+operationId: teamsFetchAll
 responses:
   '200':
     description: Expected response to a valid request
     content:
       application/json:
         schema:
-          $ref: "../../schemas/users/UserDtoList.yaml"
+          $ref: "../../schemas/teams/TeamDtoList.yaml"

@@ -1,0 +1,8 @@
+type: object
+properties:
+  name:
+    type: string
+  privileges:
+    type: array
+    items:
+      $ref: '../../schemas/teams/PrivilegePostDto.yaml'

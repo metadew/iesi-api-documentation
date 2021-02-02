@@ -8,7 +8,8 @@ properties:
   users:
     type: array
     items:
-      $ref: '../../schemas/teams/RoleUserDto.yaml'
+      type: string
+      format: uuid
   privileges:
     type: array
     items:

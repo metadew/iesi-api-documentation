@@ -3,13 +3,14 @@ properties:
   id:
     type: string
     format: uuid
-  name:
+  teamName:
     type: string
-  users:
+  securityGroups:
     type: array
     items:
-      $ref: '../../schemas/teams/RoleUserDto.yaml'
-  privileges:
+      type: string
+      format: uuid
+  roles:
     type: array
     items:
-      $ref: '../../schemas/teams/PrivilegeDto.yaml'
+      $ref: '../../schemas/teams/RolePutDto.yaml'

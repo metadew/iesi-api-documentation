@@ -1,0 +1,16 @@
+summary: fetch team with sepcified uuid
+tags:
+  - teams
+operationId: teamsFetchById
+parameters:
+  - $ref: "../../parameters/path/teams/Uuid.yaml"
+
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/teams/TeamDto.yaml"
+  '404':
+    description: no team found with specified uuid

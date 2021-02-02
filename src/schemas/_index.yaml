@@ -59,10 +59,34 @@ AuthenticationResponseDto:
   $ref: "./users/AuthenticationResponseDto.yaml"
 AuthenticationRequestDto:
   $ref: "./users/AuthenticationRequestDto.yaml"
+UserDtoList:
+  $ref: "./users/UserDtoList.yaml"
 
 # Teams
 PrivilegeDto:
   $ref: "./teams/PrivilegeDto.yaml"
+PrivilegePostDto:
+  $ref: "./teams/PrivilegePostDto.yaml"
+TeamDto:
+  $ref: "./teams/TeamDto.yaml"
+RoleDto:
+  $ref: "./teams/RoleDto.yaml"
+RolePostDto:
+  $ref: "./teams/RolePostDto.yaml"
+RoleUserPostDto:
+  $ref: "./teams/RoleUserPostDto.yaml"
+TeamPostDto:
+  $ref: "./teams/TeamPostDto.yaml"
+TeamPutDto:
+  $ref: "./teams/TeamPutDto.yaml"
+TeamDtoList:
+  $ref: "./teams/TeamDtoList.yaml"
+PagedTeamDto:
+  $ref: "./teams/PagedTeamDto.yaml"
+RoleUserDto:
+  $ref: "./teams/RoleUserDto.yaml"
+TeamSecurityGroupDto:
+  $ref: "./teams/TeamSecurityGroupDto.yaml"
 
 # Errors
 Error:

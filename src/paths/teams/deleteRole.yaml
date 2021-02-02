@@ -1,0 +1,12 @@
+summary: delete a team's role
+tags:
+  - teams
+operationId: teamsDeleteRole
+parameters:
+  - $ref: "../../parameters/path/teams/Uuid.yaml"
+  - $ref: "../../parameters/path/teams/RoleUuid.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+  '404':
+    description: no team or role found with specified uuid

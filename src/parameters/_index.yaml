@@ -39,4 +39,11 @@ QueryDatasetsUuid:
 # Users
 ## Path
 PathUsersUuid:
-  $ref: './path/datasets/Uuid.yaml'
+  $ref: './path/users/Uuid.yaml'
+
+#Teams
+## Path
+PathTeamsUuid:
+  $ref: './path/teams/Uuid.yaml'
+PathTeamsRoleUuid:
+  $ref: './path/teams/RoleUuid.yaml'

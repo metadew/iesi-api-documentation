@@ -1,0 +1,12 @@
+summary: delete team with specified uuid
+tags:
+  - teams
+operationId: teamsDeleteById
+parameters:
+  - $ref: "../../parameters/path/teams/Uuid.yaml"
+
+responses:
+  '200':
+    description: Expected response to a valid request
+  '404':
+    description: no team found with specified uuid

@@ -35,3 +35,29 @@
 '/users/{uuid}':
   get:
     $ref: "./users/fetchByUuid.yaml"
+
+# Teams
+'/teams':
+  get:
+    $ref: "./teams/fetchAll.yaml"
+  post:
+    $ref: "./teams/create.yaml"
+'/teams/{uuid}':
+  get:
+    $ref: "./teams/fetchByUuid.yaml"
+  put:
+    $ref: "./teams/updateByUuid.yaml"
+  delete:
+    $ref: "./teams/deleteByUuid.yaml"
+'/teams/{uuid}/roles':
+  post:
+    $ref: "./teams/createRole.yaml"
+'/teams/{uuid}/roles/{role-uuid}':
+  delete:
+    $ref: "./teams/deleteRole.yaml"
+'/teams/{uuid}/roles/{role-uuid}/users':
+  post:
+    $ref: "./teams/addUserToRole.yaml"
+'/teams/{uuid}/roles/{role-uuid}/users/{user-uuid}':
+  delete:
+    $ref: "./teams/deleteUserFromRole.yaml"

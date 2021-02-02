@@ -1,0 +1,19 @@
+summary: Create a team
+tags:
+  - teams
+operationId: teamsCreate
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: '../../schemas/teams/TeamPostDto.yaml'
+  required: true
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/teams/TeamDto.yaml'
+  '400':
+    description: bad request

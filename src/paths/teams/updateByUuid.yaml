@@ -1,0 +1,23 @@
+summary: update a team
+tags:
+  - teams
+operationId: teamsUpdateByUuid
+parameters:
+  - $ref: "../../parameters/path/teams/Uuid.yaml"
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: '../../schemas/teams/TeamPutDto.yaml'
+  required: true
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/teams/TeamDto.yaml'
+  '400':
+    description: bad request
+  '404':
+    description: specified team not found

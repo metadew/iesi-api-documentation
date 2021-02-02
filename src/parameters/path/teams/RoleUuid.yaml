@@ -1,0 +1,7 @@
+name: role-uuid
+description: uuid of the team"s role
+in: path
+required: true
+schema:
+  type: string
+  format: uuid

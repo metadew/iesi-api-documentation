@@ -1,4 +1,4 @@
-summary: delete dataset with sepcified uuid
+summary: delete dataset with specified uuid
 tags:
   - datasets
 operationId: datasetsDeleteById

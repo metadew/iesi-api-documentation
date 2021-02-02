@@ -27,6 +27,8 @@ tags:
     description: Everything about connection types
   - name: users
     description: Everything about users
+  - name: teams
+    description: Everything about teams
   - name: datasets
     description: Everything about datasets
 paths:
@@ -127,7 +129,7 @@ paths:
         - datasets
       operationId: datasetsFetchById
       parameters:
-        - $ref: '#/components/parameters/PathUsersUuid'
+        - $ref: '#/components/parameters/PathDatasetsUuid'
       responses:
         '200':
           description: Expected response to a valid request
@@ -143,7 +145,7 @@ paths:
         - datasets
       operationId: datasetsUpdateByUuid
       parameters:
-        - $ref: '#/components/parameters/PathUsersUuid'
+        - $ref: '#/components/parameters/PathDatasetsUuid'
       requestBody:
         content:
           application/json:
@@ -162,12 +164,12 @@ paths:
         '404':
           description: specified dataset not found
     delete:
-      summary: delete dataset with sepcified uuid
+      summary: delete dataset with specified uuid
       tags:
         - datasets
       operationId: datasetsDeleteById
       parameters:
-        - $ref: '#/components/parameters/PathUsersUuid'
+        - $ref: '#/components/parameters/PathDatasetsUuid'
       responses:
         '200':
           description: Expected response to a valid request
@@ -185,7 +187,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PagedUserDto'
+                $ref: '#/components/schemas/UserDtoList'
     post:
       summary: Create a user
       tags:
@@ -234,13 +236,7 @@ paths:
         - users
       operationId: usersFetchById
       parameters:
-        - name: uuid
-          description: uuid of the user
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+        - $ref: '#/components/parameters/PathUsersUuid'
       responses:
         '200':
           description: Expected response to a valid request
@@ -250,6 +246,174 @@ paths:
                 $ref: '#/components/schemas/UserDto'
         '404':
           description: no user found with specified uuid
+  /teams:
+    get:
+      summary: Fetch all teams
+      tags:
+        - teams
+      operationId: teamsFetchAll
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamDtoList'
+    post:
+      summary: Create a team
+      tags:
+        - teams
+      operationId: teamsCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamPostDto'
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamDto'
+        '400':
+          description: bad request
+  '/teams/{uuid}':
+    get:
+      summary: fetch team with sepcified uuid
+      tags:
+        - teams
+      operationId: teamsFetchById
+      parameters:
+        - $ref: '#/components/parameters/PathTeamsUuid'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamDto'
+        '404':
+          description: no team found with specified uuid
+    put:
+      summary: update a team
+      tags:
+        - teams
+      operationId: teamsUpdateByUuid
+      parameters:
+        - $ref: '#/components/parameters/PathTeamsUuid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamPutDto'
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamDto'
+        '400':
+          description: bad request
+        '404':
+          description: specified team not found
+    delete:
+      summary: delete team with specified uuid
+      tags:
+        - teams
+      operationId: teamsDeleteById
+      parameters:
+        - $ref: '#/components/parameters/PathTeamsUuid'
+      responses:
+        '200':
+          description: Expected response to a valid request
+        '404':
+          description: no team found with specified uuid
+  '/teams/{uuid}/roles':
+    post:
+      summary: Create a role for team
+      tags:
+        - teams
+      operationId: teamsCreateRole
+      parameters:
+        - $ref: '#/components/parameters/PathTeamsUuid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RolePostDto'
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamDto'
+        '400':
+          description: bad request
+  '/teams/{uuid}/roles/{role-uuid}':
+    delete:
+      summary: delete a team's role
+      tags:
+        - teams
+      operationId: teamsDeleteRole
+      parameters:
+        - $ref: '#/components/parameters/PathTeamsUuid'
+        - $ref: '#/components/parameters/PathTeamsRoleUuid'
+      responses:
+        '200':
+          description: Expected response to a valid request
+        '404':
+          description: no team or role found with specified uuid
+  '/teams/{uuid}/roles/{role-uuid}/users':
+    post:
+      summary: Add a user to a team's role
+      tags:
+        - teams
+      operationId: teamsAddUserToRole
+      parameters:
+        - $ref: '#/components/parameters/PathTeamsUuid'
+        - $ref: '#/components/parameters/PathTeamsRoleUuid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RolePostDto'
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleUserPostDto'
+        '400':
+          description: bad request
+  '/teams/{uuid}/roles/{role-uuid}/users/{user-uuid}':
+    delete:
+      summary: Delete a user from a team's role
+      tags:
+        - teams
+      operationId: teamsDeleteUserToRole
+      parameters:
+        - $ref: '#/components/parameters/PathTeamsUuid'
+        - $ref: '#/components/parameters/PathTeamsRoleUuid'
+        - name: user-uuid
+          description: uuid of the user
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Expected response to a valid request
+        '400':
+          description: bad request
 components:
   parameters:
     PathScriptsName:
@@ -321,7 +485,13 @@ components:
         default: 20
       description: detemines how many scripts are included in a page
     PathDatasetsUuid:
-      $ref: '#/components/parameters/PathUsersUuid'
+      name: uuid
+      description: uuid of the dataset
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
     QueryDatasetsUuid:
       name: name
       in: query
@@ -331,7 +501,23 @@ components:
       description: allow for filtering based on dataset name. Only dataset containing the provided value in its name will be returned
     PathUsersUuid:
       name: uuid
-      description: uuid of the dataset
+      description: uuid of the user
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    PathTeamsUuid:
+      name: uuid
+      description: uuid of the team
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    PathTeamsRoleUuid:
+      name: role-uuid
+      description: uuid of the team"s role
       in: path
       required: true
       schema:
@@ -519,6 +705,7 @@ components:
       properties:
         uuid:
           type: string
+          format: uuid
         label:
           type: string
     InMemoryDatasetImplementationDto:
@@ -690,6 +877,10 @@ components:
         password:
           type: string
           format: password
+    UserDtoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/UserDto'
     PrivilegeDto:
       type: object
       properties:
@@ -697,6 +888,137 @@ components:
           type: string
           format: uuid
         privilege:
+          type: string
+    PrivilegePostDto:
+      type: object
+      properties:
+        privilege:
+          type: string
+    TeamDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        teamName:
+          type: string
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamSecurityGroupDto'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleDto'
+    RoleDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleUserDto'
+        privileges:
+          type: array
+          items:
+            $ref: '#/components/schemas/PrivilegeDto'
+    RolePostDto:
+      type: object
+      properties:
+        name:
+          type: string
+        privileges:
+          type: array
+          items:
+            $ref: '#/components/schemas/PrivilegePostDto'
+    RoleUserPostDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    TeamPostDto:
+      type: object
+      properties:
+        teamName:
+          type: string
+    TeamPutDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        teamName:
+          type: string
+        securityGroups:
+          type: array
+          items:
+            type: string
+            format: uuid
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              name:
+                type: string
+              users:
+                type: array
+                items:
+                  type: string
+                  format: uuid
+              privileges:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PrivilegeDto'
+    TeamDtoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/TeamDto'
+    PagedTeamDto:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            scripts:
+              type: array
+              items:
+                $ref: '#/components/schemas/TeamDto'
+        _links:
+          $ref: '#/components/schemas/PageLinks'
+        page:
+          $ref: '#/components/schemas/PaginationProperties'
+    RoleUserDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        username:
+          type: string
+        enabled:
+          type: boolean
+        expired:
+          type: boolean
+        credentialsExpired:
+          type: boolean
+        locked:
+          type: boolean
+    TeamSecurityGroupDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
           type: string
     Error:
       type: object

@@ -1,0 +1,13 @@
+summary: Delete a user from a team's role
+tags:
+  - teams
+operationId: teamsDeleteUserToRole
+parameters:
+  - $ref: "../../parameters/path/teams/Uuid.yaml"
+  - $ref: "../../parameters/path/teams/RoleUuid.yaml"
+  - $ref: "../../parameters/path/teams/UserUuid.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+  '400':
+    description: bad request

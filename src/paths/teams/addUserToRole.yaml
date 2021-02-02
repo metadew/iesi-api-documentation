@@ -1,0 +1,22 @@
+summary: Add a user to a team's role
+tags:
+  - teams
+operationId: teamsAddUserToRole
+parameters:
+  - $ref: "../../parameters/path/teams/Uuid.yaml"
+  - $ref: "../../parameters/path/teams/RoleUuid.yaml"
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: '../../schemas/teams/RolePostDto.yaml'
+  required: true
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/teams/RoleUserPostDto.yaml'
+  '400':
+    description: bad request
