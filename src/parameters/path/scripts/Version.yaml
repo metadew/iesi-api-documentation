@@ -1,4 +1,5 @@
 name: version
+description: version of the script
 in: path
 required: true
 schema:

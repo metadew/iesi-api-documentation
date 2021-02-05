@@ -2,12 +2,21 @@
 '/scripts':
   get:
     $ref: "./scripts/fetchAll.yaml"
+  post:
+    $ref: "./scripts/create.yaml"
+  put:
+    $ref: "./scripts/update.yaml"
+
 '/scripts/{name}':
   get:
     $ref: "./scripts/fetchByName.yaml"
 '/scripts/{name}/{version}':
   get:
     $ref: "./scripts/fetchByNameAndVersion.yaml"
+  put:
+    $ref: "./scripts/updateByNameAndVersion.yaml"
+  delete:
+    $ref: "./scripts/deleteByNameAndVersion.yaml"
 
 # Datasets
 '/datasets':

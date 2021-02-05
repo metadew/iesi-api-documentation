@@ -1,0 +1,19 @@
+summary: Update a specific script
+tags:
+  - scripts
+operationId: scriptsUpdateByNameAndVersion
+parameters:
+  - $ref: "../../parameters/path/scripts/Name.yaml"
+  - $ref: "../../parameters/path/scripts/Version.yaml"
+requestBody:
+  $ref: "../../requestBodies/scripts/createBody.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/scripts/ScriptDto.yaml"
+  '400':
+    description: Expected response to a bad request
+

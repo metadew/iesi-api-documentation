@@ -1,9 +1,10 @@
-summary: All versions of a script with a sepcified name
+summary: All versions of a script with a specified name
 tags:
   - scripts
 operationId: scriptsFetchByName
 parameters:
   - $ref: "../../parameters/path/scripts/Name.yaml"
+  - $ref: "../../parameters/query/scripts/Version.yaml"
 
 responses:
   '200':

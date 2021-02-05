@@ -1,0 +1,13 @@
+summary: Update one or multiple scripts
+tags:
+  - scripts
+operationId: scriptsUpdate
+requestBody:
+  $ref: "../../requestBodies/scripts/updateBody.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/scripts/ScriptDto.yaml"

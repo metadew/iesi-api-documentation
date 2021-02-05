@@ -1,0 +1,11 @@
+description: Body request that contains a list of ScriptPostDto object
+required: true
+content:
+  application/json:
+    schema:
+      $ref: "../../schemas/scripts/ScriptPostDto.yaml"
+
+      
+
+
+
