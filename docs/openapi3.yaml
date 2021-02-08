@@ -41,12 +41,12 @@ paths:
         - scripts
       operationId: scriptsFetchAll
       parameters:
-        - $ref: '#/components/parameters/Version'
-        - $ref: '#/components/parameters/Name'
-        - $ref: '#/components/parameters/Label'
-        - $ref: '#/components/parameters/Page'
-        - $ref: '#/components/parameters/Size'
-        - $ref: '#/components/parameters/Sort'
+        - $ref: '#/components/parameters/QueryScriptsVersion'
+        - $ref: '#/components/parameters/QueryScriptsName'
+        - $ref: '#/components/parameters/QueryScriptsLabel'
+        - $ref: '#/components/parameters/QueryPaginationPage'
+        - $ref: '#/components/parameters/QueryPaginationSize'
+        - $ref: '#/components/parameters/QueryScriptsSort'
       responses:
         '200':
           description: Expected response to a valid request
@@ -60,7 +60,33 @@ paths:
         - scripts
       operationId: scriptsCreate
       requestBody:
-        $ref: '#/components/requestBodies/createBody'
+        description: Body request that contains the ScriptPostDto object
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                securityGroupName:
+                  type: string
+                description:
+                  type: string
+                version:
+                  $ref: '#/components/schemas/ScriptVersionDto'
+                parameters:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ScriptParameterDto'
+                actions:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ActionDto'
+                labels:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ScriptLabelDto'
       responses:
         '200':
           description: Expected response to a valid request
@@ -74,7 +100,14 @@ paths:
         - scripts
       operationId: scriptsUpdate
       requestBody:
-        $ref: '#/components/requestBodies/updateBody'
+        description: Body request that contains a list of ScriptPostDto object
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/paths/~1scripts/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: Expected response to a valid request
@@ -89,8 +122,8 @@ paths:
         - scripts
       operationId: scriptsFetchByName
       parameters:
-        - $ref: '#/components/parameters/Name-2'
-        - $ref: '#/components/parameters/Version'
+        - $ref: '#/components/parameters/PathScriptsName'
+        - $ref: '#/components/parameters/QueryScriptsVersion'
       responses:
         '200':
           description: Expected response to a valid request
@@ -105,8 +138,8 @@ paths:
         - scripts
       operationId: scriptsFetchByNameAndVersion
       parameters:
-        - $ref: '#/components/parameters/Name-2'
-        - $ref: '#/components/parameters/Version-2'
+        - $ref: '#/components/parameters/PathScriptsName'
+        - $ref: '#/components/parameters/PathScriptsVersion'
       responses:
         '200':
           description: Expected response to a valid request
@@ -122,10 +155,10 @@ paths:
         - scripts
       operationId: scriptsUpdateByNameAndVersion
       parameters:
-        - $ref: '#/components/parameters/Name-2'
-        - $ref: '#/components/parameters/Version-2'
+        - $ref: '#/components/parameters/PathScriptsName'
+        - $ref: '#/components/parameters/PathScriptsVersion'
       requestBody:
-        $ref: '#/components/requestBodies/createBody'
+        $ref: '#/paths/~1scripts/post/requestBody'
       responses:
         '200':
           description: Expected response to a valid request
@@ -141,8 +174,8 @@ paths:
         - scripts
       operationId: scriptsDeleteByNameAndVersion
       parameters:
-        - $ref: '#/components/parameters/Name-2'
-        - $ref: '#/components/parameters/Version-2'
+        - $ref: '#/components/parameters/PathScriptsName'
+        - $ref: '#/components/parameters/PathScriptsVersion'
       responses:
         '200':
           description: Expected response to a valid request
@@ -166,9 +199,9 @@ paths:
         - datasets
       operationId: datasetsFetchAll
       parameters:
-        - $ref: '#/components/parameters/Name-3'
-        - $ref: '#/components/parameters/Page'
-        - $ref: '#/components/parameters/Size'
+        - $ref: '#/components/parameters/QueryDatasetsUuid'
+        - $ref: '#/components/parameters/QueryPaginationPage'
+        - $ref: '#/components/parameters/QueryPaginationSize'
       responses:
         '200':
           description: Expected response to a valid request
@@ -203,7 +236,7 @@ paths:
         - datasets
       operationId: datasetsFetchById
       parameters:
-        - $ref: '#/components/parameters/Uuid'
+        - $ref: '#/components/parameters/PathDatasetsUuid'
       responses:
         '200':
           description: Expected response to a valid request
@@ -219,7 +252,7 @@ paths:
         - datasets
       operationId: datasetsUpdateByUuid
       parameters:
-        - $ref: '#/components/parameters/Uuid'
+        - $ref: '#/components/parameters/PathDatasetsUuid'
       requestBody:
         content:
           application/json:
@@ -243,7 +276,7 @@ paths:
         - datasets
       operationId: datasetsDeleteById
       parameters:
-        - $ref: '#/components/parameters/Uuid'
+        - $ref: '#/components/parameters/PathDatasetsUuid'
       responses:
         '200':
           description: Expected response to a valid request
@@ -310,7 +343,7 @@ paths:
         - users
       operationId: usersFetchById
       parameters:
-        - $ref: '#/components/parameters/Uuid-2'
+        - $ref: '#/components/parameters/PathUsersUuid'
       responses:
         '200':
           description: Expected response to a valid request
@@ -360,7 +393,7 @@ paths:
         - teams
       operationId: teamsFetchById
       parameters:
-        - $ref: '#/components/parameters/Uuid-3'
+        - $ref: '#/components/parameters/PathTeamsUuid'
       responses:
         '200':
           description: Expected response to a valid request
@@ -376,7 +409,7 @@ paths:
         - teams
       operationId: teamsUpdateByUuid
       parameters:
-        - $ref: '#/components/parameters/Uuid-3'
+        - $ref: '#/components/parameters/PathTeamsUuid'
       requestBody:
         content:
           application/json:
@@ -400,7 +433,7 @@ paths:
         - teams
       operationId: teamsDeleteById
       parameters:
-        - $ref: '#/components/parameters/Uuid-3'
+        - $ref: '#/components/parameters/PathTeamsUuid'
       responses:
         '200':
           description: Expected response to a valid request
@@ -413,7 +446,7 @@ paths:
         - teams
       operationId: teamsCreateRole
       parameters:
-        - $ref: '#/components/parameters/Uuid-3'
+        - $ref: '#/components/parameters/PathTeamsUuid'
       requestBody:
         content:
           application/json:
@@ -436,8 +469,8 @@ paths:
         - teams
       operationId: teamsDeleteRole
       parameters:
-        - $ref: '#/components/parameters/Uuid-3'
-        - $ref: '#/components/parameters/RoleUuid'
+        - $ref: '#/components/parameters/PathTeamsUuid'
+        - $ref: '#/components/parameters/PathTeamsRoleUuid'
       responses:
         '200':
           description: Expected response to a valid request
@@ -450,8 +483,8 @@ paths:
         - teams
       operationId: teamsAddUserToRole
       parameters:
-        - $ref: '#/components/parameters/Uuid-3'
-        - $ref: '#/components/parameters/RoleUuid'
+        - $ref: '#/components/parameters/PathTeamsUuid'
+        - $ref: '#/components/parameters/PathTeamsRoleUuid'
       requestBody:
         content:
           application/json:
@@ -474,9 +507,9 @@ paths:
         - teams
       operationId: teamsDeleteUserToRole
       parameters:
-        - $ref: '#/components/parameters/Uuid-3'
-        - $ref: '#/components/parameters/RoleUuid'
-        - $ref: '#/components/parameters/UserUuid'
+        - $ref: '#/components/parameters/PathTeamsUuid'
+        - $ref: '#/components/parameters/PathTeamsRoleUuid'
+        - $ref: '#/components/parameters/PathTeamsUserUuid'
       responses:
         '200':
           description: Expected response to a valid request
@@ -522,7 +555,7 @@ paths:
         - security_groups
       operationId: securityGroupsFetchById
       parameters:
-        - $ref: '#/components/parameters/Uuid-4'
+        - $ref: '#/components/parameters/PathSecurityGroupsUuid'
       responses:
         '200':
           description: Expected response to a valid request
@@ -538,7 +571,7 @@ paths:
         - security_groups
       operationId: securityGRoupsUpdateByUuid
       parameters:
-        - $ref: '#/components/parameters/Uuid-4'
+        - $ref: '#/components/parameters/PathSecurityGroupsUuid'
       requestBody:
         content:
           application/json:
@@ -562,7 +595,7 @@ paths:
         - security_groups
       operationId: securityGroupsDeleteById
       parameters:
-        - $ref: '#/components/parameters/Uuid-4'
+        - $ref: '#/components/parameters/PathSecurityGroupsUuid'
       responses:
         '200':
           description: Expected response to a valid request
@@ -575,7 +608,7 @@ paths:
         - security_groups
       operationId: securityGroupsAddTeam
       parameters:
-        - $ref: '#/components/parameters/Uuid-4'
+        - $ref: '#/components/parameters/PathSecurityGroupsUuid'
       requestBody:
         content:
           application/json:
@@ -596,10 +629,22 @@ paths:
       summary: delete a team from a security group
       tags:
         - security_groups
-      operationId: securityGroupsDeleteTeam
+      operationId: securityGroupsAddTeam
       parameters:
-        - $ref: '#/components/parameters/Uuid-4'
-        - $ref: '#/components/parameters/TeamUuid'
+        - $ref: '#/components/parameters/PathSecurityGroupsUuid'
+        - name: team-uuid
+          description: uuid of the team
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityGroupTeamPutDto'
+        required: true
       responses:
         '200':
           description: Expected response to a valid request
@@ -607,7 +652,29 @@ paths:
           description: no security group found with specified uuid
 components:
   parameters:
-    Version:
+    PathScriptsName:
+      name: name
+      description: name of the script
+      in: path
+      required: true
+      schema:
+        type: string
+    PathScriptsVersion:
+      name: version
+      description: version of the script
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    QueryScriptsName:
+      in: query
+      name: name
+      required: false
+      schema:
+        type: string
+      description: allow for filtering based on script name. Only scripts containing the provided value in its script name will be returned
+    QueryScriptsVersion:
       in: query
       name: version
       required: false
@@ -615,45 +682,15 @@ components:
         type: string
         enum:
           - latest
-      description: >-
-        allow for selection of only the latest version of all scripts when given
-        the value 'latest'
-    Name:
-      in: query
-      name: name
-      required: false
-      schema:
-        type: string
-      description: >-
-        allow for filtering based on script name. Only scripts containing the
-        provided value in its script name will be returned
-    Label:
+      description: allow for selection of only the latest version of all scripts when given the value 'latest'
+    QueryScriptsLabel:
       in: query
       name: label
       required: false
       schema:
         type: string
-      description: >-
-        allow for filtering based on script label. Format:
-        `label_key:label_value`. Only scripts having a label with name
-        `label_name` having a value containing `label_value`
-    Page:
-      in: query
-      name: page
-      required: false
-      schema:
-        type: number
-        default: 1
-      description: determines the page being returned
-    Size:
-      in: query
-      name: size
-      required: false
-      schema:
-        type: number
-        default: 20
-      description: detemines how many scripts are included in a page
-    Sort:
+      description: 'allow for filtering based on script label. Format: `label_key:label_value`. Only scripts having a label with name `label_name` having a value containing `label_value`'
+    QueryScriptsSort:
       in: query
       name: sort
       required: false
@@ -665,39 +702,26 @@ components:
             enum:
               - name
       explode: false
-      description: >
-        See
-        https://stackoverflow.com/questions/33018127/spring-data-rest-sort-by-multiple-properties
-        for query parameter formatting. Sort the result set according to the
-        provided keywords. The order of sorting follows the order of the list.
-        By default sorting is applied in the ascending direction but this can be
-        altered by explicitly providing the sorting direction:
+      description: |
+        See https://stackoverflow.com/questions/33018127/spring-data-rest-sort-by-multiple-properties for query parameter formatting. Sort the result set according to the provided keywords. The order of sorting follows the order of the list. By default sorting is applied in the ascending direction but this can be altered by explicitly providing the sorting direction:
          * `name[,desc|,asc]` - Sort by script name.
-    Name-2:
-      name: name
-      description: name of the script
-      in: path
-      required: true
-      schema:
-        type: string
-    Version-2:
-      name: version
-      description: version of the script
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-    Name-3:
-      name: name
+    QueryPaginationPage:
       in: query
+      name: page
       required: false
       schema:
-        type: string
-      description: >-
-        allow for filtering based on dataset name. Only dataset containing the
-        provided value in its name will be returned
-    Uuid:
+        type: number
+        default: 1
+      description: determines the page being returned
+    QueryPaginationSize:
+      in: query
+      name: size
+      required: false
+      schema:
+        type: number
+        default: 20
+      description: detemines how many scripts are included in a page
+    PathDatasetsUuid:
       name: uuid
       description: uuid of the dataset
       in: path
@@ -705,7 +729,14 @@ components:
       schema:
         type: string
         format: uuid
-    Uuid-2:
+    QueryDatasetsUuid:
+      name: name
+      in: query
+      required: false
+      schema:
+        type: string
+      description: allow for filtering based on dataset name. Only dataset containing the provided value in its name will be returned
+    PathUsersUuid:
       name: uuid
       description: uuid of the user
       in: path
@@ -713,7 +744,7 @@ components:
       schema:
         type: string
         format: uuid
-    Uuid-3:
+    PathTeamsUuid:
       name: uuid
       description: uuid of the team
       in: path
@@ -721,7 +752,7 @@ components:
       schema:
         type: string
         format: uuid
-    RoleUuid:
+    PathTeamsRoleUuid:
       name: role-uuid
       description: uuid of the team"s role
       in: path
@@ -729,7 +760,7 @@ components:
       schema:
         type: string
         format: uuid
-    UserUuid:
+    PathTeamsUserUuid:
       name: user-uuid
       description: uuid of the user
       in: path
@@ -737,7 +768,7 @@ components:
       schema:
         type: string
         format: uuid
-    Uuid-4:
+    PathSecurityGroupsUuid:
       name: uuid
       description: uuid of the security group
       in: path
@@ -745,66 +776,8 @@ components:
       schema:
         type: string
         format: uuid
-    TeamUuid:
-      name: team-uuid
-      description: uuid of the team
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-    PathScriptsName:
-      $ref: '#/components/parameters/Name-2'
-    PathScriptsVersion:
-      $ref: '#/components/parameters/Version-2'
-    QueryScriptsName:
-      $ref: '#/components/parameters/Name'
-    QueryScriptsVersion:
-      $ref: '#/components/parameters/Version'
-    QueryScriptsLabel:
-      $ref: '#/components/parameters/Label'
-    QueryScriptsSort:
-      $ref: '#/components/parameters/Sort'
-    QueryPaginationPage:
-      $ref: '#/components/parameters/Page'
-    QueryPaginationSize:
-      $ref: '#/components/parameters/Size'
-    PathDatasetsUuid:
-      $ref: '#/components/parameters/Uuid'
-    QueryDatasetsUuid:
-      $ref: '#/components/parameters/Name-3'
-    PathUsersUuid:
-      $ref: '#/components/parameters/Uuid-2'
-    PathTeamsUuid:
-      $ref: '#/components/parameters/Uuid-3'
-    PathTeamsRoleUuid:
-      $ref: '#/components/parameters/RoleUuid'
-    PathTeamsUserUuid:
-      $ref: '#/components/parameters/UserUuid'
-    PathSecurityGroupsUuid:
-      $ref: '#/components/parameters/Uuid-4'
   schemas:
-    ScriptVersionDto:
-      $ref: '#/components/schemas/ScriptVersionDto'
-    ScriptParameterDto:
-      $ref: '#/components/schemas/ScriptParameterDto'
-    ActionParameterDto:
-      $ref: '#/components/schemas/ActionParameterDto'
-    ActionDto:
-      $ref: '#/components/schemas/ActionDto'
-    ScriptLabelDto:
-      $ref: '#/components/schemas/ScriptLabelDto'
-    Link:
-      $ref: '#/components/schemas/Link'
     ScriptDto:
-      $ref: '#/components/schemas/ScriptDto'
-    PageLinks:
-      $ref: '#/components/schemas/PageLinks'
-    PaginationProperties:
-      $ref: '#/components/schemas/PaginationProperties'
-    PagedScriptDto:
-      $ref: '#/components/schemas/PagedScriptDto'
-    ScriptPostDto:
       type: object
       properties:
         name:
@@ -827,55 +800,372 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ScriptLabelDto'
-    InMemoryDatasetImplementationKeyValueDto:
-      $ref: '#/components/schemas/InMemoryDatasetImplementationKeyValueDto'
-    DatasetImplementationLabelDto:
-      $ref: '#/components/schemas/DatasetImplementationLabelDto'
-    InMemoryDatasetImplementationDto:
-      $ref: '#/components/schemas/InMemoryDatasetImplementationDto'
+        execution:
+          type: object
+          properties:
+            total:
+              type: number
+            mostRecent:
+              type: array
+              items:
+                type: object
+                properties:
+                  startTimestamp:
+                    type: string
+                  endTimestamp:
+                    type: string
+                  runStatus:
+                    type: string
+                  runId:
+                    type: string
+                  environment:
+                    type: string
+        scheduling:
+          type: array
+          items:
+            type: object
+            properties:
+              environment:
+                type: string
+              frequency:
+                type: number
+        _links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/Link'
+            scripts:
+              $ref: '#/components/schemas/Link'
+            AllVersionOfTheScript:
+              $ref: '#/components/schemas/Link'
+    ScriptVersionDto:
+      type: object
+      properties:
+        number:
+          type: integer
+          format: int64
+        description:
+          type: string
+    ScriptParameterDto:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    ScriptLabelDto:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    ActionDto:
+      type: object
+      properties:
+        number:
+          type: integer
+          format: int64
+        name:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        component:
+          type: string
+        condition:
+          type: string
+        iteration:
+          type: string
+        errorExpected:
+          type: boolean
+        errorStop:
+          type: boolean
+        retries:
+          type: integer
+          format: int32
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActionParameterDto'
+    ActionParameterDto:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    PagedScriptDto:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            scripts:
+              type: array
+              items:
+                $ref: '#/components/schemas/ScriptDto'
+        _links:
+          $ref: '#/components/schemas/PageLinks'
+        page:
+          $ref: '#/components/schemas/PaginationProperties'
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+    PageLinks:
+      type: object
+      properties:
+        first:
+          $ref: '#/components/schemas/Link'
+        prev:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+        next:
+          $ref: '#/components/schemas/Link'
+        last:
+          $ref: '#/components/schemas/Link'
+    PaginationProperties:
+      type: object
+      properties:
+        size:
+          type: integer
+          description: Number of element displayed on the page
+        totalElements:
+          type: integer
+          description: Number of element Avalaible in the API through this endpoint
+        totalPages:
+          type: integer
+          description: Number of page with the parameter size and totalElements
+        number:
+          type: integer
+          description: Actual Number of the page (starts from 1 to n)
     DatasetDto:
-      $ref: '#/components/schemas/DatasetDto'
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        implementations:
+          type: array
+          items:
+            $ref: '#/components/schemas/InMemoryDatasetImplementationDto'
+    DatasetImplementationLabelDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        label:
+          type: string
+    InMemoryDatasetImplementationDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+            - in_memory
+        keyValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/InMemoryDatasetImplementationKeyValueDto'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatasetImplementationLabelDto'
+    InMemoryDatasetImplementationKeyValueDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        key:
+          type: string
+        value:
+          type: string
     PagedDatasetDto:
-      $ref: '#/components/schemas/PagedDatasetDto'
-    InMemoryDatasetImplementationKeyValuePostDto:
-      $ref: '#/components/schemas/InMemoryDatasetImplementationKeyValuePostDto'
-    DatasetImplementationLabelPostDto:
-      $ref: '#/components/schemas/DatasetImplementationLabelPostDto'
-    InMemoryDatasetImplementationPostDto:
-      $ref: '#/components/schemas/InMemoryDatasetImplementationPostDto'
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            scripts:
+              type: array
+              items:
+                $ref: '#/components/schemas/DatasetDto'
+        _links:
+          $ref: '#/components/schemas/PageLinks'
+        page:
+          $ref: '#/components/schemas/PaginationProperties'
     DatasetPostDto:
-      $ref: '#/components/schemas/DatasetPostDto'
+      type: object
+      properties:
+        name:
+          type: string
+        implementations:
+          type: array
+          items:
+            $ref: '#/components/schemas/InMemoryDatasetImplementationPostDto'
+    DatasetImplementationLabelPostDto:
+      type: object
+      properties:
+        label:
+          type: string
+    InMemoryDatasetImplementationPostDto:
+      type: object
+      properties:
+        keyValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/InMemoryDatasetImplementationKeyValuePostDto'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatasetImplementationLabelPostDto'
+        type:
+          type: string
+          enum:
+            - in_memory
+    InMemoryDatasetImplementationKeyValuePostDto:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
     DatasetPutDto:
-      $ref: '#/components/schemas/DatasetPutDto'
-    UserRoleTeamDto:
-      $ref: '#/components/schemas/UserRoleTeamDto'
-    PrivilegeDto:
-      $ref: '#/components/schemas/PrivilegeDto'
-    UserRoleDto:
-      $ref: '#/components/schemas/UserRoleDto'
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        implementations:
+          type: array
+          items:
+            $ref: '#/components/schemas/InMemoryDatasetImplementationPostDto'
     UserDto:
-      $ref: '#/components/schemas/UserDto'
-    UserDtoList:
-      $ref: '#/components/schemas/UserDtoList'
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        username:
+          type: string
+        enabled:
+          type: boolean
+        expired:
+          type: boolean
+        credentialsExpired:
+          type: boolean
+        locked:
+          type: boolean
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserRoleDto'
     UserPostDto:
-      $ref: '#/components/schemas/UserPostDto'
-    AuthenticationRequestDto:
-      $ref: '#/components/schemas/AuthenticationRequestDto'
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+          format: password
+    UserRoleDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        team:
+          $ref: '#/components/schemas/UserRoleTeamDto'
+        privileges:
+          type: array
+          items:
+            $ref: '#/components/schemas/PrivilegeDto'
+    UserRoleTeamDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    PagedUserDto:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            scripts:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserDto'
+        _links:
+          $ref: '#/components/schemas/PageLinks'
+        page:
+          $ref: '#/components/schemas/PaginationProperties'
     AuthenticationResponseDto:
-      $ref: '#/components/schemas/AuthenticationResponseDto'
-    TeamSecurityGroupDto:
-      $ref: '#/components/schemas/TeamSecurityGroupDto'
-    RoleUserDto:
-      $ref: '#/components/schemas/RoleUserDto'
-    RoleDto:
-      $ref: '#/components/schemas/RoleDto'
+      type: object
+      properties:
+        accessToken:
+          type: string
+        expiresIn:
+          type: integer
+    AuthenticationRequestDto:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+          format: password
+    UserDtoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/UserDto'
+    PrivilegeDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        privilege:
+          type: string
+    PrivilegePostDto:
+      type: object
+      properties:
+        privilege:
+          type: string
     TeamDto:
-      $ref: '#/components/schemas/TeamDto'
-    TeamDtoList:
-      $ref: '#/components/schemas/TeamDtoList'
-    TeamPostDto:
-      $ref: '#/components/schemas/TeamPostDto'
-    RolePutDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        teamName:
+          type: string
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamSecurityGroupDto'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleDto'
+    RoleDto:
       type: object
       properties:
         id:
@@ -886,43 +1176,175 @@ components:
         users:
           type: array
           items:
-            type: string
-            format: uuid
+            $ref: '#/components/schemas/RoleUserDto'
         privileges:
           type: array
           items:
             $ref: '#/components/schemas/PrivilegeDto'
-    TeamPutDto:
-      $ref: '#/components/schemas/TeamPutDto'
-    PrivilegePostDto:
-      $ref: '#/components/schemas/PrivilegePostDto'
     RolePostDto:
-      $ref: '#/components/schemas/RolePostDto'
+      type: object
+      properties:
+        name:
+          type: string
+        privileges:
+          type: array
+          items:
+            $ref: '#/components/schemas/PrivilegePostDto'
     RoleUserPostDto:
-      $ref: '#/components/schemas/RoleUserPostDto'
-    SecurityGroupTeamDto:
-      $ref: '#/components/schemas/SecurityGroupTeamDto'
-    SecurityObjectDto:
-      $ref: '#/components/schemas/SecurityObjectDto'
-    SecurityGroupDto:
-      $ref: '#/components/schemas/SecurityGroupDto'
-    SecurityGroupDtoList:
-      $ref: '#/components/schemas/SecurityGroupDtoList'
-    SecurityGroupPostDto:
-      $ref: '#/components/schemas/SecurityGroupPostDto'
-    SecurityGroupTeamPutDto:
-      $ref: '#/components/schemas/SecurityGroupTeamPutDto'
-    SecurityObjectPutDto:
-      $ref: '#/components/schemas/SecurityObjectPutDto'
-    SecurityGroupPutDto:
-      $ref: '#/components/schemas/SecurityGroupPutDto'
-    PagedUserDto:
-      $ref: '#/components/schemas/PagedUserDto'
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    TeamPostDto:
+      type: object
+      properties:
+        teamName:
+          type: string
+    TeamPutDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        teamName:
+          type: string
+        securityGroups:
+          type: array
+          items:
+            type: string
+            format: uuid
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              name:
+                type: string
+              users:
+                type: array
+                items:
+                  type: string
+                  format: uuid
+              privileges:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PrivilegeDto'
+    TeamDtoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/TeamDto'
     PagedTeamDto:
-      $ref: '#/components/schemas/PagedTeamDto'
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            scripts:
+              type: array
+              items:
+                $ref: '#/components/schemas/TeamDto'
+        _links:
+          $ref: '#/components/schemas/PageLinks'
+        page:
+          $ref: '#/components/schemas/PaginationProperties'
+    RoleUserDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        username:
+          type: string
+        enabled:
+          type: boolean
+        expired:
+          type: boolean
+        credentialsExpired:
+          type: boolean
+        locked:
+          type: boolean
+    TeamSecurityGroupDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    SecurityObjectDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        type:
+          type: string
+    SecurityObjectPutDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+    SecurityGroupDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityGroupTeamDto'
+        securityObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityObjectDto'
+    SecurityGroupPostDto:
+      type: object
+      properties:
+        name:
+          type: string
+    SecurityGroupPutDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityGroupTeamPutDto'
+        securityObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityObjectPutDto'
+    SecurityGroupTeamDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        teamName:
+          type: string
+    SecurityGroupTeamPutDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    SecurityGroupDtoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/SecurityGroupDto'
     Error:
-      $ref: '#/components/schemas/Error'
-    Error-2:
       type: object
       required:
         - code
@@ -935,23 +1357,10 @@ components:
           type: string
   responses:
     UnexpectedError:
-      $ref: '#/components/responses/UnexpectedError'
+      description: unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     NullResponse:
-      $ref: '#/components/responses/NullResponse'
-  requestBodies:
-    updateBody:
-      description: Body request that contains a list of ScriptPostDto object
-      required: true
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/ScriptPostDto'
-    createBody:
-      description: Body request that contains the ScriptPostDto object
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ScriptPostDto'
+      description: Null response
