@@ -29,6 +29,8 @@ DatasetImplementationLabelDto:
   $ref: "./datasets/DatasetImplementationLabelDto.yaml"
 InMemoryDatasetImplementationDto:
   $ref: "./datasets/InMemoryDatasetImplementationDto.yaml"
+InMemoryDatasetImplementationDtoList:
+  $ref: "./datasets/InMemoryDatasetImplementationDtoList.yaml"
 InMemoryDatasetImplementationKeyValueDto:
   $ref: "./datasets/InMemoryDatasetImplementationKeyValueDto.yaml"
 PagedDatasetDto:

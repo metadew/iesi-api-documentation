@@ -1,0 +1,16 @@
+summary: fetch all implementation of a dataset with sepcified uuid
+tags:
+  - datasets
+operationId: datasetsFetchImplementationsById
+parameters:
+  - $ref: "../../parameters/path/datasets/Uuid.yaml"
+
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/datasets/InMemoryDatasetImplementationDtoList.yaml"
+  '404':
+    description: no dataset found with specified uuid

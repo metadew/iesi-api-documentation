@@ -3,7 +3,7 @@ properties:
   _embedded:
     type: object
     properties:
-      scripts:
+      teams:
         type: array
         items:
           $ref: '../../schemas/teams/TeamDto.yaml'

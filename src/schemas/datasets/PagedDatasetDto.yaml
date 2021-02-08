@@ -3,7 +3,7 @@ properties:
   _embedded:
     type: object
     properties:
-      scripts:
+      datasets:
         type: array
         items:
           $ref: '../../schemas/datasets/DatasetDto.yaml'

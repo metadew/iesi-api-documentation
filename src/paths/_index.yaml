@@ -22,7 +22,9 @@
     $ref: "./datasets/updateByUuid.yaml"
   delete:
     $ref: "./datasets/deleteByUuid.yaml"
-
+'/datasets/{uuid}/implementations':
+  get:
+    $ref: "./datasets/fetchImplementationsByUuid.yaml"
 # Users
 '/users':
   get:
