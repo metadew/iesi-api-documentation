@@ -366,6 +366,54 @@ paths:
                   path: /api/components/
         '404':
           description: Expected response to a un-existing version of a component
+  /connections:
+    get:
+      summary: Fetch all connections
+      tags:
+        - connections
+      operationId: connectionsFetchAll
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  embedded:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        type:
+                          type: string
+                        description:
+                          type: string
+                        environment:
+                          type: string
+                        parameters:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              value:
+                                type: string
+        '403':
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/connections/
   /datasets:
     get:
       summary: Fetch all datasets

@@ -32,6 +32,9 @@
   delete:
     $ref: "./components/deleteByNameAndVersion.yaml"
 
+'/connections':
+  get:
+    $ref: "./connections/fetchAll.yaml"
 
 # Datasets
 '/datasets':
