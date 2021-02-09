@@ -216,6 +216,13 @@ paths:
       tags:
         - components
       operationId: componentsFetchByName
+      parameters:
+        - name: name
+          description: name of the component
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Expected response to a valid request
@@ -241,12 +248,7 @@ paths:
         - components
       operationId: componentsDeleteByName
       parameters:
-        - name: name
-          description: name of the component
-          in: path
-          required: true
-          schema:
-            type: string
+        - $ref: '#/paths/~1components~1%7Bname%7D/get/parameters/0'
       responses:
         '200':
           description: Expected response to a valid request
@@ -268,6 +270,15 @@ paths:
       tags:
         - components
       operationId: componentsFetchByNameAndVersion
+      parameters:
+        - $ref: '#/paths/~1components~1%7Bname%7D/get/parameters/0'
+        - name: version
+          description: version of the component
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         '200':
           description: Expected response to a valid request
@@ -293,14 +304,8 @@ paths:
         - components
       operationId: componentsUpdateByNameAndVersion
       parameters:
-        - $ref: '#/paths/~1components~1%7Bname%7D/delete/parameters/0'
-        - name: version
-          description: version of the component
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
+        - $ref: '#/paths/~1components~1%7Bname%7D/get/parameters/0'
+        - $ref: '#/paths/~1components~1%7Bname%7D~1%7Bversion%7D/get/parameters/1'
       requestBody:
         $ref: '#/paths/~1components/post/requestBody'
       responses:
@@ -342,8 +347,8 @@ paths:
         - components
       operationId: componentsDeleteByName
       parameters:
-        - $ref: '#/paths/~1components~1%7Bname%7D/delete/parameters/0'
-        - $ref: '#/paths/~1components~1%7Bname%7D~1%7Bversion%7D/put/parameters/1'
+        - $ref: '#/paths/~1components~1%7Bname%7D/get/parameters/0'
+        - $ref: '#/paths/~1components~1%7Bname%7D~1%7Bversion%7D/get/parameters/1'
       responses:
         '200':
           description: Expected response to a valid request
