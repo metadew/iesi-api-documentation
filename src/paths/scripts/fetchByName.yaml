@@ -4,7 +4,6 @@ tags:
 operationId: scriptsFetchByName
 parameters:
   - $ref: "../../parameters/path/scripts/Name.yaml"
-  - $ref: "../../parameters/query/scripts/Version.yaml"
 
 responses:
   '200':
