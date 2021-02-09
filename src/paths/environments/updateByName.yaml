@@ -1,0 +1,40 @@
+summary: Update a specific environment
+tags:
+  - environments
+operationId: environmentsUpdateByName
+parameters:
+  - $ref: "../../parameters/path/environments/Name.yaml"
+requestBody:
+  description: Body request that contains the EnvironmentDto object
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/environments/EnvironmentDto.yaml"
+
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/environments/EnvironmentDto.yaml"
+  '400':
+    description: Expected response to a bad request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/response/ErrorResponse.yaml"
+        example:
+          timestamp: 2021-02-09T14:44:32.933+000
+          status: 400
+          error: Bad Request
+          message: Mismatch between url query 'TUTO' and request body
+          path: /api/environments/TUTO
+
+  '403':
+    $ref: "../../responses/environments/ResponseEnvironmentForbidden.yaml"
+  '404':
+    description: Expected response to a non-existing environment
+
+

@@ -1,0 +1,16 @@
+summary: Delete a specific environment
+tags:
+  - environments
+operationId: environmentsDeleteByName
+parameters:
+  - $ref: "../../parameters/path/environments/Name.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+  '403':
+    $ref: "../../responses/environments/ResponseEnvironmentForbidden.yaml"
+  '404':
+    description: Expected response to a un-existing environment
+
+
+

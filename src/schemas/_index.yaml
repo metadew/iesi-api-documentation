@@ -34,6 +34,14 @@ ConnectionParameterDto:
 EmbeddedConnectionDto:
   $ref: "./connections/EmbeddedConnectionDto.yaml"
 
+# Environments
+EnvironmentDto:
+  $ref: "./environments/EnvironmentDto.yaml"
+EnvironmentParameterDto:
+  $ref: "./environments/EnvironmentParameterDto.yaml"
+EmbeddedEnvironmentDto:
+  $ref: "./environments/EmbeddedEnvironmentDto.yaml"
+
 # Pagination
 Link:
   $ref: "./pagination/Link.yaml"

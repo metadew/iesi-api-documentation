@@ -1,0 +1,26 @@
+summary: Update existing environments
+tags:
+  - environments
+operationId: environmentsUpdateAll
+requestBody:
+  description: Body request that contains a list of EnvironmentDto objects
+  required: true
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          $ref: "../../schemas/environments/EnvironmentDto.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/environments/EmbeddedEnvironmentDto.yaml"
+  '403':
+    $ref: "../../responses/environments/ResponseEnvironmentForbidden.yaml"
+  '404':
+    description: Expected response to one or many un-existing environments
+
+

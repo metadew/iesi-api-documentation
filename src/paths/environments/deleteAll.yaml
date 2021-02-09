@@ -1,0 +1,12 @@
+summary: Delete all environments
+tags:
+  - environments
+operationId: environmentsDeleteAll
+responses:
+  '200':
+    description: Expected response to a valid request
+  '403':
+    $ref: "../../responses/environments/ResponseEnvironmentForbidden.yaml"
+
+
+
