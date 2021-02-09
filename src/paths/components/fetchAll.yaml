@@ -10,17 +10,7 @@ responses:
         schema:
           $ref: "../../schemas/components/EmbeddedComponentDto.yaml"
   '403':
-    description: Expected response to a forbidden request
-    content:
-      application/json:
-        schema:
-          $ref: "../../schemas/response/ErrorResponse.yaml"
-        example:
-          timestamp: "2021-02-09T07:57:01.062+0000"
-          status: 403
-          error: "Forbidden"
-          message: "Access denied"
-          path: "/api/components/"
+    $ref: "../../responses/components/ResponseComponentForbidden.yaml"
 
 
 
