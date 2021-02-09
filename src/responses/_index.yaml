@@ -2,3 +2,7 @@ UnexpectedError:
   $ref: "./UnexpectedError.yaml"
 NullResponse:
   $ref: "./NullResponse.yaml"
+
+# Component 
+ResponseComponentForbidden:
+  $ref: "./components/ResponseComponentForbidden.yaml"
