@@ -1,0 +1,24 @@
+summary: Delete a specific script
+tags:
+  - scripts
+operationId: scriptsDeleteByNameAndVersion
+parameters:
+  - $ref: "../../parameters/path/scripts/Name.yaml"
+  - $ref: "../../parameters/path/scripts/Version.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              enum: [ok]
+  '403':
+    description: Expected response to a forbidden request
+  '404':
+    description: Expected response to a unexisting resource
+
+

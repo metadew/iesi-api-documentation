@@ -54,9 +54,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PagedScriptDto'
+    post:
+      summary: Create a new script
+      tags:
+        - scripts
+      operationId: scriptsCreate
+      requestBody:
+        description: Body request that contains the ScriptPostDto object
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                securityGroupName:
+                  type: string
+                description:
+                  type: string
+                version:
+                  $ref: '#/components/schemas/ScriptVersionDto'
+                parameters:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ScriptParameterDto'
+                actions:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ActionDto'
+                labels:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ScriptLabelDto'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedScriptDto'
+    put:
+      summary: Update one or multiple scripts
+      tags:
+        - scripts
+      operationId: scriptsUpdate
+      requestBody:
+        description: Body request that contains a list of ScriptPostDto object
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/paths/~1scripts/post/requestBody/content/application~1json/schema'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScriptDto'
   '/scripts/{name}':
     get:
-      summary: All versions of a script with a sepcified name
+      summary: All versions of a script with a specified name
       tags:
         - scripts
       operationId: scriptsFetchByName
@@ -87,487 +148,54 @@ paths:
                 $ref: '#/components/schemas/ScriptDto'
         '404':
           description: no script found with specified name and version
-  /components:
-    get:
-      summary: Fetch all components
-      tags:
-        - components
-      operationId: componentsFetchAll
-      responses:
-        '200':
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EmbeddedComponentDto'
-        '403':
-          $ref: '#/components/responses/ResponseComponentForbidden'
-    post:
-      summary: Create a new component
-      tags:
-        - components
-      operationId: componentsCreate
-      requestBody:
-        description: Body request that contains the ComponentDto object
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ComponentDto'
-      responses:
-        '200':
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ComponentDto'
-        '403':
-          $ref: '#/components/responses/ResponseComponentForbidden'
-        '404':
-          description: Expected response to a non-existing component
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 404
-                error: Not Found
-                message: Component HttpExecuteRequest already exists
-                path: /api/components/
     put:
-      summary: Update existing components
+      summary: Update a specific script
       tags:
-        - components
-      operationId: componentsUpdateAll
+        - scripts
+      operationId: scriptsUpdateByNameAndVersion
+      parameters:
+        - $ref: '#/components/parameters/PathScriptsName'
+        - $ref: '#/components/parameters/PathScriptsVersion'
       requestBody:
-        description: Body request that contains a list of ComponentDto objects
+        description: Body request that contains the ScriptPostDto object
         required: true
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/ComponentDto'
+              $ref: '#/paths/~1scripts/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: Expected response to a valid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EmbeddedComponentDto'
-        '403':
-          $ref: '#/components/responses/ResponseComponentForbidden'
-        '404':
-          description: Expected response to one or many non-existing components
-    delete:
-      summary: Delete all components
-      tags:
-        - components
-      operationId: componentsDeleteAll
-      responses:
-        '200':
-          description: Expected response to a valid request
-        '403':
-          $ref: '#/components/responses/ResponseComponentForbidden'
-  '/components/{name}':
-    get:
-      summary: Fetch all versions of a specific component
-      tags:
-        - components
-      operationId: componentsFetchByName
-      parameters:
-        - name: name
-          description: name of the component
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EmbeddedComponentDto'
-        '403':
-          $ref: '#/components/responses/ResponseComponentForbidden'
-    delete:
-      summary: Delete a specific component with all versions
-      tags:
-        - components
-      operationId: componentsDeleteByName
-      parameters:
-        - $ref: '#/paths/~1components~1%7Bname%7D/get/parameters/0'
-      responses:
-        '200':
-          description: Expected response to a valid request
-        '403':
-          $ref: '#/components/responses/ResponseComponentForbidden'
-  '/components/{name}/{version}':
-    get:
-      summary: Info of a specific component
-      tags:
-        - components
-      operationId: componentsFetchByNameAndVersion
-      parameters:
-        - $ref: '#/paths/~1components~1%7Bname%7D/get/parameters/0'
-        - name: version
-          description: version of the component
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ComponentDto'
-        '403':
-          $ref: '#/components/responses/ResponseComponentForbidden'
-    put:
-      summary: Update component with specific name and version
-      tags:
-        - components
-      operationId: componentsUpdateByNameAndVersion
-      parameters:
-        - $ref: '#/paths/~1components~1%7Bname%7D/get/parameters/0'
-        - $ref: '#/paths/~1components~1%7Bname%7D~1%7Bversion%7D/get/parameters/1'
-      requestBody:
-        description: Body request that contains the ComponentDto object
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ComponentDto'
-      responses:
-        '200':
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EmbeddedComponentDto'
+                $ref: '#/components/schemas/ScriptDto'
         '400':
           description: Expected response to a bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T08:58:31.073+0000'
-                status: 400
-                error: Bad Request
-                message: 'Mismatch between url query ''HttpExecuteRequestss'' and request body '
-                path: /api/components/HttpExecuteRequestss/1
-        '403':
-          $ref: '#/components/responses/ResponseComponentForbidden'
-        '404':
-          description: Expected response to a un-existing component
     delete:
-      summary: Delete a specific version of a component
+      summary: Delete a specific script
       tags:
-        - components
-      operationId: componentsDeleteByName
+        - scripts
+      operationId: scriptsDeleteByNameAndVersion
       parameters:
-        - $ref: '#/paths/~1components~1%7Bname%7D/get/parameters/0'
-        - $ref: '#/paths/~1components~1%7Bname%7D~1%7Bversion%7D/get/parameters/1'
+        - $ref: '#/components/parameters/PathScriptsName'
+        - $ref: '#/components/parameters/PathScriptsVersion'
       responses:
         '200':
           description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                      - ok
         '403':
-          $ref: '#/components/responses/ResponseComponentForbidden'
+          description: Expected response to a forbidden request
         '404':
-          description: Expected response to a un-existing version of a component
-  /connections:
-    get:
-      summary: Fetch all connections
-      tags:
-        - connections
-      operationId: connectionsFetchAll
-      responses:
-        '200':
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EmbeddedConnectionDto'
-        '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/connections/
-    post:
-      summary: Create a new connection
-      tags:
-        - connections
-      operationId: connectionsCreate
-      requestBody:
-        description: Body request that contains the ConnectionDto object
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ConnectionDto'
-      responses:
-        '200':
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectionDto'
-        '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/connections/
-        '404':
-          description: Expected response to an existing connnection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 404
-                error: Not Found
-                message: Connection db.company.a already exists
-                path: /api/connections/
-    put:
-      summary: Update existing connections
-      tags:
-        - connections
-      operationId: connectionsUpdateAll
-      requestBody:
-        description: Body request that contains a list of ConnectionDto objects
-        required: true
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/ConnectionDto'
-      responses:
-        '200':
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EmbeddedConnectionDto'
-        '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/connections/
-        '404':
-          description: Expected response to one or many un-existing connections
-    delete:
-      summary: Delete all connections
-      tags:
-        - connections
-      operationId: connectionsDeleteAll
-      responses:
-        '200':
-          description: Expected response to a valid request
-        '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/connections/
-  '/connections/{name}':
-    get:
-      summary: Fetch all environment of a specific connections
-      tags:
-        - connections
-      operationId: connectionsFetchByName
-      parameters:
-        - name: name
-          description: name of the connection
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EmbeddedConnectionDto'
-        '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/connections/
-    delete:
-      summary: Delete a specific connection with all environments
-      tags:
-        - connections
-      operationId: connectionsDeleteByName
-      parameters:
-        - $ref: '#/paths/~1connections~1%7Bname%7D/get/parameters/0'
-      responses:
-        '200':
-          description: Expected response to a valid request
-        '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/connections/
-        '404':
-          description: Expected response to a un-existing connection
-  '/connections/{name}/{environment}':
-    get:
-      summary: Info of a specific connection
-      tags:
-        - connections
-      operationId: connectionsFetchByNameAndEnvironment
-      parameters:
-        - $ref: '#/paths/~1connections~1%7Bname%7D/get/parameters/0'
-        - name: environment
-          description: name of the environment
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectionDto'
-        '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/connections/
-        '404':
-          description: Expected response to a un-existing connection
-    put:
-      summary: Update connection with specific name and version
-      tags:
-        - connections
-      operationId: connectionsUpdateByNameAndEnvironment
-      parameters:
-        - $ref: '#/paths/~1connections~1%7Bname%7D/get/parameters/0'
-        - $ref: '#/paths/~1connections~1%7Bname%7D~1%7Benvironment%7D/get/parameters/1'
-      requestBody:
-        description: Body request that contains the ConnectionDto object
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ConnectionDto'
-      responses:
-        '200':
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectionDto'
-        '400':
-          description: Expected response to a bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T11:50:59.412+0000'
-                status: 400
-                error: Bad Request
-                message: 'Mismatch between url query ''db.company.za'' and request body '
-                path: /api/connections/db.company.za/qsdqsdqsd
-        '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/connections/
-        '404':
-          description: Expected response to one or many un-existing connections
-    delete:
-      summary: Delete a specific connection with all environments
-      tags:
-        - connections
-      operationId: connectionsDeleteByNameAndEnvironment
-      parameters:
-        - $ref: '#/paths/~1connections~1%7Bname%7D/get/parameters/0'
-        - $ref: '#/paths/~1connections~1%7Bname%7D~1%7Benvironment%7D/get/parameters/1'
-      responses:
-        '200':
-          description: Expected response to a valid request
-        '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/connections/
-        '404':
-          description: Expected response to a un-existing connection
+          description: Expected response to a unexisting resource
   /datasets:
     get:
       summary: Fetch all datasets
@@ -1174,6 +802,8 @@ components:
       type: object
       properties:
         name:
+          type: string
+        securityGroupName:
           type: string
         description:
           type: string

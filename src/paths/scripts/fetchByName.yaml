@@ -1,4 +1,4 @@
-summary: All versions of a script with a sepcified name
+summary: All versions of a script with a specified name
 tags:
   - scripts
 operationId: scriptsFetchByName
