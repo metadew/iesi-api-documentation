@@ -35,7 +35,24 @@
 '/connections':
   get:
     $ref: "./connections/fetchAll.yaml"
-
+  post:
+    $ref: "./connections/create.yaml"
+  put:
+    $ref: "./connections/updateAll.yaml"
+  delete:
+    $ref: "./connections/deleteAll.yaml"
+'/connections/{name}':
+  get:
+    $ref: "./connections/fetchByName.yaml"
+  delete:
+    $ref: "./connections/deleteByName.yaml"
+'/connections/{name}/{environment}':
+  get:
+    $ref: "./connections/fetchByNameAndEnvironment.yaml"
+  put:
+    $ref: './connections/updateByNameAndEnvironment.yaml'
+  delete:
+    $ref: "./connections/deleteByNameAndEnvironment.yaml"
 # Datasets
 '/datasets':
   get:

@@ -26,6 +26,14 @@ ComponentAttributeDto:
 EmbeddedComponentDto:
   $ref: "./components/EmbeddedComponentDto.yaml"
 
+# Connections
+ConnectionDto:
+  $ref: "./connections/ConnectionDto.yaml"
+ConnectionParameterDto:
+  $ref: "./connections/ConnectionParameterDto.yaml"
+EmbeddedConnectionDto:
+  $ref: "./connections/EmbeddedConnectionDto.yaml"
+
 # Pagination
 Link:
   $ref: "./pagination/Link.yaml"

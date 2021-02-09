@@ -378,30 +378,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  embedded:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                        type:
-                          type: string
-                        description:
-                          type: string
-                        environment:
-                          type: string
-                        parameters:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              name:
-                                type: string
-                              value:
-                                type: string
+                $ref: '#/components/schemas/EmbeddedConnectionDto'
         '403':
           description: Expected response to a forbidden request
           content:
@@ -414,6 +391,268 @@ paths:
                 error: Forbidden
                 message: Access denied
                 path: /api/connections/
+    post:
+      summary: Create a new connection
+      tags:
+        - connections
+      operationId: connectionsCreate
+      requestBody:
+        description: Body request that contains the ConnectionDto object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionDto'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionDto'
+        '403':
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/connections/
+        '404':
+          description: Expected response to an existing connnection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 404
+                error: Not Found
+                message: Connection db.company.a already exists
+                path: /api/connections/
+    put:
+      summary: Update existing connections
+      tags:
+        - connections
+      operationId: connectionsUpdateAll
+      requestBody:
+        description: Body request that contains a list of ConnectionDto objects
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ConnectionDto'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddedConnectionDto'
+        '403':
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/connections/
+        '404':
+          description: Expected response to one or many un-existing connections
+    delete:
+      summary: Delete all connections
+      tags:
+        - connections
+      operationId: connectionsDeleteAll
+      responses:
+        '200':
+          description: Expected response to a valid request
+        '403':
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/connections/
+  '/connections/{name}':
+    get:
+      summary: Fetch all environment of a specific connections
+      tags:
+        - connections
+      operationId: connectionsFetchByName
+      parameters:
+        - name: name
+          description: name of the connection
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddedConnectionDto'
+        '403':
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/connections/
+    delete:
+      summary: Delete a specific connection with all environments
+      tags:
+        - connections
+      operationId: connectionsDeleteByName
+      parameters:
+        - $ref: '#/paths/~1connections~1%7Bname%7D/get/parameters/0'
+      responses:
+        '200':
+          description: Expected response to a valid request
+        '403':
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/connections/
+        '404':
+          description: Expected response to a un-existing connection
+  '/connections/{name}/{environment}':
+    get:
+      summary: Info of a specific connection
+      tags:
+        - connections
+      operationId: connectionsFetchByNameAndEnvironment
+      parameters:
+        - $ref: '#/paths/~1connections~1%7Bname%7D/get/parameters/0'
+        - name: environment
+          description: name of the environment
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionDto'
+        '403':
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/connections/
+        '404':
+          description: Expected response to a un-existing connection
+    put:
+      summary: Update connection with specific name and version
+      tags:
+        - connections
+      operationId: connectionsUpdateByNameAndEnvironment
+      parameters:
+        - $ref: '#/paths/~1connections~1%7Bname%7D/get/parameters/0'
+        - $ref: '#/paths/~1connections~1%7Bname%7D~1%7Benvironment%7D/get/parameters/1'
+      requestBody:
+        description: Body request that contains the ConnectionDto object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionDto'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionDto'
+        '400':
+          description: Expected response to a bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T11:50:59.412+0000'
+                status: 400
+                error: Bad Request
+                message: 'Mismatch between url query ''db.company.za'' and request body '
+                path: /api/connections/db.company.za/qsdqsdqsd
+        '403':
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/connections/
+        '404':
+          description: Expected response to one or many un-existing connections
+    delete:
+      summary: Delete a specific connection with all environments
+      tags:
+        - connections
+      operationId: connectionsDeleteByNameAndEnvironment
+      parameters:
+        - $ref: '#/paths/~1connections~1%7Bname%7D/get/parameters/0'
+        - $ref: '#/paths/~1connections~1%7Bname%7D~1%7Benvironment%7D/get/parameters/1'
+      responses:
+        '200':
+          description: Expected response to a valid request
+        '403':
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/connections/
+        '404':
+          description: Expected response to a un-existing connection
   /datasets:
     get:
       summary: Fetch all datasets
@@ -1197,6 +1436,35 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ComponentDto'
+    ConnectionDto:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        environment:
+          type: string
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConnectionParameterDto'
+    ConnectionParameterDto:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    EmbeddedConnectionDto:
+      type: object
+      properties:
+        embedded:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConnectionDto'
     Link:
       type: object
       properties:

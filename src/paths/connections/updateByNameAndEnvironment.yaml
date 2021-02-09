@@ -1,0 +1,50 @@
+summary: Update connection with specific name and version
+tags:
+  - connections
+operationId: connectionsUpdateByNameAndEnvironment
+parameters:
+  - $ref: "../../parameters/path/connections/Name.yaml"
+  - $ref: "../../parameters/path/connections/Environment.yaml"
+requestBody:
+  description: Body request that contains the ConnectionDto object
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/connections/ConnectionDto.yaml"
+
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/connections/ConnectionDto.yaml"
+  '400':
+    description: Expected response to a bad request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/response/ErrorResponse.yaml"
+        example:
+          timestamp: "2021-02-09T11:50:59.412+0000"
+          status: 400
+          error: "Bad Request"
+          message: "Mismatch between url query 'db.company.za' and request body "
+          path: "/api/connections/db.company.za/qsdqsdqsd"
+  '403':
+    description: Expected response to a forbidden request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/response/ErrorResponse.yaml"
+        example:
+          timestamp: "2021-02-09T07:57:01.062+0000"
+          status: 403
+          error: "Forbidden"
+          message: "Access denied"
+          path: "/api/connections/"
+  '404':
+    description: Expected response to one or many un-existing connections
+
+

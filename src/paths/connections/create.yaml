@@ -1,0 +1,44 @@
+summary: Create a new connection
+tags:
+  - connections
+operationId: connectionsCreate
+requestBody:
+  description: Body request that contains the ConnectionDto object
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/connections/ConnectionDto.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/connections/ConnectionDto.yaml"
+  '403':
+    description: Expected response to a forbidden request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/response/ErrorResponse.yaml"
+        example:
+          timestamp: "2021-02-09T07:57:01.062+0000"
+          status: 403
+          error: "Forbidden"
+          message: "Access denied"
+          path: "/api/connections/"
+  '404':
+    description: Expected response to an existing connnection
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/response/ErrorResponse.yaml"
+        example:
+          timestamp: "2021-02-09T07:57:01.062+0000"
+          status: 404
+          error: "Not Found"
+          message: "Connection db.company.a already exists"
+          path: "/api/connections/"
+
+
