@@ -436,17 +436,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EmbeddedConnectionDto'
         '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/connections/
+          $ref: '#/components/responses/ResponseConnectionForbidden'
     post:
       summary: Create a new connection
       tags:
@@ -467,7 +457,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectionDto'
         '403':
-          $ref: '#/paths/~1connections/get/responses/403'
+          $ref: '#/components/responses/ResponseConnectionForbidden'
         '404':
           description: Expected response to an existing connnection
           content:
@@ -499,9 +489,10 @@ paths:
           description: Expected response to a valid request
           content:
             application/json:
-              schema: null
+              schema:
+                $ref: '#/components/schemas/EmbeddedConnectionDto'
         '403':
-          $ref: '#/paths/~1connections/get/responses/403'
+          $ref: '#/components/responses/ResponseConnectionForbidden'
         '404':
           description: Expected response to one or many un-existing connections
     delete:
@@ -513,7 +504,7 @@ paths:
         '200':
           description: Expected response to a valid request
         '403':
-          $ref: '#/paths/~1connections/get/responses/403'
+          $ref: '#/components/responses/ResponseConnectionForbidden'
   '/connections/{name}':
     get:
       summary: Fetch all environment of a specific connections
@@ -535,7 +526,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EmbeddedConnectionDto'
         '403':
-          $ref: '#/paths/~1connections/get/responses/403'
+          $ref: '#/components/responses/ResponseConnectionForbidden'
     delete:
       summary: Delete a specific connection with all environments
       tags:
@@ -547,7 +538,7 @@ paths:
         '200':
           description: Expected response to a valid request
         '403':
-          $ref: '#/paths/~1connections/get/responses/403'
+          $ref: '#/components/responses/ResponseConnectionForbidden'
         '404':
           description: Expected response to a un-existing connection
   '/connections/{name}/{environment}':
@@ -572,7 +563,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectionDto'
         '403':
-          $ref: '#/paths/~1connections/get/responses/403'
+          $ref: '#/components/responses/ResponseConnectionForbidden'
         '404':
           description: Expected response to a un-existing connection
     put:
@@ -610,7 +601,7 @@ paths:
                 message: 'Mismatch between url query ''db.company.za'' and request body '
                 path: /api/connections/db.company.za/qsdqsdqsd
         '403':
-          $ref: '#/paths/~1connections/get/responses/403'
+          $ref: '#/components/responses/ResponseConnectionForbidden'
         '404':
           description: Expected response to one or many un-existing connections
     delete:
@@ -625,9 +616,186 @@ paths:
         '200':
           description: Expected response to a valid request
         '403':
-          $ref: '#/paths/~1connections/get/responses/403'
+          $ref: '#/components/responses/ResponseConnectionForbidden'
         '404':
           description: Expected response to a un-existing connection
+  /environments:
+    get:
+      summary: Fetch all environments
+      tags:
+        - environments
+      operationId: environmentsFetchAll
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddedEnvironmentDto'
+        '403':
+          $ref: '#/components/responses/ResponseEnvironmentForbidden'
+    post:
+      summary: Create a new environment
+      tags:
+        - environments
+      operationId: environmentsCreate
+      requestBody:
+        description: Body request that contains the EnvironmentDto object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentDto'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDto'
+        '403':
+          $ref: '#/components/responses/ResponseEnvironmentForbidden'
+        '404':
+          description: Expected response to an existing environment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 404
+                error: Not Found
+                message: environment TUTORIAL already exists
+                path: /api/environmentss/
+    put:
+      summary: Update existing environments
+      tags:
+        - environments
+      operationId: environmentsUpdateAll
+      requestBody:
+        description: Body request that contains a list of EnvironmentDto objects
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/EnvironmentDto'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddedEnvironmentDto'
+        '403':
+          $ref: '#/components/responses/ResponseEnvironmentForbidden'
+        '404':
+          description: Expected response to one or many un-existing environments
+    delete:
+      summary: Delete all environments
+      tags:
+        - environments
+      operationId: environmentsDeleteAll
+      responses:
+        '200':
+          description: Expected response to a valid request
+        '403':
+          $ref: '#/components/responses/ResponseEnvironmentForbidden'
+  '/environments/{name}':
+    get:
+      summary: Fetch a specific environment
+      tags:
+        - environments
+      operationId: environmentsFetchByName
+      parameters:
+        - name: name
+          description: name of the environment
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDto'
+        '403':
+          $ref: '#/components/responses/ResponseEnvironmentForbidden'
+        '404':
+          description: Expected response to a non-existing environment
+    put:
+      summary: Update a specific environment
+      tags:
+        - environments
+      operationId: environmentsUpdateByName
+      parameters:
+        - $ref: '#/paths/~1environments~1%7Bname%7D/get/parameters/0'
+      requestBody:
+        description: Body request that contains the EnvironmentDto object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentDto'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDto'
+        '400':
+          description: Expected response to a bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T14:44:32.933+000'
+                status: 400
+                error: Bad Request
+                message: Mismatch between url query 'TUTO' and request body
+                path: /api/environments/TUTO
+        '403':
+          $ref: '#/components/responses/ResponseEnvironmentForbidden'
+        '404':
+          description: Expected response to a non-existing environment
+    delete:
+      summary: Delete a specific environment
+      tags:
+        - environments
+      operationId: environmentsDeleteByName
+      parameters:
+        - $ref: '#/paths/~1environments~1%7Bname%7D/get/parameters/0'
+      responses:
+        '200':
+          description: Expected response to a valid request
+        '403':
+          $ref: '#/components/responses/ResponseEnvironmentForbidden'
+        '404':
+          description: Expected response to a un-existing environment
+  '/environments/{name}/connections':
+    get:
+      summary: Fetch all connections related to the specific environment
+      tags:
+        - environments
+      operationId: environmentsFetchConnectionsByName
+      parameters:
+        - $ref: '#/paths/~1environments~1%7Bname%7D/get/parameters/0'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddedConnectionDto'
+        '403':
+          $ref: '#/components/responses/ResponseEnvironmentForbidden'
+        '404':
+          description: Expected response to a non-existing environment
   /datasets:
     get:
       summary: Fetch all datasets
@@ -1442,6 +1610,31 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ConnectionDto'
+    EnvironmentDto:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentParameterDto'
+    EnvironmentParameterDto:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    EmbeddedEnvironmentDto:
+      type: object
+      properties:
+        embedded:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentDto'
     Link:
       type: object
       properties:
@@ -1930,3 +2123,27 @@ components:
             error: Forbidden
             message: Access denied
             path: /api/components/
+    ResponseConnectionForbidden:
+      description: Expected response to a forbidden request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            timestamp: '2021-02-09T07:57:01.062+0000'
+            status: 403
+            error: Forbidden
+            message: Access denied
+            path: /api/connections/
+    ResponseEnvironmentForbidden:
+      description: Expected response to a forbidden request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            timestamp: '2021-02-09T07:57:01.062+0000'
+            status: 403
+            error: Forbidden
+            message: Access denied
+            path: /api/environments/
