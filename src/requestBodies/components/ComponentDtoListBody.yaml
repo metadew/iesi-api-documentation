@@ -1,0 +1,8 @@
+description: Body request that contains a list of ComponentDto objects
+required: true
+content:
+  application/json:
+    schema:
+      type: array
+      items:
+        $ref: "../../schemas/components/ComponentDto.yaml"

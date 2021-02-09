@@ -1,0 +1,8 @@
+schema:
+    $ref: "./ErrorResponse.yaml"
+    example:
+        timestamp: "2021-02-09T07:57:01.062+0000"
+        status: 404
+        error: "Not Found"
+        message: "Component HttpExecuteRequest already exists"
+        path: "/api/components/"

@@ -1,14 +1,13 @@
-summary: Fetch all components
+summary: Delete a specific version of a component
 tags:
   - components
-operationId: componentsFetchAll
+operationId: componentsDeleteByName
+parameters:
+  - $ref: "../../parameters/path/components/Name.yaml"
+  - $ref: "../../parameters/path/components/Version.yaml"
 responses:
   '200':
     description: Expected response to a valid request
-    content:
-      application/json:
-        schema:
-          $ref: "../../schemas/components/EmbeddedComponentDto.yaml"
   '403':
     description: Expected response to a forbidden request
     content:
@@ -21,6 +20,8 @@ responses:
             error: "Forbidden"
             message: "Access denied"
             path: "/api/components/"
+  '404':
+    description: Expected response to a un-existing version of a component
 
 
 

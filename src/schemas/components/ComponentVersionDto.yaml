@@ -1,0 +1,7 @@
+type: object
+properties:
+  number:
+    type: integer
+    format: int64
+  description:
+    type: string

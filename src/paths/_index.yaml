@@ -9,6 +9,30 @@
   get:
     $ref: "./scripts/fetchByNameAndVersion.yaml"
 
+# Components
+'/components':
+  get:
+    $ref: "./components/fetchAll.yaml"
+  post:
+    $ref: "./components/create.yaml"
+  put:
+    $ref: "./components/updateAll.yaml"
+  delete:
+    $ref: "./components/deleteAll.yaml"
+'/components/{name}':
+  get:
+    $ref: "./components/fetchByName.yaml"
+  delete:
+    $ref: "./components/deleteByName.yaml"
+'/components/{name}/{version}':
+  get:
+    $ref: "./components/fetchByNameAndVersion.yaml"
+  put:
+    $ref: "./components/updateByNameAndVersion.yaml"
+  delete:
+    $ref: "./components/deleteByNameAndVersion.yaml"
+
+
 # Datasets
 '/datasets':
   get:

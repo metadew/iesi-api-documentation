@@ -1,14 +1,10 @@
-summary: Fetch all components
+summary: Delete all components
 tags:
   - components
-operationId: componentsFetchAll
+operationId: componentsDeleteAll
 responses:
   '200':
     description: Expected response to a valid request
-    content:
-      application/json:
-        schema:
-          $ref: "../../schemas/components/EmbeddedComponentDto.yaml"
   '403':
     description: Expected response to a forbidden request
     content:

@@ -1,0 +1,8 @@
+allOf: 
+  - $ref: "./Response.yaml"
+  - type: object
+    properties:
+      error:
+        type: string
+      path:
+        type: string

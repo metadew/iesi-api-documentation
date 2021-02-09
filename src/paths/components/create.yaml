@@ -1,0 +1,39 @@
+summary: Post a new component
+tags:
+  - components
+operationId: componentsCreate
+requestBody:
+  $ref: "../../requestBodies/components/ComponentDtoBody.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/components/ComponentDto.yaml"
+  '403':
+    description: Expected response to a forbidden request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/response/ErrorResponse.yaml"
+        example:
+          timestamp: "2021-02-09T07:57:01.062+0000"
+          status: 403
+          error: "Forbidden"
+          message: "Access denied"
+          path: "/api/components/"
+  '404':
+    description: Expected response to an existing component
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/response/ErrorResponse.yaml"
+        example:
+          timestamp: "2021-02-09T07:57:01.062+0000"
+          status: 404
+          error: "Not Found"
+          message: "Component HttpExecuteRequest already exists"
+          path: "/api/components/"
+
+

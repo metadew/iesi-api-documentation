@@ -1,7 +1,7 @@
-summary: Fetch all components
+summary: Fetch all versions of a specific component
 tags:
   - components
-operationId: componentsFetchAll
+operationId: componentsFetchByName
 responses:
   '200':
     description: Expected response to a valid request
