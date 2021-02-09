@@ -106,12 +106,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-                example:
-                  timestamp: '2021-02-09T07:57:01.062+0000'
-                  status: 403
-                  error: Forbidden
-                  message: Access denied
-                  path: /api/components/
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/components/
     post:
       summary: Post a new component
       tags:
@@ -204,12 +204,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-                example:
-                  timestamp: '2021-02-09T07:57:01.062+0000'
-                  status: 403
-                  error: Forbidden
-                  message: Access denied
-                  path: /api/components/
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/components/
   '/components/{name}':
     get:
       summary: Fetch all versions of a specific component
@@ -236,12 +236,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-                example:
-                  timestamp: '2021-02-09T07:57:01.062+0000'
-                  status: 403
-                  error: Forbidden
-                  message: Access denied
-                  path: /api/components/
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/components/
     delete:
       summary: Delete a specific component with all versions
       tags:
@@ -258,12 +258,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-                example:
-                  timestamp: '2021-02-09T07:57:01.062+0000'
-                  status: 403
-                  error: Forbidden
-                  message: Access denied
-                  path: /api/components/
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/components/
   '/components/{name}/{version}':
     get:
       summary: Info of a specific component
@@ -292,12 +292,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-                example:
-                  timestamp: '2021-02-09T07:57:01.062+0000'
-                  status: 403
-                  error: Forbidden
-                  message: Access denied
-                  path: /api/components/
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/components/
     put:
       summary: Update component with specific name and version
       tags:
@@ -358,12 +358,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-                example:
-                  timestamp: '2021-02-09T07:57:01.062+0000'
-                  status: 403
-                  error: Forbidden
-                  message: Access denied
-                  path: /api/components/
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/components/
         '404':
           description: Expected response to a un-existing version of a component
   /connections:
