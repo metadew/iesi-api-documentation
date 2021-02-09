@@ -1,9 +1,14 @@
-summary: Post a new script
+summary: Create a new script
 tags:
   - scripts
 operationId: scriptsCreate
 requestBody:
-  $ref: "../../requestBodies/scripts/createBody.yaml"
+  description: Body request that contains the ScriptPostDto object
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/scripts/ScriptPostDto.yaml"
 responses:
   '200':
     description: Expected response to a valid request

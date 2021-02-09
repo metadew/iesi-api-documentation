@@ -3,7 +3,14 @@ tags:
   - scripts
 operationId: scriptsUpdate
 requestBody:
-  $ref: "../../requestBodies/scripts/updateBody.yaml"
+  description: Body request that contains a list of ScriptPostDto object
+  required: true
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          $ref: "../../schemas/scripts/ScriptPostDto.yaml"
 responses:
   '200':
     description: Expected response to a valid request
