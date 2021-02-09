@@ -3,7 +3,14 @@ tags:
   - components
 operationId: componentsUpdateAll
 requestBody:
-  $ref: "../../requestBodies/components/ComponentDtoListBody.yaml"
+  description: Body request that contains a list of ComponentDto objects
+  required: true
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          $ref: "../../schemas/components/ComponentDto.yaml"
 responses:
   '200':
     description: Expected response to a valid request
@@ -12,18 +19,8 @@ responses:
         schema:
           $ref: "../../schemas/components/EmbeddedComponentDto.yaml"
   '403':
-    description: Expected response to a forbidden request
-    content:
-      application/json:
-        schema:
-          $ref: "../../schemas/response/ErrorResponse.yaml"
-        example:
-          timestamp: "2021-02-09T07:57:01.062+0000"
-          status: 403
-          error: "Forbidden"
-          message: "Access denied"
-          path: "/api/components/"
+    $ref: "../../responses/components/ResponseComponentForbidden.yaml"
   '404':
-    description: Expected response to one or many un-existing components
+    description: Expected response to one or many non-existing components
 
 
