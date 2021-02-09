@@ -101,19 +101,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/EmbeddedComponentDto'
         '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/components/
+          $ref: '#/components/responses/ResponseComponentForbidden'
     post:
-      summary: Post a new component
+      summary: Create a new component
       tags:
         - components
       operationId: componentsCreate
@@ -132,19 +122,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ComponentDto'
         '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/components/
+          $ref: '#/components/responses/ResponseComponentForbidden'
         '404':
-          description: Expected response to an existing component
+          description: Expected response to a non-existing component
           content:
             application/json:
               schema:
@@ -177,19 +157,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/EmbeddedComponentDto'
         '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/components/
+          $ref: '#/components/responses/ResponseComponentForbidden'
         '404':
-          description: Expected response to one or many un-existing components
+          description: Expected response to one or many non-existing components
     delete:
       summary: Delete all components
       tags:
@@ -199,17 +169,7 @@ paths:
         '200':
           description: Expected response to a valid request
         '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/components/
+          $ref: '#/components/responses/ResponseComponentForbidden'
   '/components/{name}':
     get:
       summary: Fetch all versions of a specific component
@@ -231,17 +191,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EmbeddedComponentDto'
         '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/components/
+          $ref: '#/components/responses/ResponseComponentForbidden'
     delete:
       summary: Delete a specific component with all versions
       tags:
@@ -253,17 +203,7 @@ paths:
         '200':
           description: Expected response to a valid request
         '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/components/
+          $ref: '#/components/responses/ResponseComponentForbidden'
   '/components/{name}/{version}':
     get:
       summary: Info of a specific component
@@ -287,17 +227,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ComponentDto'
         '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/components/
+          $ref: '#/components/responses/ResponseComponentForbidden'
     put:
       summary: Update component with specific name and version
       tags:
@@ -307,7 +237,12 @@ paths:
         - $ref: '#/paths/~1components~1%7Bname%7D/get/parameters/0'
         - $ref: '#/paths/~1components~1%7Bname%7D~1%7Bversion%7D/get/parameters/1'
       requestBody:
-        $ref: '#/paths/~1components/post/requestBody'
+        description: Body request that contains the ComponentDto object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComponentDto'
       responses:
         '200':
           description: Expected response to a valid request
@@ -328,17 +263,7 @@ paths:
                 message: 'Mismatch between url query ''HttpExecuteRequestss'' and request body '
                 path: /api/components/HttpExecuteRequestss/1
         '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/components/
+          $ref: '#/components/responses/ResponseComponentForbidden'
         '404':
           description: Expected response to a un-existing component
     delete:
@@ -353,17 +278,7 @@ paths:
         '200':
           description: Expected response to a valid request
         '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/components/
+          $ref: '#/components/responses/ResponseComponentForbidden'
         '404':
           description: Expected response to a un-existing version of a component
   /datasets:
@@ -1625,3 +1540,15 @@ components:
             $ref: '#/components/schemas/Error'
     NullResponse:
       description: Null response
+    ResponseComponentForbidden:
+      description: Expected response to a forbidden request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            timestamp: '2021-02-09T07:57:01.062+0000'
+            status: 403
+            error: Forbidden
+            message: Access denied
+            path: /api/components/
