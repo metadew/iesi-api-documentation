@@ -17,7 +17,7 @@ responses:
               type: string
               enum: [ok]
   '403':
-    description: Expected response to a forbidden request
+    $ref: "../../responses/scripts/ResponseScriptForbidden.yaml"
   '404':
     description: Expected response to a unexisting resource
 

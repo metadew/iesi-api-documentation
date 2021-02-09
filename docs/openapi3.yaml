@@ -54,6 +54,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PagedScriptDto'
+        '403':
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/scripts/
     post:
       summary: Create a new script
       tags:
@@ -94,6 +106,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PagedScriptDto'
+        '403':
+          $ref: '#/paths/~1scripts/get/responses/403'
     put:
       summary: Update one or multiple scripts
       tags:
@@ -115,6 +129,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScriptDto'
+        '403':
+          $ref: '#/paths/~1scripts/get/responses/403'
   '/scripts/{name}':
     get:
       summary: All versions of a script with a specified name
@@ -130,6 +146,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PagedScriptDto'
+        '403':
+          $ref: '#/paths/~1scripts/get/responses/403'
   '/scripts/{name}/{version}':
     get:
       summary: Info of a specific script
@@ -146,6 +164,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScriptDto'
+        '403':
+          $ref: '#/paths/~1scripts/get/responses/403'
         '404':
           description: no script found with specified name and version
     put:
@@ -172,6 +192,18 @@ paths:
                 $ref: '#/components/schemas/ScriptDto'
         '400':
           description: Expected response to a bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T13:50:52.083+0000'
+                status: 400
+                error: Bad Request
+                message: Mismatch between url query '989' and request body
+                path: /api/scripts/fho.folderExists.2/989
+        '403':
+          $ref: '#/paths/~1scripts/get/responses/403'
     delete:
       summary: Delete a specific script
       tags:
@@ -193,7 +225,7 @@ paths:
                     enum:
                       - ok
         '403':
-          description: Expected response to a forbidden request
+          $ref: '#/paths/~1scripts/get/responses/403'
         '404':
           description: Expected response to a unexisting resource
   /components:

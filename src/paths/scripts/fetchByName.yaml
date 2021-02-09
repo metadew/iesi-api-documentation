@@ -12,3 +12,5 @@ responses:
       application/json:
         schema:
           $ref: "../../schemas/scripts/PagedScriptDto.yaml"
+  '403':
+    $ref: "../../responses/scripts/ResponseScriptForbidden.yaml"
