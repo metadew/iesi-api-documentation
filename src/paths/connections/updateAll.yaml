@@ -17,6 +17,7 @@ responses:
     content:
       application/json:
         schema:
+          $ref: "../../schemas/connections/EmbeddedConnectionDto.yaml"
   '403':
     $ref: "../../responses/connections/ResponseConnectionForbidden.yaml"
   '404':
