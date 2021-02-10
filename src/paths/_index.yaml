@@ -80,10 +80,23 @@
     $ref: "./environments/updateByName.yaml"
   delete:
     $ref: "./environments/deleteByName.yaml"
-
 '/environments/{name}/connections':
   get:
     $ref: "./environments/fetchConnectionsByName.yaml"
+
+# Execution Requests
+'/execution-requests':
+  get:
+    $ref: "./executionRequests/fetchAll.yaml"
+  post:
+    $ref: "./executionRequests/create.yaml"
+'/execution-requests/{id}':
+  get:
+    $ref: "./executionRequests/fetchById.yaml"
+  delete:
+    $ref: "./executionRequests/deleteById.yaml"
+
+
 # Datasets
 '/datasets':
   get:

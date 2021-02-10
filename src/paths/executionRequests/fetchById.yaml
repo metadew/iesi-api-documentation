@@ -1,0 +1,20 @@
+summary: Fetch a specific execution request
+tags:
+  - execution requests
+operationId: executionRequestsFetchById
+parameters:
+  - $ref: "../../parameters/path/executionRequests/Id.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/executionRequests/ExecutionRequestDto.yaml"
+  '403':
+    $ref: "../../responses/executionRequests/ResponseExecutionRequestForbidden.yaml"
+  '404':
+    description: Expected response to a non-existing execution request
+
+
+

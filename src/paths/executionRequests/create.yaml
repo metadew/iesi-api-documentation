@@ -1,0 +1,22 @@
+summary: Create a new execution request
+tags:
+  - execution requests
+operationId: executionRequestsCreate
+requestBody:
+  description: Body request that contains the ExecutionRequestPostDto object
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/executionRequests/ExecutionRequestPostDto.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/executionRequests/ExecutionRequestDto.yaml"
+  '403':
+    $ref: "../../responses/executionRequests/ResponseExecutionRequestForbidden.yaml"
+
+

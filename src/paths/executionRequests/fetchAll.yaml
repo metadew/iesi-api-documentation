@@ -1,0 +1,21 @@
+summary: Fetch all execution requests
+tags:
+  - execution requests
+operationId: executionRequestsFetchAll
+parameters:
+  - $ref: "../../parameters/query/executionRequests/Script.yaml"
+  - $ref: "../../parameters/query/executionRequests/Version.yaml"
+  - $ref: "../../parameters/query/executionRequests/Label.yaml"
+  - $ref: "../../parameters/query/executionRequests/Environment.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/executionRequests/PagedExecutionRequestDto.yaml"
+  '403':
+    $ref: "../../responses/executionRequests/ResponseExecutionRequestForbidden.yaml"
+
+
+
