@@ -1,0 +1,6 @@
+name: name
+description: name of the environment
+in: path
+required: true
+schema:
+  type: string

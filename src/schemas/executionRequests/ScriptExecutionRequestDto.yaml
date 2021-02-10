@@ -1,0 +1,32 @@
+type: object
+properties:
+  scriptExecutionRequestId:
+    type: string
+  executionRequestId:
+    type: string
+  environment:
+    type: string
+  exit:
+    type: boolean
+  impersonations:
+    type: array
+    items:
+      $ref: "./ScriptExecutionRequestImpersonationDto.yaml"
+  parameters:
+    type: array
+    items:
+      $ref: "./ScriptExecutionRequestParameterDto.yaml"
+  scriptExecutionRequestStatus:
+    type: [NEW,SUBMITTED,ACCEPTED,DECLINED,COMPLETED,ABORTED]
+  scriptName:
+    type: string
+  scriptVersion:
+    type: integer
+    format: int64
+  securityGroupName:
+    type: string
+  runId:
+    type: string
+  runStatus:
+    type: [RUNNING, SUCCESS, WARNING, ERROR, STOPPED, SKIPPED]
+

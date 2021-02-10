@@ -1,0 +1,35 @@
+type: object
+properties:
+  runId:
+    type: string
+  processId:
+    type: integer
+    format: int64
+  type:
+    type: string
+  name: 
+    type: string
+  description:
+    type: string
+  condition:  
+    type: string
+  errorStop:
+    type: boolean
+  errorExpected:
+    type: boolean
+  status:
+    type: string
+    enum: ["RUNNING", "SUCCESS", "WARNING", "ERROR", "STOPPED", "SKIPPED"]
+  startTimestamp:
+    type: string
+  endTimestamp:
+    type: string
+  inputParameters:
+    type: array
+    items:
+      $ref: "./ActionInputParametersDto.yaml"
+  output:
+    type: array
+    items:
+      $ref: "./OutputDto.yaml"
+  

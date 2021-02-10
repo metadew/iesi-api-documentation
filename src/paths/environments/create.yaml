@@ -1,0 +1,34 @@
+summary: Create a new environment
+tags:
+  - environments
+operationId: environmentsCreate
+requestBody:
+  description: The new Environment to be created
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/environments/EnvironmentDto.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/environments/EnvironmentDto.yaml"
+  '403':
+    $ref: "../../responses/environments/ResponseEnvironmentForbidden.yaml"
+  '404':
+    description: Expected response to an existing environment
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/response/ErrorResponse.yaml"
+        example:
+          timestamp: "2021-02-09T07:57:01.062+0000"
+          status: 404
+          error: "Not Found"
+          message: "environment TUTORIAL already exists"
+          path: "/api/environmentss/"
+
+

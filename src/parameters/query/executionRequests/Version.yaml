@@ -1,0 +1,5 @@
+in: query
+name: version
+required: false
+schema:
+  type: string

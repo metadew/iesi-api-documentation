@@ -62,6 +62,51 @@
     $ref: './connections/updateByNameAndEnvironment.yaml'
   delete:
     $ref: "./connections/deleteByNameAndEnvironment.yaml"
+
+# Environments
+'/environments':
+  get:
+    $ref: "./environments/fetchAll.yaml"
+  post:
+    $ref: "./environments/create.yaml"
+  put:
+    $ref: "./environments/updateAll.yaml"
+  delete:
+    $ref: "./environments/deleteAll.yaml"
+'/environments/{name}':
+  get:
+    $ref: "./environments/fetchByName.yaml"
+  put:
+    $ref: "./environments/updateByName.yaml"
+  delete:
+    $ref: "./environments/deleteByName.yaml"
+'/environments/{name}/connections':
+  get:
+    $ref: "./environments/fetchConnectionsByName.yaml"
+
+# Execution Requests
+'/execution-requests':
+  get:
+    $ref: "./executionRequests/fetchAll.yaml"
+  post:
+    $ref: "./executionRequests/create.yaml"
+'/execution-requests/{id}':
+  get:
+    $ref: "./executionRequests/fetchById.yaml"
+  delete:
+    $ref: "./executionRequests/deleteById.yaml"
+
+# Script Executions
+'/script-executions':
+  get:
+    $ref: "./scriptExecutions/fetchAll.yaml"
+'/script-executions/{runId}':
+  get:
+    $ref: "./scriptExecutions/fetchByRunId.yaml"
+'/script-executions/{runId}/{processId}':
+  get:
+    $ref: "./scriptExecutions/fetchByRunIdAndProcessId.yaml"
+
 # Datasets
 '/datasets':
   get:

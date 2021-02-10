@@ -1,0 +1,6 @@
+type: object
+properties:
+  embedded:
+    type: array
+    items:
+      $ref: "./EnvironmentDto.yaml"
