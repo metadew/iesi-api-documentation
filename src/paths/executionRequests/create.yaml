@@ -3,7 +3,7 @@ tags:
   - execution requests
 operationId: executionRequestsCreate
 requestBody:
-  description: Body request that contains the ExecutionRequestPostDto object
+  description: The new Execution Request to be created
   required: true
   content:
     application/json:
