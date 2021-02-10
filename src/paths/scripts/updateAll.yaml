@@ -3,7 +3,7 @@ tags:
   - scripts
 operationId: scriptsUpdate
 requestBody:
-  description: Body request that contains a list of ScriptPostDto object
+  description: list of Scripts to be updated. Each element of the list contains the new implementation of the Script
   required: true
   content:
     application/json:

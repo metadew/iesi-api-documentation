@@ -3,7 +3,7 @@ tags:
   - components
 operationId: componentsUpdateAll
 requestBody:
-  description: Body request that contains a list of ComponentDto objects
+  description: list of components to be updated. Each element of the list contains the new implementation of the component
   required: true
   content:
     application/json:

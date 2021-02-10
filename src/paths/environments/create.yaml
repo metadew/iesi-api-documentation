@@ -3,7 +3,7 @@ tags:
   - environments
 operationId: environmentsCreate
 requestBody:
-  description: Body request that contains the EnvironmentDto object
+  description: The new Environment to be created
   required: true
   content:
     application/json:

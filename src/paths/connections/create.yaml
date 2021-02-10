@@ -3,7 +3,7 @@ tags:
   - connections
 operationId: connectionsCreate
 requestBody:
-  description: Body request that contains the ConnectionDto object
+  description: The new Connection to be created
   required: true
   content:
     application/json:
