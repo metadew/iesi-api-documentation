@@ -6,7 +6,7 @@ parameters:
   - $ref: "../../parameters/path/components/Name.yaml"
   - $ref: "../../parameters/path/components/Version.yaml"
 requestBody:
-  description: The existing component to be updated
+  description: New implementation of the component
   required: true
   content:
     application/json:

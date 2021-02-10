@@ -6,7 +6,7 @@ parameters:
   - $ref: "../../parameters/path/connections/Name.yaml"
   - $ref: "../../parameters/path/connections/Environment.yaml"
 requestBody:
-  description: The existing Connection to be updated
+  description: New implementation of the connection
   required: true
   content:
     application/json:
