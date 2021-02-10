@@ -844,6 +844,58 @@ paths:
           $ref: '#/components/responses/ResponseExecutionRequestForbidden'
         '404':
           description: Expected response to a non-existing execution request
+  /script-executions:
+    get:
+      summary: Fetch all script executions
+      tags:
+        - script executions
+      operationId: scriptExecutionsAll
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddedScriptExecutionDto'
+        '403':
+          $ref: '#/components/responses/ResponseScriptExecutionForbidden'
+  '/script-executions/{runId}':
+    get:
+      summary: Fetch all processes from a specific runId of a script
+      tags:
+        - script executions
+      operationId: scriptExecutionsFetchByRunId
+      parameters:
+        - $ref: '#/components/parameters/PathScriptExecutionRunId'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddedScriptExecutionDto'
+        '403':
+          $ref: '#/components/responses/ResponseScriptExecutionForbidden'
+  '/script-executions/{runId}/{processId}':
+    get:
+      summary: Fetch a specific script execution and processId
+      tags:
+        - script executions
+      operationId: scriptExecutionsFetchByRunIdAndProcessId
+      parameters:
+        - $ref: '#/components/parameters/PathScriptExecutionRunId'
+        - $ref: '#/components/parameters/PathScriptExecutionProcessId'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScriptExecutionDto'
+        '403':
+          $ref: '#/components/responses/ResponseScriptExecutionForbidden'
+        '404':
+          description: Expected response to a non-existing script execution
   /datasets:
     get:
       summary: Fetch all datasets
@@ -1441,6 +1493,20 @@ components:
       required: false
       schema:
         type: string
+    PathScriptExecutionProcessId:
+      name: processId
+      description: id of the process id
+      in: path
+      required: true
+      schema:
+        type: string
+    PathScriptExecutionRunId:
+      name: runId
+      description: id of the run id
+      in: path
+      required: true
+      schema:
+        type: string
     QueryPaginationPage:
       in: query
       name: page
@@ -1897,6 +1963,132 @@ components:
         name:
           type: string
     ScriptExecutionRequestParameterDto:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    ScriptExecutionDto:
+      type: object
+      properties:
+        runId:
+          type: string
+        processId:
+          type: integer
+          format: int64
+        parentProcessId:
+          type: integer
+          format: int64
+        scriptId:
+          type: string
+        scriptName:
+          type: string
+        scriptVersion:
+          type: integer
+          format: int64
+        securityGroupName:
+          type: string
+        environment:
+          type: string
+        status:
+          type: string
+          enum:
+            - RUNNING
+            - SUCCESS
+            - WARNING
+            - ERROR
+            - STOPPED
+            - SKIPPED
+        startTimestamp:
+          type: string
+        endTimestamp:
+          type: string
+        inputParameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExecutionInputParameterDto'
+        designLabels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScriptLabelDto'
+        executionLabels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExecutionRequestLabelDto'
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActionExecutionDto'
+        output:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutputDto'
+    EmbeddedScriptExecutionDto:
+      type: object
+      properties:
+        embedded:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScriptExecutionDto'
+    ExecutionInputParameterDto:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    ActionExecutionDto:
+      type: object
+      properties:
+        runId:
+          type: string
+        processId:
+          type: integer
+          format: int64
+        type:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        condition:
+          type: string
+        errorStop:
+          type: boolean
+        errorExpected:
+          type: boolean
+        status:
+          type: string
+          enum:
+            - RUNNING
+            - SUCCESS
+            - WARNING
+            - ERROR
+            - STOPPED
+            - SKIPPED
+        startTimestamp:
+          type: string
+        endTimestamp:
+          type: string
+        inputParameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActionInputParametersDto'
+        output:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutputDto'
+    ActionInputParametersDto:
+      type: object
+      properties:
+        name:
+          type: string
+        rawValue:
+          type: string
+        resolvedValue:
+          type: string
+    OutputDto:
       type: object
       properties:
         name:
@@ -2427,3 +2619,15 @@ components:
             error: Forbidden
             message: Access denied
             path: /api/execution-requests
+    ResponseScriptExecutionForbidden:
+      description: Expected response to a forbidden request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            timestamp: '2021-02-09T07:57:01.062+0000'
+            status: 403
+            error: Forbidden
+            message: Access denied
+            path: /api/script-executions
