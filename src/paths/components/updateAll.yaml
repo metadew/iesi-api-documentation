@@ -1,0 +1,26 @@
+summary: Update existing components
+tags:
+  - components
+operationId: componentsUpdateAll
+requestBody:
+  description: list of components to be updated. Each element of the list contains the new implementation of the component
+  required: true
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          $ref: "../../schemas/components/ComponentDto.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/components/EmbeddedComponentDto.yaml"
+  '403':
+    $ref: "../../responses/components/ResponseComponentForbidden.yaml"
+  '404':
+    description: Expected response to one or many non-existing components
+
+

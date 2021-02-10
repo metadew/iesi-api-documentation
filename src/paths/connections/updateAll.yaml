@@ -1,0 +1,25 @@
+summary: update group of connections
+tags:
+  - connections
+operationId: connectionsUpdateAll
+requestBody:
+  description: list of Connections to be updated. Each element of the list contains the new implementation of the connection
+  required: true
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          $ref: "../../schemas/connections/ConnectionDto.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+  '403':
+    $ref: "../../responses/connections/ResponseConnectionForbidden.yaml"
+  '404':
+    description: Expected response to one or many un-existing connections
+
+

@@ -1,0 +1,41 @@
+summary: Update component with specific name and version
+tags:
+  - components
+operationId: componentsUpdateByNameAndVersion
+parameters:
+  - $ref: "../../parameters/path/components/Name.yaml"
+  - $ref: "../../parameters/path/components/Version.yaml"
+requestBody:
+  description: New implementation of the component
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/components/ComponentDto.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/components/EmbeddedComponentDto.yaml"
+  '400':
+    description: Expected response to a bad request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/response/ErrorResponse.yaml"
+        example:
+          timestamp: "2021-02-09T08:58:31.073+0000"
+          status: 400
+          error: "Bad Request"
+          message: "Mismatch between url query 'HttpExecuteRequestss' and request body "
+          path: "/api/components/HttpExecuteRequestss/1"
+  '403':
+    $ref: "../../responses/components/ResponseComponentForbidden.yaml"
+  '404':
+    description: Expected response to a un-existing component
+
+
+
+

@@ -1,0 +1,17 @@
+summary: Delete a specific version of a component
+tags:
+  - components
+operationId: componentsDeleteByName
+parameters:
+  - $ref: "../../parameters/path/components/Name.yaml"
+  - $ref: "../../parameters/path/components/Version.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+  '403':
+    $ref: "../../responses/components/ResponseComponentForbidden.yaml"
+  '404':
+    description: Expected response to a un-existing version of a component
+
+
+

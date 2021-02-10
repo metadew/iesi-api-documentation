@@ -1,0 +1,38 @@
+summary: Update a specific script
+tags:
+  - scripts
+operationId: scriptsUpdateByNameAndVersion
+parameters:
+  - $ref: "../../parameters/path/scripts/Name.yaml"
+  - $ref: "../../parameters/path/scripts/Version.yaml"
+requestBody:
+  description: New implementation of the script
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/scripts/ScriptPostDto.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/scripts/ScriptDto.yaml"
+  '400':
+    description: Expected response to a bad request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/response/ErrorResponse.yaml"
+        example:       
+          timestamp: 2021-02-09T13:50:52.083+0000
+          status: 400
+          error: Bad Request
+          message: Mismatch between url query '989' and request body
+          path: /api/scripts/fho.folderExists.2/989
+
+        
+  '403':
+    $ref: "../../responses/scripts/ResponseScriptForbidden.yaml"
+

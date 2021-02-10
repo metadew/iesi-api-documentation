@@ -14,6 +14,26 @@ ActionParameterDto:
 PagedScriptDto:
   $ref: "./scripts/PagedScriptDto.yaml"
 
+# Components
+ComponentDto:
+  $ref: "./components/ComponentDto.yaml"
+ComponentVersionDto:
+  $ref: "./components/ComponentVersionDto.yaml"
+ComponentParameterDto:
+  $ref: "./components/ComponentParameterDto.yaml"
+ComponentAttributeDto:
+  $ref: "./components/ComponentAttributeDto.yaml"
+EmbeddedComponentDto:
+  $ref: "./components/EmbeddedComponentDto.yaml"
+
+# Connections
+ConnectionDto:
+  $ref: "./connections/ConnectionDto.yaml"
+ConnectionParameterDto:
+  $ref: "./connections/ConnectionParameterDto.yaml"
+EmbeddedConnectionDto:
+  $ref: "./connections/EmbeddedConnectionDto.yaml"
+
 # Pagination
 Link:
   $ref: "./pagination/Link.yaml"
@@ -21,6 +41,7 @@ PageLinks:
   $ref: "./pagination/PageLinks.yaml"
 PaginationProperties:
   $ref: "./pagination/PaginationProperties.yaml"
+
 
 # Datasets
 DatasetDto:
@@ -109,6 +130,11 @@ SecurityGroupDtoList:
   $ref: "./security_groups/SecurityGroupDtoList.yaml"
 
 
+#Responses
+Response:
+  $ref: "./response/Response.yaml"
+ErrorResponse:
+  $ref: "./response/ErrorResponse.yaml"
 
 # Errors
 Error:

@@ -1,0 +1,18 @@
+summary: Fetch all versions of a specific component
+tags:
+  - components
+operationId: componentsFetchByName
+parameters:
+  - $ref: "../../parameters/path/components/Name.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/components/EmbeddedComponentDto.yaml"
+  '403':
+    $ref: "../../responses/components/ResponseComponentForbidden.yaml"
+
+
+

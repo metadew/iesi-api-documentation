@@ -1,0 +1,14 @@
+summary: Delete a specific component with all versions
+tags:
+  - components
+operationId: componentsDeleteByName
+parameters:
+  - $ref: "../../parameters/path/components/Name.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+  '403':
+    $ref: "../../responses/components/ResponseComponentForbidden.yaml"
+
+
+

@@ -1,5 +1,5 @@
 name: version
-description: version of the script
+description: version of the component
 in: path
 required: true
 schema:

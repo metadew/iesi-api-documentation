@@ -1,0 +1,17 @@
+summary: delete specific connection for a specific environment
+tags:
+  - connections
+operationId: connectionsDeleteByNameAndEnvironment
+parameters:
+  - $ref: "../../parameters/path/connections/Name.yaml"
+  - $ref: "../../parameters/path/connections/Environment.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+  '403':
+    $ref: "../../responses/connections/ResponseConnectionForbidden.yaml"
+  '404':
+    description: Expected response to a un-existing connection
+
+
+

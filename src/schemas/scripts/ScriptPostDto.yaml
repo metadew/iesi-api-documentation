@@ -1,0 +1,22 @@
+type: object
+properties:
+  name:
+    type: string
+  securityGroupName:
+    type: string
+  description:
+    type: string
+  version:
+    $ref: '../../schemas/scripts/ScriptVersionDto.yaml'
+  parameters:
+    type: array
+    items:
+      $ref: '../../schemas/scripts/ScriptParameterDto.yaml'
+  actions:
+    type: array
+    items:
+      $ref: '../../schemas/scripts/ActionDto.yaml'
+  labels:
+    type: array
+    items:
+      $ref: '../../schemas/scripts/ScriptLabelDto.yaml'

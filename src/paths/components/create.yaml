@@ -1,0 +1,34 @@
+summary: Create a new component
+tags:
+  - components
+operationId: componentsCreate
+requestBody:
+  description: The new Component to be created
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/components/ComponentDto.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/components/ComponentDto.yaml"
+  '403':
+    $ref: "../../responses/components/ResponseComponentForbidden.yaml"
+  '404':
+    description: Expected response to a non-existing component
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/response/ErrorResponse.yaml"
+        example:
+          timestamp: "2021-02-09T07:57:01.062+0000"
+          status: 404
+          error: "Not Found"
+          message: "Component HttpExecuteRequest already exists"
+          path: "/api/components/"
+
+
