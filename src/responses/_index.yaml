@@ -18,3 +18,7 @@ ResponseEnvironmentForbidden:
 # Execution Requests
 ResponseExecutionRequestForbidden:
   $ref: "./executionRequests/ResponseExecutionRequestForbidden.yaml"
+
+# Script execution
+ResponseScriptExecutionForbidden:
+  $ref: "./scriptExecutions/ResponseScriptExecutionForbidden.yaml"
