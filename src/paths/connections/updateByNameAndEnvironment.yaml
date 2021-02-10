@@ -6,7 +6,7 @@ parameters:
   - $ref: "../../parameters/path/connections/Name.yaml"
   - $ref: "../../parameters/path/connections/Environment.yaml"
 requestBody:
-  description: Body request that contains the ConnectionDto object
+  description: The existing Connection to be updated
   required: true
   content:
     application/json:

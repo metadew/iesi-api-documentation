@@ -1,9 +1,9 @@
-summary: Update existing connections
+summary: update group of connections
 tags:
   - connections
 operationId: connectionsUpdateAll
 requestBody:
-  description: Body request that contains a list of ConnectionDto objects
+  description: list of Connections to be updated. Each element of the list contains the new implementation of the connection
   required: true
   content:
     application/json:

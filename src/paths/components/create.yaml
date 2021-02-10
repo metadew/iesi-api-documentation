@@ -3,7 +3,7 @@ tags:
   - components
 operationId: componentsCreate
 requestBody:
-  description: Body request that contains the ComponentDto object
+  description: The new Component to be created
   required: true
   content:
     application/json:

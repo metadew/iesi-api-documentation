@@ -3,7 +3,7 @@ tags:
   - scripts
 operationId: scriptsCreate
 requestBody:
-  description: Body request that contains the ScriptPostDto object
+  description: The new Script to be created
   required: true
   content:
     application/json:
