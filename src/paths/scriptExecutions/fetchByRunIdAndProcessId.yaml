@@ -1,0 +1,21 @@
+summary: Fetch a specific script execution and processId
+tags:
+  - script executions
+operationId: scriptExecutionsFetchByRunIdAndProcessId
+parameters:
+  - $ref: "../../parameters/path/scriptExecutions/RunId.yaml"
+  - $ref: "../../parameters/path/scriptExecutions/ProcessId.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/scriptExecutions/ScriptExecutionDto.yaml"
+  '403':
+    $ref: "../../responses/scriptExecutions/ResponseScriptExecutionForbidden.yaml"
+  '404':
+        description: Expected response to a non-existing script execution
+
+
+

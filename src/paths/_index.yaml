@@ -96,6 +96,16 @@
   delete:
     $ref: "./executionRequests/deleteById.yaml"
 
+# Script Executions
+'/script-executions':
+  get:
+    $ref: "./scriptExecutions/fetchAll.yaml"
+'/script-executions/{runId}':
+  get:
+    $ref: "./scriptExecutions/fetchByRunId.yaml"
+'/script-executions/{runId}/{processId}':
+  get:
+    $ref: "./scriptExecutions/fetchByRunIdAndProcessId.yaml"
 
 # Datasets
 '/datasets':
