@@ -72,7 +72,7 @@ paths:
         - scripts
       operationId: scriptsCreate
       requestBody:
-        description: Body request that contains the ScriptPostDto object
+        description: The new Script to be created
         required: true
         content:
           application/json:
@@ -114,7 +114,7 @@ paths:
         - scripts
       operationId: scriptsUpdate
       requestBody:
-        description: Body request that contains a list of ScriptPostDto object
+        description: list of Scripts to be updated. Each element of the list contains the new implementation of the Script
         required: true
         content:
           application/json:
@@ -177,7 +177,7 @@ paths:
         - $ref: '#/components/parameters/PathScriptsName'
         - $ref: '#/components/parameters/PathScriptsVersion'
       requestBody:
-        description: Body request that contains the ScriptPostDto object
+        description: New implementation of the script
         required: true
         content:
           application/json:
@@ -249,7 +249,7 @@ paths:
         - components
       operationId: componentsCreate
       requestBody:
-        description: Body request that contains the ComponentDto object
+        description: The new Component to be created
         required: true
         content:
           application/json:
@@ -282,7 +282,7 @@ paths:
         - components
       operationId: componentsUpdateAll
       requestBody:
-        description: Body request that contains a list of ComponentDto objects
+        description: list of components to be updated. Each element of the list contains the new implementation of the component
         required: true
         content:
           application/json:
@@ -342,7 +342,7 @@ paths:
           $ref: '#/components/responses/ResponseComponentForbidden'
   '/components/{name}/{version}':
     get:
-      summary: Info of a specific component
+      summary: Fetch a component by name and version
       tags:
         - components
       operationId: componentsFetchByNameAndVersion
@@ -367,7 +367,7 @@ paths:
         - $ref: '#/components/parameters/PathComponentName'
         - $ref: '#/components/parameters/PathComponentVersion'
       requestBody:
-        description: Body request that contains the ComponentDto object
+        description: New implementation of the component
         required: true
         content:
           application/json:
@@ -432,7 +432,7 @@ paths:
         - connections
       operationId: connectionsCreate
       requestBody:
-        description: Body request that contains the ConnectionDto object
+        description: The new Connection to be created
         required: true
         content:
           application/json:
@@ -460,12 +460,12 @@ paths:
                 message: Connection db.company.a already exists
                 path: /api/connections/
     put:
-      summary: Update existing connections
+      summary: update group of connections
       tags:
         - connections
       operationId: connectionsUpdateAll
       requestBody:
-        description: Body request that contains a list of ConnectionDto objects
+        description: list of Connections to be updated. Each element of the list contains the new implementation of the connection
         required: true
         content:
           application/json:
@@ -512,7 +512,7 @@ paths:
         '403':
           $ref: '#/components/responses/ResponseConnectionForbidden'
     delete:
-      summary: Delete a specific connection with all environments
+      summary: Delete a specific connection for all environments
       tags:
         - connections
       operationId: connectionsDeleteByName
@@ -524,7 +524,7 @@ paths:
         '403':
           $ref: '#/components/responses/ResponseConnectionForbidden'
         '404':
-          description: Expected response to a un-existing connection
+          description: Expected response to a non-existing connection
   '/connections/{name}/{environment}':
     get:
       summary: Info of a specific connection
@@ -554,7 +554,7 @@ paths:
         - $ref: '#/components/parameters/PathConnectionName'
         - $ref: '#/components/parameters/PathConnectionEnvironment'
       requestBody:
-        description: Body request that contains the ConnectionDto object
+        description: New implementation of the connection
         required: true
         content:
           application/json:
@@ -584,7 +584,7 @@ paths:
         '404':
           description: Expected response to one or many un-existing connections
     delete:
-      summary: Delete a specific connection with all environments
+      summary: delete specific connection for a specific environment
       tags:
         - connections
       operationId: connectionsDeleteByNameAndEnvironment
@@ -619,7 +619,7 @@ paths:
         - environments
       operationId: environmentsCreate
       requestBody:
-        description: Body request that contains the EnvironmentDto object
+        description: The new Environment to be created
         required: true
         content:
           application/json:
@@ -652,7 +652,7 @@ paths:
         - environments
       operationId: environmentsUpdateAll
       requestBody:
-        description: Body request that contains a list of EnvironmentDto objects
+        description: list of Environments to be updated. Each element of the list contains the new implementation of the environment
         required: true
         content:
           application/json:
@@ -708,7 +708,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/PathEnvironmentName'
       requestBody:
-        description: Body request that contains the EnvironmentDto object
+        description: New implementation of of the environment
         required: true
         content:
           application/json:
@@ -796,7 +796,7 @@ paths:
         - execution requests
       operationId: executionRequestsCreate
       requestBody:
-        description: Body request that contains the ExecutionRequestPostDto object
+        description: The new Execution Request to be created
         required: true
         content:
           application/json:
