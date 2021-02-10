@@ -1,0 +1,12 @@
+summary: Delete all components
+tags:
+  - components
+operationId: componentsDeleteAll
+responses:
+  '200':
+    description: Expected response to a valid request
+  '403':
+    $ref: "../../responses/components/ResponseComponentForbidden.yaml"
+
+
+

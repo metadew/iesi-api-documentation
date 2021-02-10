@@ -1,10 +1,14 @@
-summary: All versions of a script with a specified name
+summary: Create a new script
 tags:
   - scripts
-operationId: scriptsFetchByName
-parameters:
-  - $ref: "../../parameters/path/scripts/Name.yaml"
-
+operationId: scriptsCreate
+requestBody:
+  description: The new Script to be created
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/scripts/ScriptPostDto.yaml"
 responses:
   '200':
     description: Expected response to a valid request

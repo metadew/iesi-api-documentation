@@ -1,0 +1,19 @@
+summary: Fetch a component by name and version
+tags:
+  - components
+operationId: componentsFetchByNameAndVersion
+parameters:
+  - $ref: "../../parameters/path/components/Name.yaml"
+  - $ref: "../../parameters/path/components/Version.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/components/ComponentDto.yaml"
+  '403':
+    $ref: "../../responses/components/ResponseComponentForbidden.yaml"
+
+
+

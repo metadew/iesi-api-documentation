@@ -1,19 +1,24 @@
-summary: Info of a specific script
+summary: Delete a specific script
 tags:
   - scripts
-operationId: scriptsFetchByNameAndVersion
+operationId: scriptsDeleteByNameAndVersion
 parameters:
   - $ref: "../../parameters/path/scripts/Name.yaml"
   - $ref: "../../parameters/path/scripts/Version.yaml"
-
 responses:
   '200':
     description: Expected response to a valid request
     content:
       application/json:
         schema:
-          $ref: "../../schemas/scripts/ScriptDto.yaml"
+          type: object
+          properties:
+            status:
+              type: string
+              enum: [ok]
   '403':
     $ref: "../../responses/scripts/ResponseScriptForbidden.yaml"
   '404':
-    description: no script found with specified name and version
+    description: Expected response to a unexisting resource
+
+

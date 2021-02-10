@@ -1,0 +1,21 @@
+summary: Info of a specific connection
+tags:
+  - connections
+operationId: connectionsFetchByNameAndEnvironment
+parameters:
+  - $ref: "../../parameters/path/connections/Name.yaml"
+  - $ref: "../../parameters/path/connections/Environment.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/connections/ConnectionDto.yaml"
+  '403':
+    $ref: "../../responses/connections/ResponseConnectionForbidden.yaml"
+  '404':
+    description: Expected response to a un-existing connection
+
+
+
