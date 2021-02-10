@@ -14,3 +14,7 @@ ResponseConnectionForbidden:
 # Environment
 ResponseEnvironmentForbidden:
   $ref: "./environments/ResponseEnvironmentForbidden.yaml"
+
+# Execution Requests
+ResponseExecutionRequestForbidden:
+  $ref: "./executionRequests/ResponseExecutionRequestForbidden.yaml"
