@@ -318,12 +318,7 @@ paths:
         - components
       operationId: componentsFetchByName
       parameters:
-        - name: name
-          description: name of the component
-          in: path
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/PathComponentName'
       responses:
         '200':
           description: Expected response to a valid request
@@ -339,7 +334,7 @@ paths:
         - components
       operationId: componentsDeleteByName
       parameters:
-        - $ref: '#/paths/~1components~1%7Bname%7D/get/parameters/0'
+        - $ref: '#/components/parameters/PathComponentName'
       responses:
         '200':
           description: Expected response to a valid request
@@ -352,14 +347,8 @@ paths:
         - components
       operationId: componentsFetchByNameAndVersion
       parameters:
-        - $ref: '#/paths/~1components~1%7Bname%7D/get/parameters/0'
-        - name: version
-          description: version of the component
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
+        - $ref: '#/components/parameters/PathComponentName'
+        - $ref: '#/components/parameters/PathComponentVersion'
       responses:
         '200':
           description: Expected response to a valid request
@@ -375,8 +364,8 @@ paths:
         - components
       operationId: componentsUpdateByNameAndVersion
       parameters:
-        - $ref: '#/paths/~1components~1%7Bname%7D/get/parameters/0'
-        - $ref: '#/paths/~1components~1%7Bname%7D~1%7Bversion%7D/get/parameters/1'
+        - $ref: '#/components/parameters/PathComponentName'
+        - $ref: '#/components/parameters/PathComponentVersion'
       requestBody:
         description: Body request that contains the ComponentDto object
         required: true
@@ -413,8 +402,8 @@ paths:
         - components
       operationId: componentsDeleteByName
       parameters:
-        - $ref: '#/paths/~1components~1%7Bname%7D/get/parameters/0'
-        - $ref: '#/paths/~1components~1%7Bname%7D~1%7Bversion%7D/get/parameters/1'
+        - $ref: '#/components/parameters/PathComponentName'
+        - $ref: '#/components/parameters/PathComponentVersion'
       responses:
         '200':
           description: Expected response to a valid request
@@ -512,12 +501,7 @@ paths:
         - connections
       operationId: connectionsFetchByName
       parameters:
-        - name: name
-          description: name of the connection
-          in: path
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/PathConnectionName'
       responses:
         '200':
           description: Expected response to a valid request
@@ -533,7 +517,7 @@ paths:
         - connections
       operationId: connectionsDeleteByName
       parameters:
-        - $ref: '#/paths/~1connections~1%7Bname%7D/get/parameters/0'
+        - $ref: '#/components/parameters/PathConnectionName'
       responses:
         '200':
           description: Expected response to a valid request
@@ -548,13 +532,8 @@ paths:
         - connections
       operationId: connectionsFetchByNameAndEnvironment
       parameters:
-        - $ref: '#/paths/~1connections~1%7Bname%7D/get/parameters/0'
-        - name: environment
-          description: name of the environment
-          in: path
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/PathConnectionName'
+        - $ref: '#/components/parameters/PathConnectionEnvironment'
       responses:
         '200':
           description: Expected response to a valid request
@@ -572,8 +551,8 @@ paths:
         - connections
       operationId: connectionsUpdateByNameAndEnvironment
       parameters:
-        - $ref: '#/paths/~1connections~1%7Bname%7D/get/parameters/0'
-        - $ref: '#/paths/~1connections~1%7Bname%7D~1%7Benvironment%7D/get/parameters/1'
+        - $ref: '#/components/parameters/PathConnectionName'
+        - $ref: '#/components/parameters/PathConnectionEnvironment'
       requestBody:
         description: Body request that contains the ConnectionDto object
         required: true
@@ -610,8 +589,8 @@ paths:
         - connections
       operationId: connectionsDeleteByNameAndEnvironment
       parameters:
-        - $ref: '#/paths/~1connections~1%7Bname%7D/get/parameters/0'
-        - $ref: '#/paths/~1connections~1%7Bname%7D~1%7Benvironment%7D/get/parameters/1'
+        - $ref: '#/components/parameters/PathConnectionName'
+        - $ref: '#/components/parameters/PathConnectionEnvironment'
       responses:
         '200':
           description: Expected response to a valid request
@@ -709,12 +688,7 @@ paths:
         - environments
       operationId: environmentsFetchByName
       parameters:
-        - name: name
-          description: name of the environment
-          in: path
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/PathEnvironmentName'
       responses:
         '200':
           description: Expected response to a valid request
@@ -732,7 +706,7 @@ paths:
         - environments
       operationId: environmentsUpdateByName
       parameters:
-        - $ref: '#/paths/~1environments~1%7Bname%7D/get/parameters/0'
+        - $ref: '#/components/parameters/PathEnvironmentName'
       requestBody:
         description: Body request that contains the EnvironmentDto object
         required: true
@@ -769,7 +743,7 @@ paths:
         - environments
       operationId: environmentsDeleteByName
       parameters:
-        - $ref: '#/paths/~1environments~1%7Bname%7D/get/parameters/0'
+        - $ref: '#/components/parameters/PathEnvironmentName'
       responses:
         '200':
           description: Expected response to a valid request
@@ -784,7 +758,7 @@ paths:
         - environments
       operationId: environmentsFetchConnectionsByName
       parameters:
-        - $ref: '#/paths/~1environments~1%7Bname%7D/get/parameters/0'
+        - $ref: '#/components/parameters/PathEnvironmentName'
       responses:
         '200':
           description: Expected response to a valid request
@@ -796,6 +770,80 @@ paths:
           $ref: '#/components/responses/ResponseEnvironmentForbidden'
         '404':
           description: Expected response to a non-existing environment
+  /execution-requests:
+    get:
+      summary: Fetch all execution requests
+      tags:
+        - execution requests
+      operationId: executionRequestsFetchAll
+      parameters:
+        - $ref: '#/components/parameters/QueryExecutionRequestScript'
+        - $ref: '#/components/parameters/QueryExecutionRequestVersion'
+        - $ref: '#/components/parameters/QueryExecutionRequestLabel'
+        - $ref: '#/components/parameters/QueryExecutionRequestEnvironment'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedExecutionRequestDto'
+        '403':
+          $ref: '#/components/responses/ResponseExecutionRequestForbidden'
+    post:
+      summary: Create a new execution request
+      tags:
+        - execution requests
+      operationId: executionRequestsCreate
+      requestBody:
+        description: Body request that contains the ExecutionRequestPostDto object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecutionRequestPostDto'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionRequestDto'
+        '403':
+          $ref: '#/components/responses/ResponseExecutionRequestForbidden'
+  '/execution-requests/{id}':
+    get:
+      summary: Fetch a specific execution request
+      tags:
+        - execution requests
+      operationId: executionRequestsFetchById
+      parameters:
+        - $ref: '#/components/parameters/PathExecutionRequestId'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionRequestDto'
+        '403':
+          $ref: '#/components/responses/ResponseExecutionRequestForbidden'
+        '404':
+          description: Expected response to a non-existing execution request
+    delete:
+      summary: Delete a specific execution request
+      tags:
+        - execution requests
+      operationId: executionRequestsDelete
+      parameters:
+        - $ref: '#/components/parameters/PathExecutionRequestId'
+      responses:
+        '200':
+          description: Expected response to a valid request
+        '403':
+          $ref: '#/components/responses/ResponseExecutionRequestForbidden'
+        '404':
+          description: Expected response to a non-existing execution request
   /datasets:
     get:
       summary: Fetch all datasets
@@ -1326,6 +1374,73 @@ components:
       description: |
         See https://stackoverflow.com/questions/33018127/spring-data-rest-sort-by-multiple-properties for query parameter formatting. Sort the result set according to the provided keywords. The order of sorting follows the order of the list. By default sorting is applied in the ascending direction but this can be altered by explicitly providing the sorting direction:
          * `name[,desc|,asc]` - Sort by script name.
+    PathComponentName:
+      name: name
+      description: name of the component
+      in: path
+      required: true
+      schema:
+        type: string
+    PathComponentVersion:
+      name: version
+      description: version of the component
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    PathConnectionEnvironment:
+      name: environment
+      description: name of the environment
+      in: path
+      required: true
+      schema:
+        type: string
+    PathConnectionName:
+      name: name
+      description: name of the connection
+      in: path
+      required: true
+      schema:
+        type: string
+    PathEnvironmentName:
+      name: name
+      description: name of the environment
+      in: path
+      required: true
+      schema:
+        type: string
+    PathExecutionRequestId:
+      name: id
+      description: id of the execution request
+      in: path
+      required: true
+      schema:
+        type: string
+    QueryExecutionRequestEnvironment:
+      in: query
+      name: environment
+      required: false
+      schema:
+        type: string
+    QueryExecutionRequestLabel:
+      in: query
+      name: label
+      required: false
+      schema:
+        type: string
+    QueryExecutionRequestScript:
+      in: query
+      name: script
+      required: false
+      schema:
+        type: string
+    QueryExecutionRequestVersion:
+      in: query
+      name: version
+      required: false
+      schema:
+        type: string
     QueryPaginationPage:
       in: query
       name: page
@@ -1635,6 +1750,159 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EnvironmentDto'
+    ExecutionRequestDto:
+      type: object
+      properties:
+        executionRequestId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        scope:
+          type: string
+        context:
+          type: string
+        email:
+          type: string
+        executionRequestStatus:
+          type:
+            - NEW
+            - SUBMITTED
+            - ACCEPTED
+            - DECLINED
+            - STOPPED
+            - COMPLETED
+            - KILLED
+            - UNKNOWN
+        scriptExecutionRequests:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScriptExecutionRequestDto'
+        executionRequestLabels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExecutionRequestLabelDto'
+    ExecutionRequestPostDto:
+      type: object
+      properties:
+        requestTimestamp:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        scope:
+          type: string
+        context:
+          type: string
+        email:
+          type: string
+        scriptExecutionRequests:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScriptExecutionRequestDto'
+        executionRequestLabels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExecutionRequestLabelDto'
+    ExecutionRequestLabelDto:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    PagedExecutionRequestDto:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            execution_requests:
+              type: array
+              items:
+                $ref: '#/components/schemas/ExecutionRequestDto'
+        _links:
+          $ref: '#/components/schemas/PageLinks'
+        page:
+          $ref: '#/components/schemas/PaginationProperties'
+    ScriptExecutionRequestDto:
+      type: object
+      properties:
+        scriptExecutionRequestId:
+          type: string
+        executionRequestId:
+          type: string
+        environment:
+          type: string
+        exit:
+          type: boolean
+        impersonations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScriptExecutionRequestImpersonationDto'
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScriptExecutionRequestParameterDto'
+        scriptExecutionRequestStatus:
+          type:
+            - NEW
+            - SUBMITTED
+            - ACCEPTED
+            - DECLINED
+            - COMPLETED
+            - ABORTED
+        scriptName:
+          type: string
+        scriptVersion:
+          type: integer
+          format: int64
+        securityGroupName:
+          type: string
+        runId:
+          type: string
+        runStatus:
+          type:
+            - RUNNING
+            - SUCCESS
+            - WARNING
+            - ERROR
+            - STOPPED
+            - SKIPPED
+    ScriptexecutionRequestPostDto:
+      type: object
+      properties:
+        environment:
+          type: string
+        exit:
+          type: boolean
+        impersonations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScriptExecutionRequestImpersonationDto'
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScriptExecutionRequestParameterDto'
+        scriptName:
+          type: string
+        scriptVersion:
+          type: integer
+          format: int64
+    ScriptExecutionRequestImpersonationDto:
+      type: object
+      properties:
+        name:
+          type: string
+    ScriptExecutionRequestParameterDto:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
     Link:
       type: object
       properties:
@@ -2147,3 +2415,15 @@ components:
             error: Forbidden
             message: Access denied
             path: /api/environments/
+    ResponseExecutionRequestForbidden:
+      description: Expected response to a forbidden request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            timestamp: '2021-02-09T07:57:01.062+0000'
+            status: 403
+            error: Forbidden
+            message: Access denied
+            path: /api/execution-requests
