@@ -1,0 +1,25 @@
+type: object
+properties:
+  executionRequestId:
+    type: string
+  name:
+    type: string
+  description:
+    type: string
+  scope:
+    type: string
+  context:
+    type: string
+  email:
+    type: string
+  executionRequestStatus:
+    type: [NEW, SUBMITTED, ACCEPTED, DECLINED, STOPPED, COMPLETED, KILLED, UNKNOWN]
+  scriptExecutionRequests:
+    type: array
+    items:
+      $ref: "./ScriptExecutionRequestDto.yaml"
+  executionRequestLabels:
+    type: array
+    items:
+      $ref: "./ExecutionRequestLabelDto.yaml"
+

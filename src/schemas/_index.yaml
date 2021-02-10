@@ -42,6 +42,24 @@ EnvironmentParameterDto:
 EmbeddedEnvironmentDto:
   $ref: "./environments/EmbeddedEnvironmentDto.yaml"
 
+# Execution Requests
+ExecutionRequestDto:
+  $ref: "./executionRequests/ExecutionRequestDto.yaml"
+ExecutionRequestPostDto:
+  $ref: "./executionRequests/ExecutionRequestPostDto.yaml"
+ExecutionRequestLabelDto:
+  $ref: "./executionRequests/ExecutionRequestLabelDto.yaml"
+PagedExecutionRequestDto:
+  $ref: "./executionRequests/PagedExecutionRequestDto.yaml"
+ScriptExecutionRequestDto:
+  $ref: "./executionRequests/ScriptExecutionRequestDto.yaml"
+ScriptexecutionRequestPostDto:
+  $ref: "./executionRequests/ScriptExecutionRequestPostDto.yaml"
+ScriptExecutionRequestImpersonationDto:
+  $ref: "./executionRequests/ScriptExecutionRequestImpersonationDto.yaml"
+ScriptExecutionRequestParameterDto:
+  $ref: "./executionRequests/ScriptExecutionRequestParameterDto.yaml"
+
 # Pagination
 Link:
   $ref: "./pagination/Link.yaml"

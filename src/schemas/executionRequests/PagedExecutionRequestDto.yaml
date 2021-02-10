@@ -1,0 +1,13 @@
+type: object
+properties:
+  _embedded:
+    type: object
+    properties:
+      execution_requests:
+        type: array
+        items:
+          $ref: './ExecutionRequestDto.yaml'
+  _links:
+    $ref: '../../schemas/pagination/PageLinks.yaml'
+  page:
+    $ref: '../../schemas/pagination/PaginationProperties.yaml'
