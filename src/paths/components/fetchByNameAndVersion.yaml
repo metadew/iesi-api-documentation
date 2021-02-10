@@ -1,4 +1,4 @@
-summary: Info of a specific component
+summary: Fetch a component by name and version
 tags:
   - components
 operationId: componentsFetchByNameAndVersion

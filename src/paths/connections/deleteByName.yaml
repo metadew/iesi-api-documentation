@@ -1,4 +1,4 @@
-summary: Delete a specific connection with all environments
+summary: Delete a specific connection for all environments
 tags:
   - connections
 operationId: connectionsDeleteByName
@@ -10,7 +10,7 @@ responses:
   '403':
     $ref: "../../responses/connections/ResponseConnectionForbidden.yaml"
   '404':
-    description: Expected response to a un-existing connection
+    description: Expected response to a non-existing connection
 
 
 

@@ -6,7 +6,7 @@ parameters:
   - $ref: "../../parameters/path/components/Name.yaml"
   - $ref: "../../parameters/path/components/Version.yaml"
 requestBody:
-  description: Body request that contains the ComponentDto object
+  description: The existing component to be updated
   required: true
   content:
     application/json:
