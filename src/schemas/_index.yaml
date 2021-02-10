@@ -60,6 +60,24 @@ ScriptExecutionRequestImpersonationDto:
 ScriptExecutionRequestParameterDto:
   $ref: "./executionRequests/ScriptExecutionRequestParameterDto.yaml"
 
+
+# Script executions
+ScriptExecutionDto:
+  $ref: "./scriptExecutions/ScriptExecutionDto.yaml"
+EmbeddedScriptExecutionDto:
+  $ref: "./scriptExecutions/EmbeddedScriptExecutionDto.yaml"
+ExecutionInputParameterDto:
+  $ref: "./scriptExecutions/ExecutionInputParameterDto.yaml"
+ActionExecutionDto:
+  $ref: "./scriptExecutions/ActionExecutionDto.yaml"
+ActionInputParametersDto:
+  $ref: "./scriptExecutions/ActionInputParametersDto.yaml"
+OutputDto:
+  $ref: "./scriptExecutions/OutputDto.yaml"
+## ScriptLabelDto already exists in Script Schema
+## ExecutionRequestLabelDto already exists in Execution Requests schema
+
+
 # Pagination
 Link:
   $ref: "./pagination/Link.yaml"

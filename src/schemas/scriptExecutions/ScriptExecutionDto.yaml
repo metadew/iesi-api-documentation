@@ -1,0 +1,49 @@
+type: object
+properties:
+  runId:
+    type: string
+  processId:
+    type: integer
+    format: int64
+  parentProcessId:
+    type: integer
+    format: int64
+  scriptId:
+    type: string
+  scriptName:
+    type: string
+  scriptVersion:
+    type: integer
+    format: int64
+  securityGroupName:
+    type: string
+  environment:
+    type: string
+  status:
+    type: string
+    enum: ["RUNNING", "SUCCESS", "WARNING", "ERROR", "STOPPED", "SKIPPED"]
+  startTimestamp:
+    type: string
+  endTimestamp:
+    type: string
+  inputParameters:
+    type: array
+    items:
+      $ref: "./ExecutionInputParameterDto.yaml"
+  designLabels:
+    type: array
+    items:
+      $ref: "../scripts/ScriptLabelDto.yaml"
+  executionLabels:
+    type: array
+    items:
+      $ref: "../executionRequests/ExecutionRequestLabelDto.yaml"
+  actions:
+    type: array
+    items:
+      $ref: "./ActionExecutionDto.yaml"
+  output:
+    type: array
+    items:
+      $ref: "./OutputDto.yaml"
+  
