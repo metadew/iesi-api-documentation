@@ -1,0 +1,6 @@
+name: processId
+description: id of the process id
+in: path
+required: true
+schema:
+  type: string

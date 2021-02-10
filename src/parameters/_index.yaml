@@ -53,6 +53,11 @@ QueryExecutionRequestScript:
 QueryExecutionRequestVersion:
   $ref: "./query/executionRequests/Version.yaml"
 
+# Script Executions
+PathScriptExecutionProcessId:
+  $ref: "./path/scriptExecutions/ProcessId.yaml"
+PathScriptExecutionRunId:
+  $ref: "./path/scriptExecutions/RunId.yaml"
 
 # Pagination
 ## Query
