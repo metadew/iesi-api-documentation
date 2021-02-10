@@ -5,7 +5,7 @@ operationId: environmentsUpdateByName
 parameters:
   - $ref: "../../parameters/path/environments/Name.yaml"
 requestBody:
-  description: Body request that contains the EnvironmentDto object
+  description: The existing Environment to be updated
   required: true
   content:
     application/json:

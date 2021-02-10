@@ -3,7 +3,7 @@ tags:
   - environments
 operationId: environmentsUpdateAll
 requestBody:
-  description: Body request that contains a list of EnvironmentDto objects
+  description: list of Environments to be updated. Each element of the list contains the new implementation of the environment
   required: true
   content:
     application/json:
