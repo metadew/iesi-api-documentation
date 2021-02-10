@@ -5,7 +5,7 @@ operationId: environmentsUpdateByName
 parameters:
   - $ref: "../../parameters/path/environments/Name.yaml"
 requestBody:
-  description: The existing Environment to be updated
+  description: New implementation of of the environment
   required: true
   content:
     application/json:
