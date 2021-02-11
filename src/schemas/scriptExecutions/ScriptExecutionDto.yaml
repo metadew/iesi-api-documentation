@@ -24,8 +24,10 @@ properties:
     enum: ["RUNNING", "SUCCESS", "WARNING", "ERROR", "STOPPED", "SKIPPED"]
   startTimestamp:
     type: string
+    format: date-time
   endTimestamp:
     type: string
+    format: date-time
   inputParameters:
     type: array
     items:
