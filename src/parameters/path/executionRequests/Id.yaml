@@ -1,0 +1,6 @@
+name: id
+description: id of the execution request
+in: path
+required: true
+schema:
+  type: string

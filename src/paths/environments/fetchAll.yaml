@@ -1,0 +1,16 @@
+summary: Fetch all environments
+tags:
+  - environments
+operationId: environmentsFetchAll
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/environments/EmbeddedEnvironmentDto.yaml"
+  '403':
+    $ref: "../../responses/environments/ResponseEnvironmentForbidden.yaml"
+
+
+
