@@ -1,0 +1,22 @@
+type: object
+properties:
+  requestTimestamp:
+    type: string
+  name:
+    type: string
+  description:
+    type: string
+  scope:
+    type: string
+  context:
+    type: string
+  email:
+    type: string
+  scriptExecutionRequests:
+    type: array
+    items:
+      $ref: "./ScriptExecutionRequestDto.yaml"
+  executionRequestLabels:
+    type: array
+    items:
+      $ref: "./ExecutionRequestLabelDto.yaml"

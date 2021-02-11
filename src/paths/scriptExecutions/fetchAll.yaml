@@ -1,0 +1,16 @@
+summary: Fetch all script executions
+tags:
+  - script executions
+operationId: scriptExecutionsAll
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/scriptExecutions/EmbeddedScriptExecutionDto.yaml"
+  '403':
+    $ref: "../../responses/scriptExecutions/ResponseScriptExecutionForbidden.yaml"
+
+
+

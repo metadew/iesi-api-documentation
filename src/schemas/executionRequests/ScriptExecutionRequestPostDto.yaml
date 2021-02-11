@@ -1,0 +1,20 @@
+type: object
+properties:
+  environment:
+    type: string
+  exit:
+    type: boolean
+  impersonations:
+    type: array
+    items:
+      $ref: "./ScriptExecutionRequestImpersonationDto.yaml"
+  parameters:
+    type: array
+    items:
+      $ref: "./ScriptExecutionRequestParameterDto.yaml"
+  scriptName:
+    type: string
+  scriptVersion:
+    type: integer
+    format: int64
+

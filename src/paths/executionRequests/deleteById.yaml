@@ -1,0 +1,15 @@
+summary: Delete a specific execution request
+tags:
+  - execution requests
+operationId: executionRequestsDelete
+parameters:
+  - $ref: "../../parameters/path/executionRequests/Id.yaml"
+responses:
+  '200':
+    description: Expected response to a valid request
+  '403':
+    $ref: "../../responses/executionRequests/ResponseExecutionRequestForbidden.yaml"
+  '404':
+    description: Expected response to a non-existing execution request
+
+

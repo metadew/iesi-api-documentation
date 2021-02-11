@@ -6,3 +6,19 @@ NullResponse:
 # Component 
 ResponseComponentForbidden:
   $ref: "./components/ResponseComponentForbidden.yaml"
+
+# Connection
+ResponseConnectionForbidden:
+  $ref: "./connections/ResponseConnectionForbidden.yaml"
+
+# Environment
+ResponseEnvironmentForbidden:
+  $ref: "./environments/ResponseEnvironmentForbidden.yaml"
+
+# Execution Requests
+ResponseExecutionRequestForbidden:
+  $ref: "./executionRequests/ResponseExecutionRequestForbidden.yaml"
+
+# Script execution
+ResponseScriptExecutionForbidden:
+  $ref: "./scriptExecutions/ResponseScriptExecutionForbidden.yaml"

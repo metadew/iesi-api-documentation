@@ -6,7 +6,6 @@ PathScriptsName:
 
 PathScriptsVersion:
   $ref: './path/scripts/Version.yaml'
-
 ## Query
 QueryScriptsName:
   $ref: './query/scripts/Name.yaml'
@@ -19,6 +18,46 @@ QueryScriptsLabel:
 
 QueryScriptsSort:
   $ref: './query/scripts/Sort.yaml'
+
+# Components
+## Path
+PathComponentName:
+  $ref: "./path/components/Name.yaml"
+PathComponentVersion:
+  $ref: "./path/components/Version.yaml"
+
+# Connections
+## Path
+PathConnectionEnvironment:
+  $ref: "./path/connections/Environment.yaml"
+PathConnectionName:
+  $ref: "./path/connections/Name.yaml"
+
+# Environments
+## Path
+PathEnvironmentName:
+  $ref: "./path/environments/Name.yaml"
+
+# Execution Requests
+## Path
+PathExecutionRequestId:
+  $ref: "./path/executionRequests/Id.yaml"
+
+## Query
+QueryExecutionRequestEnvironment:
+  $ref: "./query/executionRequests/Environment.yaml"
+QueryExecutionRequestLabel:
+  $ref: "./query/executionRequests/Label.yaml"
+QueryExecutionRequestScript:
+  $ref: "./query/executionRequests/Script.yaml"
+QueryExecutionRequestVersion:
+  $ref: "./query/executionRequests/Version.yaml"
+
+# Script Executions
+PathScriptExecutionProcessId:
+  $ref: "./path/scriptExecutions/ProcessId.yaml"
+PathScriptExecutionRunId:
+  $ref: "./path/scriptExecutions/RunId.yaml"
 
 # Pagination
 ## Query
