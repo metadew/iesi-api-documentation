@@ -40,6 +40,9 @@ paths:
       tags:
         - scripts
       operationId: scriptsFetchAll
+      security:
+        - bearerAuth:
+            - SCRIPT_READ
       parameters:
         - $ref: '#/components/parameters/QueryScriptsVersion'
         - $ref: '#/components/parameters/QueryScriptsName'
@@ -71,6 +74,9 @@ paths:
       tags:
         - scripts
       operationId: scriptsCreate
+      security:
+        - bearerAuth:
+            - SCRIPT_WRITE
       requestBody:
         description: The new Script to be created
         required: true
@@ -113,6 +119,9 @@ paths:
       tags:
         - scripts
       operationId: scriptsUpdate
+      security:
+        - bearerAuth:
+            - SCRIPT_WRITE
       requestBody:
         description: list of Scripts to be updated. Each element of the list contains the new implementation of the Script
         required: true
@@ -137,6 +146,9 @@ paths:
       tags:
         - scripts
       operationId: scriptsFetchByName
+      security:
+        - bearerAuth:
+            - SCRIPT_READ
       parameters:
         - $ref: '#/components/parameters/PathScriptsName'
       responses:
@@ -154,6 +166,9 @@ paths:
       tags:
         - scripts
       operationId: scriptsFetchByNameAndVersion
+      security:
+        - bearerAuth:
+            - SCRIPT_READ
       parameters:
         - $ref: '#/components/parameters/PathScriptsName'
         - $ref: '#/components/parameters/PathScriptsVersion'
@@ -173,6 +188,9 @@ paths:
       tags:
         - scripts
       operationId: scriptsUpdateByNameAndVersion
+      security:
+        - bearerAuth:
+            - SCRIPT_WRITE
       parameters:
         - $ref: '#/components/parameters/PathScriptsName'
         - $ref: '#/components/parameters/PathScriptsVersion'
@@ -209,6 +227,9 @@ paths:
       tags:
         - scripts
       operationId: scriptsDeleteByNameAndVersion
+      security:
+        - bearerAuth:
+            - SCRIPT_WRITE
       parameters:
         - $ref: '#/components/parameters/PathScriptsName'
         - $ref: '#/components/parameters/PathScriptsVersion'
@@ -234,6 +255,9 @@ paths:
       tags:
         - components
       operationId: componentsFetchAll
+      security:
+        - bearerAuth:
+            - COMPONENTS_READ
       responses:
         '200':
           description: Expected response to a valid request
@@ -248,6 +272,9 @@ paths:
       tags:
         - components
       operationId: componentsCreate
+      security:
+        - bearerAuth:
+            - COMPONENTS_WRITE
       requestBody:
         description: The new Component to be created
         required: true
@@ -281,6 +308,9 @@ paths:
       tags:
         - components
       operationId: componentsUpdateAll
+      security:
+        - bearerAuth:
+            - COMPONENTS_WRITE
       requestBody:
         description: list of components to be updated. Each element of the list contains the new implementation of the component
         required: true
@@ -306,6 +336,9 @@ paths:
       tags:
         - components
       operationId: componentsDeleteAll
+      security:
+        - bearerAuth:
+            - COMPONENTS_WRITE
       responses:
         '200':
           description: Expected response to a valid request
@@ -317,6 +350,9 @@ paths:
       tags:
         - components
       operationId: componentsFetchByName
+      security:
+        - bearerAuth:
+            - COMPONENTS_READ
       parameters:
         - $ref: '#/components/parameters/PathComponentName'
       responses:
@@ -333,6 +369,9 @@ paths:
       tags:
         - components
       operationId: componentsDeleteByName
+      security:
+        - bearerAuth:
+            - COMPONENTS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathComponentName'
       responses:
@@ -346,6 +385,9 @@ paths:
       tags:
         - components
       operationId: componentsFetchByNameAndVersion
+      security:
+        - bearerAuth:
+            - COMPONENTS_READ
       parameters:
         - $ref: '#/components/parameters/PathComponentName'
         - $ref: '#/components/parameters/PathComponentVersion'
@@ -363,6 +405,9 @@ paths:
       tags:
         - components
       operationId: componentsUpdateByNameAndVersion
+      security:
+        - bearerAuth:
+            - COMPONENTS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathComponentName'
         - $ref: '#/components/parameters/PathComponentVersion'
@@ -401,6 +446,9 @@ paths:
       tags:
         - components
       operationId: componentsDeleteByName
+      security:
+        - bearerAuth:
+            - COMPONENTS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathComponentName'
         - $ref: '#/components/parameters/PathComponentVersion'
@@ -417,6 +465,9 @@ paths:
       tags:
         - connections
       operationId: connectionsFetchAll
+      security:
+        - bearerAuth:
+            - CONNECTIONS_READ
       responses:
         '200':
           description: Expected response to a valid request
@@ -431,6 +482,9 @@ paths:
       tags:
         - connections
       operationId: connectionsCreate
+      security:
+        - bearerAuth:
+            - CONNECTIONS_WRITE
       requestBody:
         description: The new Connection to be created
         required: true
@@ -464,6 +518,9 @@ paths:
       tags:
         - connections
       operationId: connectionsUpdateAll
+      security:
+        - bearerAuth:
+            - CONNECTIONS_WRITE
       requestBody:
         description: list of Connections to be updated. Each element of the list contains the new implementation of the connection
         required: true
@@ -489,6 +546,9 @@ paths:
       tags:
         - connections
       operationId: connectionsDeleteAll
+      security:
+        - bearerAuth:
+            - CONNECTIONS_WRITE
       responses:
         '200':
           description: Expected response to a valid request
@@ -500,6 +560,9 @@ paths:
       tags:
         - connections
       operationId: connectionsFetchByName
+      security:
+        - bearerAuth:
+            - CONNECTIONS_READ
       parameters:
         - $ref: '#/components/parameters/PathConnectionName'
       responses:
@@ -516,6 +579,9 @@ paths:
       tags:
         - connections
       operationId: connectionsDeleteByName
+      security:
+        - bearerAuth:
+            - CONNECTIONS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathConnectionName'
       responses:
@@ -531,6 +597,9 @@ paths:
       tags:
         - connections
       operationId: connectionsFetchByNameAndEnvironment
+      security:
+        - bearerAuth:
+            - CONNECTIONS_READ
       parameters:
         - $ref: '#/components/parameters/PathConnectionName'
         - $ref: '#/components/parameters/PathConnectionEnvironment'
@@ -550,6 +619,9 @@ paths:
       tags:
         - connections
       operationId: connectionsUpdateByNameAndEnvironment
+      security:
+        - bearerAuth:
+            - CONNECTIONS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathConnectionName'
         - $ref: '#/components/parameters/PathConnectionEnvironment'
@@ -588,6 +660,9 @@ paths:
       tags:
         - connections
       operationId: connectionsDeleteByNameAndEnvironment
+      security:
+        - bearerAuth:
+            - CONNECTIONS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathConnectionName'
         - $ref: '#/components/parameters/PathConnectionEnvironment'
@@ -604,6 +679,9 @@ paths:
       tags:
         - environments
       operationId: environmentsFetchAll
+      security:
+        - bearerAuth:
+            - ENVIRONMENTS_READ
       responses:
         '200':
           description: Expected response to a valid request
@@ -618,6 +696,9 @@ paths:
       tags:
         - environments
       operationId: environmentsCreate
+      security:
+        - bearerAuth:
+            - ENVIRONMENTS_WRITE
       requestBody:
         description: The new Environment to be created
         required: true
@@ -651,6 +732,9 @@ paths:
       tags:
         - environments
       operationId: environmentsUpdateAll
+      security:
+        - bearerAuth:
+            - ENVIRONMENTS_WRITE
       requestBody:
         description: list of Environments to be updated. Each element of the list contains the new implementation of the environment
         required: true
@@ -676,6 +760,9 @@ paths:
       tags:
         - environments
       operationId: environmentsDeleteAll
+      security:
+        - bearerAuth:
+            - ENVIRONMENTS_WRITE
       responses:
         '200':
           description: Expected response to a valid request
@@ -687,6 +774,9 @@ paths:
       tags:
         - environments
       operationId: environmentsFetchByName
+      security:
+        - bearerAuth:
+            - ENVIRONMENTS_READ
       parameters:
         - $ref: '#/components/parameters/PathEnvironmentName'
       responses:
@@ -705,6 +795,9 @@ paths:
       tags:
         - environments
       operationId: environmentsUpdateByName
+      security:
+        - bearerAuth:
+            - ENVIRONMENTS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathEnvironmentName'
       requestBody:
@@ -742,6 +835,9 @@ paths:
       tags:
         - environments
       operationId: environmentsDeleteByName
+      security:
+        - bearerAuth:
+            - ENVIRONMENTS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathEnvironmentName'
       responses:
@@ -757,6 +853,9 @@ paths:
       tags:
         - environments
       operationId: environmentsFetchConnectionsByName
+      security:
+        - bearerAuth:
+            - ENVIRONMENTS_READ
       parameters:
         - $ref: '#/components/parameters/PathEnvironmentName'
       responses:
@@ -776,6 +875,9 @@ paths:
       tags:
         - execution requests
       operationId: executionRequestsFetchAll
+      security:
+        - bearerAuth:
+            - EXECUTION_REQUESTS_READ
       parameters:
         - $ref: '#/components/parameters/QueryExecutionRequestScript'
         - $ref: '#/components/parameters/QueryExecutionRequestVersion'
@@ -795,6 +897,9 @@ paths:
       tags:
         - execution requests
       operationId: executionRequestsCreate
+      security:
+        - bearerAuth:
+            - EXECUTION_REQUESTS_WRITE
       requestBody:
         description: The new Execution Request to be created
         required: true
@@ -817,6 +922,9 @@ paths:
       tags:
         - execution requests
       operationId: executionRequestsFetchById
+      security:
+        - bearerAuth:
+            - EXECUTION_REQUESTS_READ
       parameters:
         - $ref: '#/components/parameters/PathExecutionRequestId'
       responses:
@@ -835,6 +943,9 @@ paths:
       tags:
         - execution requests
       operationId: executionRequestsDelete
+      security:
+        - bearerAuth:
+            - EXECUTION_REQUESTS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathExecutionRequestId'
       responses:
@@ -850,6 +961,9 @@ paths:
       tags:
         - script executions
       operationId: scriptExecutionsAll
+      security:
+        - bearerAuth:
+            - SCRIPT_EXECUTIONS_READ
       responses:
         '200':
           description: Expected response to a valid request
@@ -865,6 +979,9 @@ paths:
       tags:
         - script executions
       operationId: scriptExecutionsFetchByRunId
+      security:
+        - bearerAuth:
+            - SCRIPT_EXECUTIONS_READ
       parameters:
         - $ref: '#/components/parameters/PathScriptExecutionRunId'
       responses:
@@ -882,6 +999,9 @@ paths:
       tags:
         - script executions
       operationId: scriptExecutionsFetchByRunIdAndProcessId
+      security:
+        - bearerAuth:
+            - SCRIPT_EXECUTIONS_READ
       parameters:
         - $ref: '#/components/parameters/PathScriptExecutionRunId'
         - $ref: '#/components/parameters/PathScriptExecutionProcessId'
@@ -902,6 +1022,9 @@ paths:
       tags:
         - datasets
       operationId: datasetsFetchAll
+      security:
+        - bearerAuth:
+            - DATASETS_READ
       parameters:
         - $ref: '#/components/parameters/QueryDatasetsUuid'
         - $ref: '#/components/parameters/QueryPaginationPage'
@@ -918,6 +1041,9 @@ paths:
       tags:
         - datasets
       operationId: datasetsCreate
+      security:
+        - bearerAuth:
+            - DATASETS_WRITE
       requestBody:
         content:
           application/json:
@@ -935,10 +1061,13 @@ paths:
           description: bad request
   '/datasets/{uuid}':
     get:
-      summary: fetch dataset with sepcified uuid
+      summary: fetch dataset with specified uuid
       tags:
         - datasets
       operationId: datasetsFetchById
+      security:
+        - bearerAuth:
+            - DATASETS_READ
       parameters:
         - $ref: '#/components/parameters/PathDatasetsUuid'
       responses:
@@ -955,6 +1084,9 @@ paths:
       tags:
         - datasets
       operationId: datasetsUpdateByUuid
+      security:
+        - bearerAuth:
+            - DATASETS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathDatasetsUuid'
       requestBody:
@@ -979,6 +1111,9 @@ paths:
       tags:
         - datasets
       operationId: datasetsDeleteById
+      security:
+        - bearerAuth:
+            - DATASETS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathDatasetsUuid'
       responses:
@@ -988,10 +1123,13 @@ paths:
           description: no dataset found with specified uuid
   '/datasets/{uuid}/implementations':
     get:
-      summary: fetch all implementation of a dataset with sepcified uuid
+      summary: fetch all implementation of a dataset with specified uuid
       tags:
         - datasets
       operationId: datasetsFetchImplementationsById
+      security:
+        - bearerAuth:
+            - DATASETS_READ
       parameters:
         - $ref: '#/components/parameters/PathDatasetsUuid'
       responses:
@@ -1009,6 +1147,9 @@ paths:
       tags:
         - users
       operationId: usersFetchAll
+      security:
+        - bearerAuth:
+            - USERS_READ
       responses:
         '200':
           description: Expected response to a valid request
@@ -1021,6 +1162,9 @@ paths:
       tags:
         - users
       operationId: usersCreate
+      security:
+        - bearerAuth:
+            - USERS_WRITE
       requestBody:
         content:
           application/json:
@@ -1059,10 +1203,13 @@ paths:
           description: bad request
   '/users/{uuid}':
     get:
-      summary: fetch user with sepcified uuid
+      summary: fetch user with specified uuid
       tags:
         - users
       operationId: usersFetchById
+      security:
+        - bearerAuth:
+            - USERS_READ
       parameters:
         - $ref: '#/components/parameters/PathUsersUuid'
       responses:
@@ -1080,6 +1227,9 @@ paths:
       tags:
         - teams
       operationId: teamsFetchAll
+      security:
+        - bearerAuth:
+            - TEAMS_READ
       responses:
         '200':
           description: Expected response to a valid request
@@ -1092,6 +1242,9 @@ paths:
       tags:
         - teams
       operationId: teamsCreate
+      security:
+        - bearerAuth:
+            - TEAMS_WRITE
       requestBody:
         content:
           application/json:
@@ -1113,6 +1266,9 @@ paths:
       tags:
         - teams
       operationId: teamsFetchById
+      security:
+        - bearerAuth:
+            - TEAMS_READ
       parameters:
         - $ref: '#/components/parameters/PathTeamsUuid'
       responses:
@@ -1129,6 +1285,9 @@ paths:
       tags:
         - teams
       operationId: teamsUpdateByUuid
+      security:
+        - bearerAuth:
+            - TEAMS_READ
       parameters:
         - $ref: '#/components/parameters/PathTeamsUuid'
       requestBody:
@@ -1153,6 +1312,9 @@ paths:
       tags:
         - teams
       operationId: teamsDeleteById
+      security:
+        - bearerAuth:
+            - TEAMS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathTeamsUuid'
       responses:
@@ -1166,6 +1328,9 @@ paths:
       tags:
         - teams
       operationId: teamsCreateRole
+      security:
+        - bearerAuth:
+            - TEAMS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathTeamsUuid'
       requestBody:
@@ -1189,6 +1354,9 @@ paths:
       tags:
         - teams
       operationId: teamsDeleteRole
+      security:
+        - bearerAuth:
+            - TEAMS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathTeamsUuid'
         - $ref: '#/components/parameters/PathTeamsRoleUuid'
@@ -1203,6 +1371,10 @@ paths:
       tags:
         - teams
       operationId: teamsAddUserToRole
+      security:
+        - bearerAuth:
+            - TEAMS_WRITE
+            - ROLES_WRITE
       parameters:
         - $ref: '#/components/parameters/PathTeamsUuid'
         - $ref: '#/components/parameters/PathTeamsRoleUuid'
@@ -1227,6 +1399,9 @@ paths:
       tags:
         - teams
       operationId: teamsDeleteUserToRole
+      security:
+        - bearerAuth:
+            - ROLES_WRITE
       parameters:
         - $ref: '#/components/parameters/PathTeamsUuid'
         - $ref: '#/components/parameters/PathTeamsRoleUuid'
@@ -1242,6 +1417,9 @@ paths:
       tags:
         - security_groups
       operationId: securityGroupsFetchAll
+      security:
+        - bearerAuth:
+            - GROUPS_READ
       responses:
         '200':
           description: Expected response to a valid request
@@ -1254,6 +1432,9 @@ paths:
       tags:
         - security_groups
       operationId: securityGroupsCreate
+      security:
+        - bearerAuth:
+            - GROUPS_WRITE
       requestBody:
         content:
           application/json:
@@ -1275,6 +1456,9 @@ paths:
       tags:
         - security_groups
       operationId: securityGroupsFetchById
+      security:
+        - bearerAuth:
+            - GROUPS_READ
       parameters:
         - $ref: '#/components/parameters/PathSecurityGroupsUuid'
       responses:
@@ -1291,6 +1475,9 @@ paths:
       tags:
         - security_groups
       operationId: securityGRoupsUpdateByUuid
+      security:
+        - bearerAuth:
+            - GROUPS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathSecurityGroupsUuid'
       requestBody:
@@ -1315,6 +1502,9 @@ paths:
       tags:
         - security_groups
       operationId: securityGroupsDeleteById
+      security:
+        - bearerAuth:
+            - GROUPS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathSecurityGroupsUuid'
       responses:
@@ -1328,6 +1518,9 @@ paths:
       tags:
         - security_groups
       operationId: securityGroupsAddTeam
+      security:
+        - bearerAuth:
+            - GROUPS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathSecurityGroupsUuid'
       requestBody:
@@ -1351,6 +1544,9 @@ paths:
       tags:
         - security_groups
       operationId: securityGroupsAddTeam
+      security:
+        - bearerAuth:
+            - GROUPS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathSecurityGroupsUuid'
         - name: team-uuid
@@ -1821,6 +2017,9 @@ components:
       properties:
         executionRequestId:
           type: string
+        requestTimestamp:
+          type: string
+          format: date-time
         name:
           type: string
         description:
@@ -2002,8 +2201,10 @@ components:
             - SKIPPED
         startTimestamp:
           type: string
+          format: date-time
         endTimestamp:
           type: string
+          format: date-time
         inputParameters:
           type: array
           items:
@@ -2069,8 +2270,10 @@ components:
             - SKIPPED
         startTimestamp:
           type: string
+          format: date-time
         endTimestamp:
           type: string
+          format: date-time
         inputParameters:
           type: array
           items:
@@ -2562,6 +2765,11 @@ components:
           format: int32
         message:
           type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   responses:
     UnexpectedError:
       description: unexpected error
