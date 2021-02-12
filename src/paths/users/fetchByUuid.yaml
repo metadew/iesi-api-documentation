@@ -1,10 +1,11 @@
-summary: fetch user with sepcified uuid
+summary: fetch user with specified uuid
 tags:
   - users
 operationId: usersFetchById
+security:
+  - bearerAuth: ["USERS_READ"]
 parameters:
   - $ref: "../../parameters/path/users/Uuid.yaml"
-
 responses:
   '200':
     description: Expected response to a valid request

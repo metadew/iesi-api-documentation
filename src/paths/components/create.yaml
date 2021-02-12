@@ -2,6 +2,8 @@ summary: Create a new component
 tags:
   - components
 operationId: componentsCreate
+security:
+  - bearerAuth: ["COMPONENTS_WRITE"]
 requestBody:
   description: The new Component to be created
   required: true

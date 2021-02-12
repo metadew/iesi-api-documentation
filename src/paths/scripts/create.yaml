@@ -2,6 +2,8 @@ summary: Create a new script
 tags:
   - scripts
 operationId: scriptsCreate
+security:
+  - bearerAuth: ["SCRIPT_WRITE"]
 requestBody:
   description: The new Script to be created
   required: true

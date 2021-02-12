@@ -2,6 +2,8 @@ summary: Create a user
 tags:
   - users
 operationId: usersCreate
+security:
+  - bearerAuth: ["USERS_WRITE"]
 requestBody:
   content:
     application/json:

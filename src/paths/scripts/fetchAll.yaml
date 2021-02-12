@@ -2,6 +2,8 @@ summary: Fetch all scripts
 tags:
   - scripts
 operationId: scriptsFetchAll
+security:
+  - bearerAuth: ["SCRIPT_READ"]
 parameters:
   - $ref: "../../parameters/query/scripts/Version.yaml"
   - $ref: "../../parameters/query/scripts/Name.yaml"

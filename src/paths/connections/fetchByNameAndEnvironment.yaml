@@ -2,6 +2,8 @@ summary: Info of a specific connection
 tags:
   - connections
 operationId: connectionsFetchByNameAndEnvironment
+security:
+  - bearerAuth: ["CONNECTIONS_READ"]
 parameters:
   - $ref: "../../parameters/path/connections/Name.yaml"
   - $ref: "../../parameters/path/connections/Environment.yaml"

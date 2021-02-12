@@ -2,6 +2,8 @@ summary: Fetch all security groups
 tags:
   - security_groups
 operationId: securityGroupsFetchAll
+security:
+  - bearerAuth: ["GROUPS_READ"]
 responses:
   '200':
     description: Expected response to a valid request

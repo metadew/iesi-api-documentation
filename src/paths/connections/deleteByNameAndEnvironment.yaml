@@ -2,6 +2,8 @@ summary: delete specific connection for a specific environment
 tags:
   - connections
 operationId: connectionsDeleteByNameAndEnvironment
+security:
+  - bearerAuth: ["CONNECTIONS_WRITE"]
 parameters:
   - $ref: "../../parameters/path/connections/Name.yaml"
   - $ref: "../../parameters/path/connections/Environment.yaml"

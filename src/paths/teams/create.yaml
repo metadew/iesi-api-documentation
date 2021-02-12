@@ -2,6 +2,8 @@ summary: Create a team
 tags:
   - teams
 operationId: teamsCreate
+security:
+  - bearerAuth: ["TEAMS_WRITE"]
 requestBody:
   content:
     application/json:

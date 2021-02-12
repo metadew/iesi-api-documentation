@@ -2,6 +2,8 @@ summary: update a dataset
 tags:
   - datasets
 operationId: datasetsUpdateByUuid
+security:
+  - bearerAuth: ["DATASETS_WRITE"]
 parameters:
   - $ref: "../../parameters/path/datasets/Uuid.yaml"
 requestBody:

@@ -2,6 +2,8 @@ summary: update a team
 tags:
   - teams
 operationId: teamsUpdateByUuid
+security:
+  - bearerAuth: ["TEAMS_READ"]
 parameters:
   - $ref: "../../parameters/path/teams/Uuid.yaml"
 requestBody:

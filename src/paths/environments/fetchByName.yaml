@@ -2,6 +2,8 @@ summary: Fetch a specific environment
 tags:
   - environments
 operationId: environmentsFetchByName
+security:
+  - bearerAuth: ["ENVIRONMENTS_READ"]
 parameters:
   - $ref: "../../parameters/path/environments/Name.yaml"
 responses:

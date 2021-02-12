@@ -2,6 +2,8 @@ summary: Update component with specific name and version
 tags:
   - components
 operationId: componentsUpdateByNameAndVersion
+security:
+  - bearerAuth: ["COMPONENTS_WRITE"]
 parameters:
   - $ref: "../../parameters/path/components/Name.yaml"
   - $ref: "../../parameters/path/components/Version.yaml"

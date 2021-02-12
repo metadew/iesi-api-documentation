@@ -2,6 +2,8 @@ summary: Fetch a specific execution request
 tags:
   - execution requests
 operationId: executionRequestsFetchById
+security:
+  - bearerAuth: ["EXECUTION_REQUESTS_READ"]
 parameters:
   - $ref: "../../parameters/path/executionRequests/Id.yaml"
 responses:

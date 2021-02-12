@@ -2,6 +2,8 @@ summary: Add a team to the security group
 tags:
   - security_groups
 operationId: securityGroupsAddTeam
+security:
+  - bearerAuth: ["GROUPS_WRITE"]
 parameters:
   - $ref: "../../parameters/path/security_groups/Uuid.yaml"
 requestBody:

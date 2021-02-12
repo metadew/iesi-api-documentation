@@ -2,6 +2,8 @@ summary: Delete all components
 tags:
   - components
 operationId: componentsDeleteAll
+security:
+  - bearerAuth: ["COMPONENTS_WRITE"]
 responses:
   '200':
     description: Expected response to a valid request

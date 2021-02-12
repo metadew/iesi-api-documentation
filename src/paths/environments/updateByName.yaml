@@ -2,6 +2,8 @@ summary: Update a specific environment
 tags:
   - environments
 operationId: environmentsUpdateByName
+security:
+  - bearerAuth: ["ENVIRONMENTS_WRITE"]
 parameters:
   - $ref: "../../parameters/path/environments/Name.yaml"
 requestBody:

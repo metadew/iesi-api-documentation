@@ -2,6 +2,8 @@ summary: Fetch all processes from a specific runId of a script
 tags:
   - script executions
 operationId: scriptExecutionsFetchByRunId
+security:
+  - bearerAuth: ["SCRIPT_EXECUTIONS_READ"]
 parameters:
   - $ref: "../../parameters/path/scriptExecutions/RunId.yaml"
 responses:

@@ -2,6 +2,8 @@ summary: Fetch all versions of a specific component
 tags:
   - components
 operationId: componentsFetchByName
+security:
+  - bearerAuth: ["COMPONENTS_READ"]
 parameters:
   - $ref: "../../parameters/path/components/Name.yaml"
 responses:

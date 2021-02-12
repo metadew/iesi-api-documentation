@@ -2,6 +2,8 @@ summary: Update a specific script
 tags:
   - scripts
 operationId: scriptsUpdateByNameAndVersion
+security:
+  - bearerAuth: ["SCRIPT_WRITE"]
 parameters:
   - $ref: "../../parameters/path/scripts/Name.yaml"
   - $ref: "../../parameters/path/scripts/Version.yaml"

@@ -2,6 +2,8 @@ summary: Fetch all environments
 tags:
   - environments
 operationId: environmentsFetchAll
+security:
+  - bearerAuth: ["ENVIRONMENTS_READ"]
 responses:
   '200':
     description: Expected response to a valid request

@@ -2,6 +2,8 @@ summary: Create a security group
 tags:
   - security_groups
 operationId: securityGroupsCreate
+security:
+  - bearerAuth: ["GROUPS_WRITE"]
 requestBody:
   content:
     application/json:

@@ -2,6 +2,8 @@ summary: Add a user to a team's role
 tags:
   - teams
 operationId: teamsAddUserToRole
+security:
+  - bearerAuth: ["TEAMS_WRITE", "ROLES_WRITE"]
 parameters:
   - $ref: "../../parameters/path/teams/Uuid.yaml"
   - $ref: "../../parameters/path/teams/RoleUuid.yaml"

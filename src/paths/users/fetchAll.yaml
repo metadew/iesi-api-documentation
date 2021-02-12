@@ -2,6 +2,8 @@ summary: Fetch all users
 tags:
   - users
 operationId: usersFetchAll
+security:
+  - bearerAuth: ["USERS_READ"]
 responses:
   '200':
     description: Expected response to a valid request

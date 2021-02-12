@@ -2,6 +2,8 @@ summary: Create a new environment
 tags:
   - environments
 operationId: environmentsCreate
+security:
+  - bearerAuth: ["ENVIRONMENTS_WRITE"]
 requestBody:
   description: The new Environment to be created
   required: true

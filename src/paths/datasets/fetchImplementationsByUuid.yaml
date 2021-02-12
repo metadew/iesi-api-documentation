@@ -1,7 +1,9 @@
-summary: fetch all implementation of a dataset with sepcified uuid
+summary: fetch all implementation of a dataset with specified uuid
 tags:
   - datasets
 operationId: datasetsFetchImplementationsById
+security:
+  - bearerAuth: ["DATASETS_READ"]
 parameters:
   - $ref: "../../parameters/path/datasets/Uuid.yaml"
 

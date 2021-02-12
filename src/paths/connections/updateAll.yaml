@@ -2,6 +2,8 @@ summary: update group of connections
 tags:
   - connections
 operationId: connectionsUpdateAll
+security:
+  - bearerAuth: ["CONNECTIONS_WRITE"]
 requestBody:
   description: list of Connections to be updated. Each element of the list contains the new implementation of the connection
   required: true

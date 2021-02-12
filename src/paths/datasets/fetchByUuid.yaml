@@ -1,7 +1,9 @@
-summary: fetch dataset with sepcified uuid
+summary: fetch dataset with specified uuid
 tags:
   - datasets
 operationId: datasetsFetchById
+security:
+  - bearerAuth: ["DATASETS_READ"]
 parameters:
   - $ref: "../../parameters/path/datasets/Uuid.yaml"
 

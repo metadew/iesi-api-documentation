@@ -2,6 +2,8 @@ summary: Create a new connection
 tags:
   - connections
 operationId: connectionsCreate
+security:
+  - bearerAuth: ["CONNECTIONS_WRITE"]
 requestBody:
   description: The new Connection to be created
   required: true

@@ -2,6 +2,8 @@ summary: Fetch all connections related to the specific environment
 tags:
   - environments
 operationId: environmentsFetchConnectionsByName
+security:
+  - bearerAuth: ["ENVIRONMENTS_READ"]
 parameters:
   - $ref: "../../parameters/path/environments/Name.yaml"
 responses:

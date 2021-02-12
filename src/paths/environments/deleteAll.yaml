@@ -2,6 +2,8 @@ summary: Delete all environments
 tags:
   - environments
 operationId: environmentsDeleteAll
+security:
+  - bearerAuth: ["ENVIRONMENTS_WRITE"]
 responses:
   '200':
     description: Expected response to a valid request

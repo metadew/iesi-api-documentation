@@ -2,6 +2,8 @@ summary: Delete a specific execution request
 tags:
   - execution requests
 operationId: executionRequestsDelete
+security:
+  - bearerAuth: ["EXECUTION_REQUESTS_WRITE"]
 parameters:
   - $ref: "../../parameters/path/executionRequests/Id.yaml"
 responses:

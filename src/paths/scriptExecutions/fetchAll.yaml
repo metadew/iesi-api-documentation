@@ -2,6 +2,8 @@ summary: Fetch all script executions
 tags:
   - script executions
 operationId: scriptExecutionsAll
+security:
+  - bearerAuth: ["SCRIPT_EXECUTIONS_READ"]
 responses:
   '200':
     description: Expected response to a valid request

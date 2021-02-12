@@ -2,6 +2,8 @@ summary: Fetch a specific script execution and processId
 tags:
   - script executions
 operationId: scriptExecutionsFetchByRunIdAndProcessId
+security:
+  - bearerAuth: ["SCRIPT_EXECUTIONS_READ"]
 parameters:
   - $ref: "../../parameters/path/scriptExecutions/RunId.yaml"
   - $ref: "../../parameters/path/scriptExecutions/ProcessId.yaml"

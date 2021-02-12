@@ -2,6 +2,8 @@ summary: Create a new execution request
 tags:
   - execution requests
 operationId: executionRequestsCreate
+security:
+  - bearerAuth: ["EXECUTION_REQUESTS_WRITE"]
 requestBody:
   description: The new Execution Request to be created
   required: true

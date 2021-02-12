@@ -2,6 +2,8 @@ summary: Fetch all connections
 tags:
   - connections
 operationId: connectionsFetchAll
+security:
+  - bearerAuth: ["CONNECTIONS_READ"]
 responses:
   '200':
     description: Expected response to a valid request

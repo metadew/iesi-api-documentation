@@ -2,6 +2,8 @@ summary: delete team with specified uuid
 tags:
   - teams
 operationId: teamsDeleteById
+security:
+  - bearerAuth: ["TEAMS_WRITE"]
 parameters:
   - $ref: "../../parameters/path/teams/Uuid.yaml"
 

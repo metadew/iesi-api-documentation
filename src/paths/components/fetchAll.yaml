@@ -2,6 +2,8 @@ summary: Fetch all components
 tags:
   - components
 operationId: componentsFetchAll
+security:
+  - bearerAuth: ["COMPONENTS_READ"]
 responses:
   '200':
     description: Expected response to a valid request

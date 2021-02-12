@@ -2,6 +2,8 @@ summary: Fetch a component by name and version
 tags:
   - components
 operationId: componentsFetchByNameAndVersion
+security:
+  - bearerAuth: ["COMPONENTS_READ"]
 parameters:
   - $ref: "../../parameters/path/components/Name.yaml"
   - $ref: "../../parameters/path/components/Version.yaml"

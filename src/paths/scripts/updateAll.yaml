@@ -2,6 +2,8 @@ summary: Update one or multiple scripts
 tags:
   - scripts
 operationId: scriptsUpdate
+security:
+  - bearerAuth: ["SCRIPT_WRITE"]
 requestBody:
   description: list of Scripts to be updated. Each element of the list contains the new implementation of the Script
   required: true

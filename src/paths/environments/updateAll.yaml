@@ -2,6 +2,8 @@ summary: Update existing environments
 tags:
   - environments
 operationId: environmentsUpdateAll
+security:
+  - bearerAuth: ["ENVIRONMENTS_WRITE"]
 requestBody:
   description: list of Environments to be updated. Each element of the list contains the new implementation of the environment
   required: true

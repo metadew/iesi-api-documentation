@@ -2,6 +2,8 @@ summary: Update existing components
 tags:
   - components
 operationId: componentsUpdateAll
+security:
+  - bearerAuth: ["COMPONENTS_WRITE"]
 requestBody:
   description: list of components to be updated. Each element of the list contains the new implementation of the component
   required: true
