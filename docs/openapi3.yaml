@@ -1821,6 +1821,9 @@ components:
       properties:
         executionRequestId:
           type: string
+        requestTimestamp:
+          type: string
+          format: date-time
         name:
           type: string
         description:
@@ -2002,8 +2005,10 @@ components:
             - SKIPPED
         startTimestamp:
           type: string
+          format: date-time
         endTimestamp:
           type: string
+          format: date-time
         inputParameters:
           type: array
           items:
@@ -2069,8 +2074,10 @@ components:
             - SKIPPED
         startTimestamp:
           type: string
+          format: date-time
         endTimestamp:
           type: string
+          format: date-time
         inputParameters:
           type: array
           items:
