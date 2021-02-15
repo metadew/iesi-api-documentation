@@ -20,7 +20,9 @@ responses:
       application/json:
         schema:
           $ref: "../../schemas/connections/EmbeddedConnectionDto.yaml"
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/connections/ResponseConnectionForbidden.yaml"
   '404':
     description: Expected response to one or many un-existing connections

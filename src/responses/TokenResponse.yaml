@@ -1,0 +1,9 @@
+description: Expected response to a no/bad/expired token
+content:
+  application/json:
+    schema:
+      $ref: "../schemas/response/Response.yaml"
+    example:
+      timestamp: 2021-02-15T12:01:01.107
+      status: 401
+      message: The token was expected to have 3 parts, but got 2.

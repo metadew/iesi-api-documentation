@@ -14,7 +14,9 @@ responses:
       application/json:
         schema:
           $ref: "../../schemas/scriptExecutions/ScriptExecutionDto.yaml"
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/scriptExecutions/ResponseScriptExecutionForbidden.yaml"
   '404':
         description: Expected response to a non-existing script execution

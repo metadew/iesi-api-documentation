@@ -16,7 +16,9 @@ responses:
       application/json:
         schema:
           $ref: "../../schemas/executionRequests/PagedExecutionRequestDto.yaml"
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/executionRequests/ResponseExecutionRequestForbidden.yaml"
 
 

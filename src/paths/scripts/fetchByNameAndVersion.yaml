@@ -14,7 +14,9 @@ responses:
       application/json:
         schema:
           $ref: "../../schemas/scripts/ScriptDto.yaml"
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/scripts/ResponseScriptForbidden.yaml"
   '404':
     description: no script found with specified name and version

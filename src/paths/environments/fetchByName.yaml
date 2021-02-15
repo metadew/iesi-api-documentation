@@ -13,7 +13,9 @@ responses:
       application/json:
         schema:
           $ref: "../../schemas/environments/EnvironmentDto.yaml"
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/environments/ResponseEnvironmentForbidden.yaml"
   '404':
     description: Expected response to a non-existing environment

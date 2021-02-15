@@ -57,6 +57,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PagedScriptDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           description: Expected response to a forbidden request
           content:
@@ -112,6 +114,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PagedScriptDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/paths/~1scripts/get/responses/403'
     put:
@@ -138,6 +142,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScriptDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/paths/~1scripts/get/responses/403'
   '/scripts/{name}':
@@ -158,6 +164,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PagedScriptDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/paths/~1scripts/get/responses/403'
   '/scripts/{name}/{version}':
@@ -179,6 +187,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScriptDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/paths/~1scripts/get/responses/403'
         '404':
@@ -220,6 +230,8 @@ paths:
                 error: Bad Request
                 message: Mismatch between url query '989' and request body
                 path: /api/scripts/fho.folderExists.2/989
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/paths/~1scripts/get/responses/403'
     delete:
@@ -245,6 +257,8 @@ paths:
                     type: string
                     enum:
                       - ok
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/paths/~1scripts/get/responses/403'
         '404':
@@ -265,6 +279,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbeddedComponentDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseComponentForbidden'
     post:
@@ -289,6 +305,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ComponentDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseComponentForbidden'
         '404':
@@ -327,6 +345,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbeddedComponentDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseComponentForbidden'
         '404':
@@ -342,6 +362,8 @@ paths:
       responses:
         '200':
           description: Expected response to a valid request
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseComponentForbidden'
   '/components/{name}':
@@ -362,6 +384,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbeddedComponentDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseComponentForbidden'
     delete:
@@ -377,6 +401,8 @@ paths:
       responses:
         '200':
           description: Expected response to a valid request
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseComponentForbidden'
   '/components/{name}/{version}':
@@ -398,6 +424,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ComponentDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseComponentForbidden'
     put:
@@ -437,6 +465,8 @@ paths:
                 error: Bad Request
                 message: 'Mismatch between url query ''HttpExecuteRequestss'' and request body '
                 path: /api/components/HttpExecuteRequestss/1
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseComponentForbidden'
         '404':
@@ -455,6 +485,8 @@ paths:
       responses:
         '200':
           description: Expected response to a valid request
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseComponentForbidden'
         '404':
@@ -475,6 +507,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbeddedConnectionDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseConnectionForbidden'
     post:
@@ -499,6 +533,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectionDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseConnectionForbidden'
         '404':
@@ -537,6 +573,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbeddedConnectionDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseConnectionForbidden'
         '404':
@@ -552,6 +590,8 @@ paths:
       responses:
         '200':
           description: Expected response to a valid request
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseConnectionForbidden'
   '/connections/{name}':
@@ -572,6 +612,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbeddedConnectionDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseConnectionForbidden'
     delete:
@@ -587,6 +629,8 @@ paths:
       responses:
         '200':
           description: Expected response to a valid request
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseConnectionForbidden'
         '404':
@@ -610,6 +654,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectionDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseConnectionForbidden'
         '404':
@@ -651,6 +697,8 @@ paths:
                 error: Bad Request
                 message: 'Mismatch between url query ''db.company.za'' and request body '
                 path: /api/connections/db.company.za/qsdqsdqsd
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseConnectionForbidden'
         '404':
@@ -669,6 +717,8 @@ paths:
       responses:
         '200':
           description: Expected response to a valid request
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseConnectionForbidden'
         '404':
@@ -689,6 +739,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbeddedEnvironmentDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseEnvironmentForbidden'
     post:
@@ -713,6 +765,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EnvironmentDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseEnvironmentForbidden'
         '404':
@@ -751,6 +805,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbeddedEnvironmentDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseEnvironmentForbidden'
         '404':
@@ -766,6 +822,8 @@ paths:
       responses:
         '200':
           description: Expected response to a valid request
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseEnvironmentForbidden'
   '/environments/{name}':
@@ -786,6 +844,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EnvironmentDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseEnvironmentForbidden'
         '404':
@@ -826,6 +886,8 @@ paths:
                 error: Bad Request
                 message: Mismatch between url query 'TUTO' and request body
                 path: /api/environments/TUTO
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseEnvironmentForbidden'
         '404':
@@ -843,6 +905,8 @@ paths:
       responses:
         '200':
           description: Expected response to a valid request
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseEnvironmentForbidden'
         '404':
@@ -865,6 +929,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbeddedConnectionDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseEnvironmentForbidden'
         '404':
@@ -890,6 +956,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PagedExecutionRequestDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseExecutionRequestForbidden'
     post:
@@ -914,6 +982,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExecutionRequestDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseExecutionRequestForbidden'
   '/execution-requests/{id}':
@@ -934,6 +1004,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExecutionRequestDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseExecutionRequestForbidden'
         '404':
@@ -951,6 +1023,8 @@ paths:
       responses:
         '200':
           description: Expected response to a valid request
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseExecutionRequestForbidden'
         '404':
@@ -971,6 +1045,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbeddedScriptExecutionDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseScriptExecutionForbidden'
   '/script-executions/{runId}':
@@ -991,6 +1067,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbeddedScriptExecutionDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseScriptExecutionForbidden'
   '/script-executions/{runId}/{processId}':
@@ -1012,6 +1090,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScriptExecutionDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseScriptExecutionForbidden'
         '404':
@@ -2779,6 +2859,16 @@ components:
             $ref: '#/components/schemas/Error'
     NullResponse:
       description: Null response
+    TokenResponse:
+      description: Expected response to a no/bad/expired token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Response'
+          example:
+            timestamp: 2021-02-15T12:01:01.107Z
+            status: 401
+            message: 'The token was expected to have 3 parts, but got 2.'
     ResponseComponentForbidden:
       description: Expected response to a forbidden request
       content:

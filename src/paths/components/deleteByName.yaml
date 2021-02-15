@@ -9,7 +9,9 @@ parameters:
 responses:
   '200':
     description: Expected response to a valid request
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/components/ResponseComponentForbidden.yaml"
 
 

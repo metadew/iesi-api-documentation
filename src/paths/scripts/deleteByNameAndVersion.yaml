@@ -18,7 +18,9 @@ responses:
             status:
               type: string
               enum: [ok]
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/scripts/ResponseScriptForbidden.yaml"
   '404':
     description: Expected response to a unexisting resource
