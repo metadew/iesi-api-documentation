@@ -2111,7 +2111,8 @@ components:
         email:
           type: string
         executionRequestStatus:
-          type:
+          type: string
+          enum:
             - NEW
             - SUBMITTED
             - ACCEPTED
@@ -2192,7 +2193,8 @@ components:
           items:
             $ref: '#/components/schemas/ScriptExecutionRequestParameterDto'
         scriptExecutionRequestStatus:
-          type:
+          type: string
+          enum:
             - NEW
             - SUBMITTED
             - ACCEPTED
@@ -2209,7 +2211,8 @@ components:
         runId:
           type: string
         runStatus:
-          type:
+          type: string
+          enum:
             - RUNNING
             - SUCCESS
             - WARNING
