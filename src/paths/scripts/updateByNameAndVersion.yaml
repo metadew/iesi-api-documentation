@@ -2,6 +2,8 @@ summary: Update a specific script
 tags:
   - scripts
 operationId: scriptsUpdateByNameAndVersion
+security:
+  - bearerAuth: ["SCRIPT_WRITE"]
 parameters:
   - $ref: "../../parameters/path/scripts/Name.yaml"
   - $ref: "../../parameters/path/scripts/Version.yaml"
@@ -31,8 +33,8 @@ responses:
           error: Bad Request
           message: Mismatch between url query '989' and request body
           path: /api/scripts/fho.folderExists.2/989
-
-        
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/scripts/ResponseScriptForbidden.yaml"
 

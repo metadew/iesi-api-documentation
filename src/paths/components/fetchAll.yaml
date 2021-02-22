@@ -2,6 +2,8 @@ summary: Fetch all components
 tags:
   - components
 operationId: componentsFetchAll
+security:
+  - bearerAuth: ["COMPONENTS_READ"]
 responses:
   '200':
     description: Expected response to a valid request
@@ -9,7 +11,9 @@ responses:
       application/json:
         schema:
           $ref: "../../schemas/components/EmbeddedComponentDto.yaml"
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/components/ResponseComponentForbidden.yaml"
 
 

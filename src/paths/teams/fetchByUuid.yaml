@@ -2,9 +2,10 @@ summary: fetch team with sepcified uuid
 tags:
   - teams
 operationId: teamsFetchById
+security:
+  - bearerAuth: ["TEAMS_READ"]
 parameters:
   - $ref: "../../parameters/path/teams/Uuid.yaml"
-
 responses:
   '200':
     description: Expected response to a valid request

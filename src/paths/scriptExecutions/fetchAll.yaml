@@ -2,6 +2,8 @@ summary: Fetch all script executions
 tags:
   - script executions
 operationId: scriptExecutionsAll
+security:
+  - bearerAuth: ["SCRIPT_EXECUTIONS_READ"]
 responses:
   '200':
     description: Expected response to a valid request
@@ -9,8 +11,11 @@ responses:
       application/json:
         schema:
           $ref: "../../schemas/scriptExecutions/EmbeddedScriptExecutionDto.yaml"
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/scriptExecutions/ResponseScriptExecutionForbidden.yaml"
+
 
 
 

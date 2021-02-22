@@ -2,6 +2,8 @@ summary: Fetch all teams
 tags:
   - teams
 operationId: teamsFetchAll
+security:
+  - bearerAuth: ["TEAMS_READ"]
 responses:
   '200':
     description: Expected response to a valid request

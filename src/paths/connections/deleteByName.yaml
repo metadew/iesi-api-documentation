@@ -2,12 +2,16 @@ summary: Delete a specific connection for all environments
 tags:
   - connections
 operationId: connectionsDeleteByName
+security:
+  - bearerAuth: ["CONNECTIONS_WRITE"]
 parameters:
   - $ref: "../../parameters/path/connections/Name.yaml"
 responses:
   '200':
     description: Expected response to a valid request
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/connections/ResponseConnectionForbidden.yaml"
   '404':
     description: Expected response to a non-existing connection

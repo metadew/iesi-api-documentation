@@ -2,12 +2,16 @@ summary: Delete a specific execution request
 tags:
   - execution requests
 operationId: executionRequestsDelete
+security:
+  - bearerAuth: ["EXECUTION_REQUESTS_WRITE"]
 parameters:
   - $ref: "../../parameters/path/executionRequests/Id.yaml"
 responses:
   '200':
     description: Expected response to a valid request
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/executionRequests/ResponseExecutionRequestForbidden.yaml"
   '404':
     description: Expected response to a non-existing execution request

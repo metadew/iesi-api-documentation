@@ -2,6 +2,8 @@ summary: Update connection with specific name and version
 tags:
   - connections
 operationId: connectionsUpdateByNameAndEnvironment
+security:
+  - bearerAuth: ["CONNECTIONS_WRITE"]
 parameters:
   - $ref: "../../parameters/path/connections/Name.yaml"
   - $ref: "../../parameters/path/connections/Environment.yaml"
@@ -32,7 +34,9 @@ responses:
           error: "Bad Request"
           message: "Mismatch between url query 'db.company.za' and request body "
           path: "/api/connections/db.company.za/qsdqsdqsd"
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/connections/ResponseConnectionForbidden.yaml"
   '404':
     description: Expected response to one or many un-existing connections

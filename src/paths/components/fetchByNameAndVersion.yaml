@@ -2,6 +2,8 @@ summary: Fetch a component by name and version
 tags:
   - components
 operationId: componentsFetchByNameAndVersion
+security:
+  - bearerAuth: ["COMPONENTS_READ"]
 parameters:
   - $ref: "../../parameters/path/components/Name.yaml"
   - $ref: "../../parameters/path/components/Version.yaml"
@@ -12,7 +14,9 @@ responses:
       application/json:
         schema:
           $ref: "../../schemas/components/ComponentDto.yaml"
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/components/ResponseComponentForbidden.yaml"
 
 

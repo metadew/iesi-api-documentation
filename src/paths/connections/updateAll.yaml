@@ -2,6 +2,8 @@ summary: update group of connections
 tags:
   - connections
 operationId: connectionsUpdateAll
+security:
+  - bearerAuth: ["CONNECTIONS_WRITE"]
 requestBody:
   description: list of Connections to be updated. Each element of the list contains the new implementation of the connection
   required: true
@@ -18,7 +20,9 @@ responses:
       application/json:
         schema:
           $ref: "../../schemas/connections/EmbeddedConnectionDto.yaml"
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/connections/ResponseConnectionForbidden.yaml"
   '404':
     description: Expected response to one or many un-existing connections

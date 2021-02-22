@@ -2,6 +2,8 @@ summary: delete security group with specified uuid
 tags:
   - security_groups
 operationId: securityGroupsDeleteById
+security:
+  - bearerAuth: ["GROUPS_WRITE"]
 parameters:
   - $ref: "../../parameters/path/security_groups/Uuid.yaml"
 

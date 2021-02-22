@@ -2,6 +2,8 @@ summary: Fetch all connections related to the specific environment
 tags:
   - environments
 operationId: environmentsFetchConnectionsByName
+security:
+  - bearerAuth: ["ENVIRONMENTS_READ"]
 parameters:
   - $ref: "../../parameters/path/environments/Name.yaml"
 responses:
@@ -11,7 +13,9 @@ responses:
       application/json:
         schema:
           $ref: "../../schemas/connections/EmbeddedConnectionDto.yaml"
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/environments/ResponseEnvironmentForbidden.yaml"
   '404':
     description: Expected response to a non-existing environment

@@ -2,6 +2,8 @@ summary: Fetch all environment of a specific connections
 tags:
   - connections
 operationId: connectionsFetchByName
+security:
+  - bearerAuth: ["CONNECTIONS_READ"]
 parameters:
   - $ref: "../../parameters/path/connections/Name.yaml"
 responses:
@@ -11,7 +13,9 @@ responses:
       application/json:
         schema:
           $ref: "../../schemas/connections/EmbeddedConnectionDto.yaml"
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/connections/ResponseConnectionForbidden.yaml"
 
 

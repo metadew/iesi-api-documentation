@@ -2,6 +2,8 @@ summary: Fetch all scripts
 tags:
   - scripts
 operationId: scriptsFetchAll
+security:
+  - bearerAuth: ["SCRIPT_READ"]
 parameters:
   - $ref: "../../parameters/query/scripts/Version.yaml"
   - $ref: "../../parameters/query/scripts/Name.yaml"
@@ -16,5 +18,7 @@ responses:
       application/json:
         schema:
           $ref: "../../schemas/scripts/PagedScriptDto.yaml"
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/scripts/ResponseScriptForbidden.yaml"

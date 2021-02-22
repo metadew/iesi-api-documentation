@@ -2,9 +2,10 @@ summary: All versions of a script with a specified name
 tags:
   - scripts
 operationId: scriptsFetchByName
+security:
+  - bearerAuth: ["SCRIPT_READ"]
 parameters:
   - $ref: "../../parameters/path/scripts/Name.yaml"
-
 responses:
   '200':
     description: Expected response to a valid request
@@ -12,5 +13,7 @@ responses:
       application/json:
         schema:
           $ref: "../../schemas/scripts/PagedScriptDto.yaml"
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/scripts/ResponseScriptForbidden.yaml"

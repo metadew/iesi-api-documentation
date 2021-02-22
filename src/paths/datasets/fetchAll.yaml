@@ -2,6 +2,8 @@ summary: Fetch all datasets
 tags:
   - datasets
 operationId: datasetsFetchAll
+security:
+  - bearerAuth: ["DATASETS_READ"]
 parameters:
   - $ref: "../../parameters/query/datasets/Name.yaml"
   - $ref: "../../parameters/query/pagination/Page.yaml"

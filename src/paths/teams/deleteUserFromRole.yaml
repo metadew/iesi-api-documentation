@@ -2,6 +2,8 @@ summary: Delete a user from a team's role
 tags:
   - teams
 operationId: teamsDeleteUserToRole
+security:
+  - bearerAuth: ["ROLES_WRITE"]
 parameters:
   - $ref: "../../parameters/path/teams/Uuid.yaml"
   - $ref: "../../parameters/path/teams/RoleUuid.yaml"

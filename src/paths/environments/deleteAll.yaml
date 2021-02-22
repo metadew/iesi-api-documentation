@@ -2,10 +2,14 @@ summary: Delete all environments
 tags:
   - environments
 operationId: environmentsDeleteAll
+security:
+  - bearerAuth: ["ENVIRONMENTS_WRITE"]
 responses:
   '200':
     description: Expected response to a valid request
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/environments/ResponseEnvironmentForbidden.yaml"
 
 

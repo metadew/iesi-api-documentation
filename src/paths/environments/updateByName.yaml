@@ -2,6 +2,8 @@ summary: Update a specific environment
 tags:
   - environments
 operationId: environmentsUpdateByName
+security:
+  - bearerAuth: ["ENVIRONMENTS_WRITE"]
 parameters:
   - $ref: "../../parameters/path/environments/Name.yaml"
 requestBody:
@@ -31,8 +33,9 @@ responses:
           error: Bad Request
           message: Mismatch between url query 'TUTO' and request body
           path: /api/environments/TUTO
-
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/environments/ResponseEnvironmentForbidden.yaml"
   '404':
     description: Expected response to a non-existing environment

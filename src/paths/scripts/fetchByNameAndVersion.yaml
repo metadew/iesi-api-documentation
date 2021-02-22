@@ -2,10 +2,11 @@ summary: Info of a specific script
 tags:
   - scripts
 operationId: scriptsFetchByNameAndVersion
+security:
+  - bearerAuth: ["SCRIPT_READ"]
 parameters:
   - $ref: "../../parameters/path/scripts/Name.yaml"
   - $ref: "../../parameters/path/scripts/Version.yaml"
-
 responses:
   '200':
     description: Expected response to a valid request
@@ -13,7 +14,9 @@ responses:
       application/json:
         schema:
           $ref: "../../schemas/scripts/ScriptDto.yaml"
-  '403':
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
     $ref: "../../responses/scripts/ResponseScriptForbidden.yaml"
   '404':
     description: no script found with specified name and version

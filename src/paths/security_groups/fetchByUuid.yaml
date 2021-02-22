@@ -2,9 +2,10 @@ summary: fetch security group with sepcified uuid
 tags:
   - security_groups
 operationId: securityGroupsFetchById
+security:
+  - bearerAuth: ["GROUPS_READ"]
 parameters:
   - $ref: "../../parameters/path/security_groups/Uuid.yaml"
-
 responses:
   '200':
     description: Expected response to a valid request
