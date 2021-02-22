@@ -16,7 +16,8 @@ properties:
   email:
     type: string
   executionRequestStatus:
-    type: [NEW, SUBMITTED, ACCEPTED, DECLINED, STOPPED, COMPLETED, KILLED, UNKNOWN]
+    type: string
+    enum: [NEW, SUBMITTED, ACCEPTED, DECLINED, STOPPED, COMPLETED, KILLED, UNKNOWN]
   scriptExecutionRequests:
     type: array
     items:
