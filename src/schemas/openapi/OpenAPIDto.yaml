@@ -1,0 +1,14 @@
+type: object
+properties:
+  source:
+    oneOf:
+      - type: string
+      - type: object
+      - type: array
+        items:
+          type: string
+          format: binary
+  load:
+    type: boolean
+
+

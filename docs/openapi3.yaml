@@ -60,17 +60,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/scripts/
+          $ref: '#/paths/~1scripts/put/responses/403'
     post:
       summary: Create a new script
       tags:
@@ -117,7 +107,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/get/responses/403'
+          $ref: '#/paths/~1scripts/put/responses/403'
     put:
       summary: Update one or multiple scripts
       tags:
@@ -145,7 +135,17 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/get/responses/403'
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/scripts/
   '/scripts/{name}':
     get:
       summary: All versions of a script with a specified name
@@ -167,7 +167,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/get/responses/403'
+          $ref: '#/paths/~1scripts/put/responses/403'
   '/scripts/{name}/{version}':
     get:
       summary: Info of a specific script
@@ -190,7 +190,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/get/responses/403'
+          $ref: '#/paths/~1scripts/put/responses/403'
         '404':
           description: no script found with specified name and version
     put:
@@ -233,7 +233,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/get/responses/403'
+          $ref: '#/paths/~1scripts/put/responses/403'
     delete:
       summary: Delete a specific script
       tags:
@@ -260,7 +260,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/get/responses/403'
+          $ref: '#/paths/~1scripts/put/responses/403'
         '404':
           description: Expected response to a unexisting resource
   /components:
@@ -780,7 +780,7 @@ paths:
                 status: 404
                 error: Not Found
                 message: environment TUTORIAL already exists
-                path: /api/environmentss/
+                path: /api/environments/
     put:
       summary: Update existing environments
       tags:
@@ -1096,6 +1096,66 @@ paths:
           $ref: '#/components/responses/ResponseScriptExecutionForbidden'
         '404':
           description: Expected response to a non-existing script execution
+  /openapi/load:
+    post:
+      summary: Load an openapi file though IESI to provide components and connections
+      tags:
+        - openapi
+      operationId: openapiLoad
+      security:
+        - bearerAuth:
+            - 'OPENAPI_READ, OPENAPI_WRITE'
+      requestBody:
+        description: The openapi file to be loaded
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OpenAPIDto'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  components:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ComponentDto'
+                  connections:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ConnectionDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
+        '403':
+          $ref: '#/components/responses/ResponseOpenApiForbidden'
+        '404':
+          description: Expected response to an unexisting openapi file from a server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 404
+                error: Not Found
+                message: Unable the find the openapi specification
+                path: /api/openapi/
+        '500':
+          description: Expected response to an internal error while parsing the openapi file
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 500
+                error: ComponentParser Exception
+                message: The openapi title is missing
+                path: /api/openapi/
   /datasets:
     get:
       summary: Fetch all datasets
@@ -2381,6 +2441,19 @@ components:
           type: string
         value:
           type: string
+    OpenAPIDto:
+      type: object
+      properties:
+        source:
+          oneOf:
+            - type: string
+            - type: object
+            - type: array
+              items:
+                type: string
+                format: binary
+        load:
+          type: boolean
     Link:
       type: object
       properties:
@@ -2932,3 +3005,15 @@ components:
             error: Forbidden
             message: Access denied
             path: /api/script-executions
+    ResponseOpenApiForbidden:
+      description: Expected response to a forbidden request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            timestamp: '2021-02-09T07:57:01.062+0000'
+            status: 403
+            error: Forbidden
+            message: Access denied
+            path: /api/openapi
