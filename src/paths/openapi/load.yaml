@@ -44,7 +44,7 @@ responses:
           message: "Unable the find the openapi specification"
           path: "/api/openapi/"
   '500':
-    description: Expected response to an internal error while parsing the openapi file
+    description: Expected response to an internal error.
     content:
       application/json:
         schema:
