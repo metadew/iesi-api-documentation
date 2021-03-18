@@ -77,10 +77,6 @@ OutputDto:
 ## ScriptLabelDto already exists in Script Schema
 ## ExecutionRequestLabelDto already exists in Execution Requests schema
 
-# Open API
-OpenAPIDto:
-  $ref: "./openapi/OpenAPIDto.yaml"
-
 # Pagination
 Link:
   $ref: "./pagination/Link.yaml"

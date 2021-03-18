@@ -108,9 +108,9 @@
     $ref: "./scriptExecutions/fetchByRunIdAndProcessId.yaml"
 
 # Open API
-'/openapi/load':
+'/openapi/transform':
   post:
-    $ref: "./openapi/load.yaml"
+    $ref: "./openapi/transform.yaml"
 
 
 # Datasets

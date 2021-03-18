@@ -1,16 +1,20 @@
-summary: Load an openapi file though IESI to provide components and connections
+summary: Transform an OpenAPI File into connections and components
 tags:
   - openapi
-operationId: openapiLoad
+operationId: openapiTransform
 security:
-  - bearerAuth: ["OPENAPI_READ, OPENAPI_WRITE"]
+  - bearerAuth: ["OPENAPI_READ"]
 requestBody:
-  description: The openapi file to be loaded
+  description: The openapi file to be transformed
   required: true
   content:
     application/json:
       schema:
-        $ref: "../../schemas/openapi/OpenAPIDto.yaml"
+        type: object
+    multipart/formData:
+      schema:
+        type: string
+        format: binary
 responses:
   '200':
     description: Expected response to a valid request

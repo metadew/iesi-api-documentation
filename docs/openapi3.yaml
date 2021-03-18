@@ -60,7 +60,17 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/put/responses/403'
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/scripts/
     post:
       summary: Create a new script
       tags:
@@ -107,7 +117,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/put/responses/403'
+          $ref: '#/paths/~1scripts/get/responses/403'
     put:
       summary: Update one or multiple scripts
       tags:
@@ -135,17 +145,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/scripts/
+          $ref: '#/paths/~1scripts/get/responses/403'
   '/scripts/{name}':
     get:
       summary: All versions of a script with a specified name
@@ -167,7 +167,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/put/responses/403'
+          $ref: '#/paths/~1scripts/get/responses/403'
   '/scripts/{name}/{version}':
     get:
       summary: Info of a specific script
@@ -190,7 +190,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/put/responses/403'
+          $ref: '#/paths/~1scripts/get/responses/403'
         '404':
           description: no script found with specified name and version
     put:
@@ -233,7 +233,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/put/responses/403'
+          $ref: '#/paths/~1scripts/get/responses/403'
     delete:
       summary: Delete a specific script
       tags:
@@ -260,7 +260,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/put/responses/403'
+          $ref: '#/paths/~1scripts/get/responses/403'
         '404':
           description: Expected response to a unexisting resource
   /components:
@@ -1096,22 +1096,26 @@ paths:
           $ref: '#/components/responses/ResponseScriptExecutionForbidden'
         '404':
           description: Expected response to a non-existing script execution
-  /openapi/load:
+  /openapi/transform:
     post:
-      summary: Load an openapi file though IESI to provide components and connections
+      summary: Transform an OpenAPI File into connections and components
       tags:
         - openapi
-      operationId: openapiLoad
+      operationId: openapiTransform
       security:
         - bearerAuth:
-            - 'OPENAPI_READ, OPENAPI_WRITE'
+            - OPENAPI_READ
       requestBody:
-        description: The openapi file to be loaded
+        description: The openapi file to be transformed
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OpenAPIDto'
+              type: object
+          multipart/formData:
+            schema:
+              type: string
+              format: binary
       responses:
         '200':
           description: Expected response to a valid request
@@ -2441,19 +2445,6 @@ components:
           type: string
         value:
           type: string
-    OpenAPIDto:
-      type: object
-      properties:
-        source:
-          oneOf:
-            - type: string
-            - type: object
-            - type: array
-              items:
-                type: string
-                format: binary
-        load:
-          type: boolean
     Link:
       type: object
       properties:
