@@ -2,8 +2,6 @@ summary: Transform an OpenAPI File into connections and components
 tags:
   - openapi
 operationId: openapiTransform
-security:
-  - bearerAuth: ["OPENAPI_READ"]
 requestBody:
   description: The openapi file to be transformed
   required: true
@@ -31,34 +29,19 @@ responses:
               type: array
               items:
                 $ref: "../../schemas/connections/ConnectionDto.yaml"
-  "401":
-    $ref: "../../responses/TokenResponse.yaml"
-  "403":
-    $ref: "../../responses/openapi/ResponseOpenApiForbidden.yaml"
-  '404':
-    description: Expected response to an unexisting openapi file from a server
+  '400':
+    description: Expected response to a wrong documentation.
     content:
       application/json:
         schema:
           $ref: "../../schemas/response/ErrorResponse.yaml"
         example:
           timestamp: "2021-02-09T07:57:01.062+0000"
-          status: 404
-          error: "Not Found"
-          message: "Unable the find the openapi specification"
-          path: "/api/openapi/"
-  '500':
-    description: Expected response to an internal error.
-    content:
-      application/json:
-        schema:
-          $ref: "../../schemas/response/ErrorResponse.yaml"
-        example:
-          timestamp: "2021-02-09T07:57:01.062+0000"
-          status: 500
-          error: "ComponentParser Exception"
+          status: 400
+          error: "SwaggerParser exception"
           message: "The openapi title is missing"
           path: "/api/openapi/"
+
 
 
 

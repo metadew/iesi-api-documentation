@@ -23,7 +23,3 @@ ResponseExecutionRequestForbidden:
 # Script execution
 ResponseScriptExecutionForbidden:
   $ref: "./scriptExecutions/ResponseScriptExecutionForbidden.yaml"
-
-# OpenApi
-ResponseOpenApiForbidden:
-  $ref: "./openapi/ResponseOpenApiForbidden.yaml"

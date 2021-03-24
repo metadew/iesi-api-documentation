@@ -1102,9 +1102,6 @@ paths:
       tags:
         - openapi
       operationId: openapiTransform
-      security:
-        - bearerAuth:
-            - OPENAPI_READ
       requestBody:
         description: The openapi file to be transformed
         required: true
@@ -1132,32 +1129,16 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ConnectionDto'
-        '401':
-          $ref: '#/components/responses/TokenResponse'
-        '403':
-          $ref: '#/components/responses/ResponseOpenApiForbidden'
-        '404':
-          description: Expected response to an unexisting openapi file from a server
+        '400':
+          description: Expected response to a wrong documentation.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
               example:
                 timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 404
-                error: Not Found
-                message: Unable the find the openapi specification
-                path: /api/openapi/
-        '500':
-          description: Expected response to an internal error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 500
-                error: ComponentParser Exception
+                status: 400
+                error: SwaggerParser exception
                 message: The openapi title is missing
                 path: /api/openapi/
   /datasets:
@@ -2996,15 +2977,3 @@ components:
             error: Forbidden
             message: Access denied
             path: /api/script-executions
-    ResponseOpenApiForbidden:
-      description: Expected response to a forbidden request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            timestamp: '2021-02-09T07:57:01.062+0000'
-            status: 403
-            error: Forbidden
-            message: Access denied
-            path: /api/openapi
