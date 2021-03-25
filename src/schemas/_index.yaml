@@ -77,7 +77,6 @@ OutputDto:
 ## ScriptLabelDto already exists in Script Schema
 ## ExecutionRequestLabelDto already exists in Execution Requests schema
 
-
 # Pagination
 Link:
   $ref: "./pagination/Link.yaml"

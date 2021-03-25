@@ -107,6 +107,12 @@
   get:
     $ref: "./scriptExecutions/fetchByRunIdAndProcessId.yaml"
 
+# Open API
+'/openapi/transform':
+  post:
+    $ref: "./openapi/transform.yaml"
+
+
 # Datasets
 '/datasets':
   get:

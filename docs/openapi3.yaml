@@ -780,7 +780,7 @@ paths:
                 status: 404
                 error: Not Found
                 message: environment TUTORIAL already exists
-                path: /api/environmentss/
+                path: /api/environments/
     put:
       summary: Update existing environments
       tags:
@@ -1096,6 +1096,51 @@ paths:
           $ref: '#/components/responses/ResponseScriptExecutionForbidden'
         '404':
           description: Expected response to a non-existing script execution
+  /openapi/transform:
+    post:
+      summary: Transform an OpenAPI File into connections and components
+      tags:
+        - openapi
+      operationId: openapiTransform
+      requestBody:
+        description: The openapi file to be transformed
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+          multipart/formData:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  components:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ComponentDto'
+                  connections:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ConnectionDto'
+        '400':
+          description: Expected response to a wrong documentation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 400
+                error: SwaggerParser exception
+                message: The openapi title is missing
+                path: /api/openapi/
   /datasets:
     get:
       summary: Fetch all datasets
