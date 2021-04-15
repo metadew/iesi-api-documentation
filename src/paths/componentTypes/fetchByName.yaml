@@ -4,6 +4,7 @@ tags:
 operationId: componentTypesFetchByName
 parameters:
   - in: path
+    name: name
     required: true
     schema:
       type: string
