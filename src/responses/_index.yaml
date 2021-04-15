@@ -12,6 +12,9 @@ ResponseComponentForbidden:
 ResponseConnectionForbidden:
   $ref: "./connections/ResponseConnectionForbidden.yaml"
 
+# Component Types
+ResponseComponentTypeForbidden:
+  $ref: "./componentTypes/ResponseComponentTypeForbidden.yaml"
 # Environment
 ResponseEnvironmentForbidden:
   $ref: "./environments/ResponseEnvironmentForbidden.yaml"

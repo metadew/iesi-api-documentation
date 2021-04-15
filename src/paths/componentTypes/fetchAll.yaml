@@ -1,0 +1,20 @@
+summary: Fetch all component types
+tags:
+  - component-types
+operationId: componentTypesFetchAll
+responses:
+  '200':
+    description: Returns all component types
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: "../../schemas/componentTypes/ComponentTypeDto.yaml"
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
+    $ref: "../../responses/components/ResponseComponentForbidden.yaml"
+
+
+

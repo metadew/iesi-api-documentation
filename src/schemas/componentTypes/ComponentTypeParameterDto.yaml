@@ -1,0 +1,14 @@
+type: object
+properties:
+  name:
+    type: string
+  description:
+    type: string
+  type:
+    type: string
+  mandatory:
+    type: boolean
+    default: false
+  encrypted:
+    type: boolean
+    default: false
