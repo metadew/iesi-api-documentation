@@ -25,6 +25,8 @@ tags:
     description: Everything about action types
   - name: connection-types
     description: Everything about connection types
+  - name: component-types
+    description: Everything about component types
   - name: users
     description: Everything about users
   - name: teams
@@ -60,17 +62,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/scripts/
+          $ref: '#/paths/~1scripts/put/responses/403'
     post:
       summary: Create a new script
       tags:
@@ -117,7 +109,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/get/responses/403'
+          $ref: '#/paths/~1scripts/put/responses/403'
     put:
       summary: Update one or multiple scripts
       tags:
@@ -145,7 +137,17 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/get/responses/403'
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/scripts/
   '/scripts/{name}':
     get:
       summary: All versions of a script with a specified name
@@ -167,7 +169,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/get/responses/403'
+          $ref: '#/paths/~1scripts/put/responses/403'
   '/scripts/{name}/{version}':
     get:
       summary: Info of a specific script
@@ -190,7 +192,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/get/responses/403'
+          $ref: '#/paths/~1scripts/put/responses/403'
         '404':
           description: no script found with specified name and version
     put:
@@ -233,7 +235,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/get/responses/403'
+          $ref: '#/paths/~1scripts/put/responses/403'
     delete:
       summary: Delete a specific script
       tags:
@@ -260,7 +262,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/get/responses/403'
+          $ref: '#/paths/~1scripts/put/responses/403'
         '404':
           description: Expected response to a unexisting resource
   /components:
@@ -723,6 +725,48 @@ paths:
           $ref: '#/components/responses/ResponseConnectionForbidden'
         '404':
           description: Expected response to a un-existing connection
+  /component-types:
+    get:
+      summary: Fetch all component types
+      tags:
+        - component-types
+      operationId: componentTypesFetchAll
+      responses:
+        '200':
+          description: Returns all component types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/componentTypeDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
+        '403':
+          $ref: '#/components/responses/ResponseComponentForbidden'
+  '/component-types/{name}':
+    get:
+      summary: Fetch component type by name
+      tags:
+        - component-types
+      operationId: componentTypesFetchByName
+      parameters:
+        - in: path
+          name: name
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns a component type regarding to the name passed in the path
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/componentTypeDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
+        '403':
+          $ref: '#/components/responses/ResponseComponentForbidden'
   /environments:
     get:
       summary: Fetch all environments
@@ -2112,6 +2156,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ConnectionDto'
+    componentTypeDto:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/componentTypeParameterDto'
+    componentTypeParameterDto:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        mandatory:
+          type: boolean
+          default: false
+        encrypted:
+          type: boolean
+          default: false
     EnvironmentDto:
       type: object
       properties:
@@ -2941,6 +3011,18 @@ components:
             error: Forbidden
             message: Access denied
             path: /api/connections/
+    ResponseComponentTypeForbidden:
+      description: Expected response to a forbidden request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            timestamp: '2021-04-15T07:57:01.062+0000'
+            status: 403
+            error: Forbidden
+            message: Access denied
+            path: /api/component-types/
     ResponseEnvironmentForbidden:
       description: Expected response to a forbidden request
       content:

@@ -41,6 +41,7 @@
   delete:
     $ref: "./components/deleteByNameAndVersion.yaml"
 
+# Connections
 '/connections':
   get:
     $ref: "./connections/fetchAll.yaml"
@@ -63,6 +64,13 @@
   delete:
     $ref: "./connections/deleteByNameAndEnvironment.yaml"
 
+# Component Types
+'/component-types':
+  get:
+    $ref: "./componentTypes/fetchAll.yaml"
+'/component-types/{name}':
+  get:
+    $ref: "./componentTypes/fetchByName.yaml"
 # Environments
 '/environments':
   get:

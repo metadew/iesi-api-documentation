@@ -1,0 +1,24 @@
+summary: Fetch component type by name
+tags:
+  - component-types
+operationId: componentTypesFetchByName
+parameters:
+  - in: path
+    name: name
+    required: true
+    schema:
+      type: string
+responses:
+  '200':
+    description: Returns a component type regarding to the name passed in the path
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/componentTypes/ComponentTypeDto.yaml"
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
+    $ref: "../../responses/components/ResponseComponentForbidden.yaml"
+
+
+

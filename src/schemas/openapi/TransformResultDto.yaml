@@ -1,0 +1,14 @@
+type: object
+properties:
+  title:
+    type: string
+  version:
+    type: string
+  components:
+    type: array
+    items:
+      $ref: "../../schemas/components/ComponentDto.yaml"
+  connections:
+    type: array
+    items:
+      $ref: "../../schemas/connections/ConnectionDto.yaml"

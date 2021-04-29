@@ -28,6 +28,8 @@ tags:
     description: Everything about action types
   - name: connection-types
     description: Everything about connection types
+  - name: component-types
+    description: Everything about component types
   - name: users
     description: Everything about users
   - name: teams
