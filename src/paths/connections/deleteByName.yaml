@@ -1,4 +1,4 @@
-summary: Delete a specific connection for all environments
+summary: Delete a connection with specific name
 tags:
   - connections
 operationId: connectionsDeleteByName

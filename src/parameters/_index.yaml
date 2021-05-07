@@ -28,8 +28,6 @@ PathComponentVersion:
 
 # Connections
 ## Path
-PathConnectionEnvironment:
-  $ref: "./path/connections/Environment.yaml"
 PathConnectionName:
   $ref: "./path/connections/Name.yaml"
 

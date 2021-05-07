@@ -1,12 +1,11 @@
-summary: Update connection with specific name and version
+summary: Update connection with specific name
 tags:
   - connections
-operationId: connectionsUpdateByNameAndEnvironment
+operationId: connectionsUpdateByName
 security:
   - bearerAuth: ["CONNECTIONS_WRITE"]
 parameters:
   - $ref: "../../parameters/path/connections/Name.yaml"
-  - $ref: "../../parameters/path/connections/Environment.yaml"
 requestBody:
   description: New implementation of the connection
   required: true

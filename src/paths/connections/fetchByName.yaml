@@ -1,4 +1,4 @@
-summary: Fetch all environment of a specific connections
+summary: Info of a specific connection
 tags:
   - connections
 operationId: connectionsFetchByName
@@ -12,7 +12,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: "../../schemas/connections/EmbeddedConnectionDto.yaml"
+          $ref: "../../schemas/connections/ConnectionDto.yaml"
   "401":
     $ref: "../../responses/TokenResponse.yaml"
   "403":
