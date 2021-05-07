@@ -56,13 +56,8 @@
     $ref: "./connections/fetchByName.yaml"
   delete:
     $ref: "./connections/deleteByName.yaml"
-'/connections/{name}/{environment}':
-  get:
-    $ref: "./connections/fetchByNameAndEnvironment.yaml"
   put:
-    $ref: './connections/updateByNameAndEnvironment.yaml'
-  delete:
-    $ref: "./connections/deleteByNameAndEnvironment.yaml"
+    $ref: './connections/updateByName.yaml'
 
 # Component Types
 '/component-types':

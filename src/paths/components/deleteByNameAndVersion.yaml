@@ -1,7 +1,7 @@
 summary: Delete a specific version of a component
 tags:
   - components
-operationId: componentsDeleteByName
+operationId: componentsDeleteByNameAndVersion
 security:
   - bearerAuth: ["COMPONENTS_WRITE"]
 parameters:

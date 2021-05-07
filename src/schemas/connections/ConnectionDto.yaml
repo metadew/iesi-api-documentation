@@ -6,10 +6,8 @@ properties:
     type: string
   description:
     type: string
-  environment:
-    type: string
-  parameters:
+  environments:
     type: array
     items:
-      $ref: "./ConnectionParameterDto.yaml"
+      $ref: "./ConnectionEnvironmentDto.yaml"
 

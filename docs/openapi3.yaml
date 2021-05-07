@@ -62,7 +62,17 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/put/responses/403'
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/scripts/
     post:
       summary: Create a new script
       tags:
@@ -109,7 +119,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/put/responses/403'
+          $ref: '#/paths/~1scripts/get/responses/403'
     put:
       summary: Update one or multiple scripts
       tags:
@@ -137,17 +147,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          description: Expected response to a forbidden request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              example:
-                timestamp: '2021-02-09T07:57:01.062+0000'
-                status: 403
-                error: Forbidden
-                message: Access denied
-                path: /api/scripts/
+          $ref: '#/paths/~1scripts/get/responses/403'
   '/scripts/{name}':
     get:
       summary: All versions of a script with a specified name
@@ -169,7 +169,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/put/responses/403'
+          $ref: '#/paths/~1scripts/get/responses/403'
   '/scripts/{name}/{version}':
     get:
       summary: Info of a specific script
@@ -192,7 +192,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/put/responses/403'
+          $ref: '#/paths/~1scripts/get/responses/403'
         '404':
           description: no script found with specified name and version
     put:
@@ -235,7 +235,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/put/responses/403'
+          $ref: '#/paths/~1scripts/get/responses/403'
     delete:
       summary: Delete a specific script
       tags:
@@ -262,7 +262,7 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/put/responses/403'
+          $ref: '#/paths/~1scripts/get/responses/403'
         '404':
           description: Expected response to a unexisting resource
   /components:
@@ -477,7 +477,7 @@ paths:
       summary: Delete a specific version of a component
       tags:
         - components
-      operationId: componentsDeleteByName
+      operationId: componentsDeleteByNameAndVersion
       security:
         - bearerAuth:
             - COMPONENTS_WRITE
@@ -598,7 +598,7 @@ paths:
           $ref: '#/components/responses/ResponseConnectionForbidden'
   '/connections/{name}':
     get:
-      summary: Fetch all environment of a specific connections
+      summary: Info of a specific connection
       tags:
         - connections
       operationId: connectionsFetchByName
@@ -613,13 +613,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EmbeddedConnectionDto'
+                $ref: '#/components/schemas/ConnectionDto'
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseConnectionForbidden'
     delete:
-      summary: Delete a specific connection for all environments
+      summary: Delete a connection with specific name
       tags:
         - connections
       operationId: connectionsDeleteByName
@@ -637,42 +637,16 @@ paths:
           $ref: '#/components/responses/ResponseConnectionForbidden'
         '404':
           description: Expected response to a non-existing connection
-  '/connections/{name}/{environment}':
-    get:
-      summary: Info of a specific connection
-      tags:
-        - connections
-      operationId: connectionsFetchByNameAndEnvironment
-      security:
-        - bearerAuth:
-            - CONNECTIONS_READ
-      parameters:
-        - $ref: '#/components/parameters/PathConnectionName'
-        - $ref: '#/components/parameters/PathConnectionEnvironment'
-      responses:
-        '200':
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectionDto'
-        '401':
-          $ref: '#/components/responses/TokenResponse'
-        '403':
-          $ref: '#/components/responses/ResponseConnectionForbidden'
-        '404':
-          description: Expected response to a un-existing connection
     put:
-      summary: Update connection with specific name and version
+      summary: Update connection with specific name
       tags:
         - connections
-      operationId: connectionsUpdateByNameAndEnvironment
+      operationId: connectionsUpdateByName
       security:
         - bearerAuth:
             - CONNECTIONS_WRITE
       parameters:
         - $ref: '#/components/parameters/PathConnectionName'
-        - $ref: '#/components/parameters/PathConnectionEnvironment'
       requestBody:
         description: New implementation of the connection
         required: true
@@ -705,26 +679,6 @@ paths:
           $ref: '#/components/responses/ResponseConnectionForbidden'
         '404':
           description: Expected response to one or many un-existing connections
-    delete:
-      summary: delete specific connection for a specific environment
-      tags:
-        - connections
-      operationId: connectionsDeleteByNameAndEnvironment
-      security:
-        - bearerAuth:
-            - CONNECTIONS_WRITE
-      parameters:
-        - $ref: '#/components/parameters/PathConnectionName'
-        - $ref: '#/components/parameters/PathConnectionEnvironment'
-      responses:
-        '200':
-          description: Expected response to a valid request
-        '401':
-          $ref: '#/components/responses/TokenResponse'
-        '403':
-          $ref: '#/components/responses/ResponseConnectionForbidden'
-        '404':
-          description: Expected response to a un-existing connection
   /component-types:
     get:
       summary: Fetch all component types
@@ -1712,7 +1666,7 @@ paths:
       summary: delete a team from a security group
       tags:
         - security_groups
-      operationId: securityGroupsAddTeam
+      operationId: securityGroupsDeleteTeam
       security:
         - bearerAuth:
             - GROUPS_WRITE
@@ -1725,12 +1679,6 @@ paths:
           schema:
             type: string
             format: uuid
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SecurityGroupTeamPutDto'
-        required: true
       responses:
         '200':
           description: Expected response to a valid request
@@ -1806,13 +1754,6 @@ components:
       schema:
         type: integer
         format: int64
-    PathConnectionEnvironment:
-      name: environment
-      description: name of the environment
-      in: path
-      required: true
-      schema:
-        type: string
     PathConnectionName:
       name: name
       description: name of the connection
@@ -2136,12 +2077,17 @@ components:
           type: string
         description:
           type: string
-        environment:
-          type: string
-        parameters:
+        environments:
           type: array
           items:
-            $ref: '#/components/schemas/ConnectionParameterDto'
+            type: object
+            properties:
+              environment:
+                type: string
+              parameters:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConnectionParameterDto'
     ConnectionParameterDto:
       type: object
       properties:
