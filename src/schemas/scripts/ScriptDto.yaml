@@ -6,6 +6,8 @@ properties:
     type: string
   description:
     type: string
+  deletedAt:
+    type: string
   version:
     $ref: '../../schemas/scripts/ScriptVersionDto.yaml'
   parameters:

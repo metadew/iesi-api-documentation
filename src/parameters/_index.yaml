@@ -19,6 +19,9 @@ QueryScriptsLabel:
 QueryScriptsSort:
   $ref: './query/scripts/Sort.yaml'
 
+QueryScriptsShowInactive:
+  $ref: './query/scripts/ShowInactive.yaml'
+
 # Components
 ## Path
 PathComponentName:

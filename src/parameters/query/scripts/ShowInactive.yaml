@@ -1,0 +1,10 @@
+in: query
+name: show_inactive
+required: false
+schema:
+  type: string
+  enum:
+    - true
+    - false
+  default: false
+description: "When set to true, both active and inactive script implementations are retrieved. When set to false, only active script implementations are retrieved"
