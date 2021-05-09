@@ -6,6 +6,9 @@
     $ref: "./scripts/create.yaml"
   put:
     $ref: "./scripts/updateAll.yaml"
+'/scripts/restore':
+  post:
+    $ref: "./scripts/restore.yaml"
 
 '/scripts/{name}':
   get:

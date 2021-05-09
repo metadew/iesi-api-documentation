@@ -1,0 +1,26 @@
+summary: Restore an inactive script
+tags:
+  - scripts
+operationId: scriptsRestore
+security:
+  - bearerAuth: ["SCRIPT_WRITE"]
+requestBody:
+  description: The details identifying the inactive script to be restored
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/scripts/ScriptRestoreDto.yaml"
+responses:
+  '200':
+    description: Implementation details of the restored script version
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/scripts/ScriptDto.yaml"
+  '400':
+    description: inactive script version cannot be restored as there is still another active version
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
+    $ref: "../../responses/scripts/ResponseScriptForbidden.yaml"

@@ -13,6 +13,8 @@ ActionParameterDto:
   $ref: "./scripts/ActionParameterDto.yaml"
 PagedScriptDto:
   $ref: "./scripts/PagedScriptDto.yaml"
+ScriptRestoreDto:
+  $ref: "./scripts/ScriptRestoreDto.yaml"
 
 # Components
 ComponentDto:

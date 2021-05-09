@@ -52,6 +52,7 @@ paths:
         - $ref: '#/components/parameters/QueryPaginationPage'
         - $ref: '#/components/parameters/QueryPaginationSize'
         - $ref: '#/components/parameters/QueryScriptsSort'
+        - $ref: '#/components/parameters/QueryScriptsShowInactive'
       responses:
         '200':
           description: Expected response to a valid request
@@ -144,6 +145,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScriptDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
+        '403':
+          $ref: '#/paths/~1scripts/get/responses/403'
+  /scripts/restore:
+    post:
+      summary: Restore an inactive script
+      tags:
+        - scripts
+      operationId: scriptsRestore
+      security:
+        - bearerAuth:
+            - SCRIPT_WRITE
+      requestBody:
+        description: The details identifying the inactive script to be restored
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScriptRestoreDto'
+      responses:
+        '200':
+          description: Implementation details of the restored script version
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScriptDto'
+        '400':
+          description: inactive script version cannot be restored as there is still another active version
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
@@ -1739,6 +1769,17 @@ components:
       description: |
         See https://stackoverflow.com/questions/33018127/spring-data-rest-sort-by-multiple-properties for query parameter formatting. Sort the result set according to the provided keywords. The order of sorting follows the order of the list. By default sorting is applied in the ascending direction but this can be altered by explicitly providing the sorting direction:
          * `name[,desc|,asc]` - Sort by script name.
+    QueryScriptsShowInactive:
+      in: query
+      name: show_inactive
+      required: false
+      schema:
+        type: string
+        enum:
+          - true
+          - false
+        default: false
+      description: 'When set to true, both active and inactive script implementations are retrieved. When set to false, only active script implementations are retrieved'
     PathComponentName:
       name: name
       description: name of the component
@@ -1894,6 +1935,8 @@ components:
           type: string
         description:
           type: string
+        deletedAt:
+          type: string
         version:
           $ref: '#/components/schemas/ScriptVersionDto'
         parameters:
@@ -2018,6 +2061,16 @@ components:
           $ref: '#/components/schemas/PageLinks'
         page:
           $ref: '#/components/schemas/PaginationProperties'
+    ScriptRestoreDto:
+      type: object
+      properties:
+        name:
+          type: string
+        deletedAt:
+          type: string
+        version:
+          type: integer
+          format: int64
     ComponentDto:
       type: object
       properties:
