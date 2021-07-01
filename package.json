@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/dgarcia360/openapi-boilerplate#readme",
   "dependencies": {
-    "openapi-to-postmanv2": "^0.1.0"
+    "openapi-to-postmanv2": "^0.1.0",
+    "validate": "^5.1.0"
   }
 }
