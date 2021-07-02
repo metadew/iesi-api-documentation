@@ -20,7 +20,7 @@ QueryScriptsSort:
   $ref: './query/scripts/Sort.yaml'
 
 QueryScriptIncludeInActive:
-  $ref: './query/scripts/IncludeInActive.yaml'
+  $ref: './query/scripts/IncludeInactive.yaml'
 
 # Components
 ## Path

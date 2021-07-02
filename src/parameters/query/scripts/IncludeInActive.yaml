@@ -1,7 +1,10 @@
 in: query
-name: includeInActive
+name: includeInactive
 required: false
 schema:
   type: string
-description: allow for filtering InActive Script. By default it will return only Active Scripts. Pass includeInActive=true to get Active and Inactive Script.
+  enum:
+     - true
+     - false
+description: inculde inactive script. By default it will return only Active Scripts. Pass includeInactive=true to get Active and Inactive Script.
 

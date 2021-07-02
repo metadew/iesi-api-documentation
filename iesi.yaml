@@ -47,7 +47,7 @@ paths:
         - $ref: '#/components/parameters/Page'
         - $ref: '#/components/parameters/Size'
         - $ref: '#/components/parameters/Sort'
-        - $ref: '#/components/parameters/IncludeInActive'
+        - $ref: '#/components/parameters/IncludeInactive'
       responses:
         '200':
           description: Expected response to a valid request
