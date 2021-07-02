@@ -52,7 +52,7 @@ paths:
         - $ref: '#/components/parameters/QueryPaginationPage'
         - $ref: '#/components/parameters/QueryPaginationSize'
         - $ref: '#/components/parameters/QueryScriptsSort'
-        - $ref: '#/components/parameters/QueryScriptIncludeInActive'
+        - $ref: '#/components/parameters/QueryScriptIncludeInactive'
       responses:
         '200':
           description: Expected response to a valid request
@@ -1740,7 +1740,7 @@ components:
       description: |
         See https://stackoverflow.com/questions/33018127/spring-data-rest-sort-by-multiple-properties for query parameter formatting. Sort the result set according to the provided keywords. The order of sorting follows the order of the list. By default sorting is applied in the ascending direction but this can be altered by explicitly providing the sorting direction:
          * `name[,desc|,asc]` - Sort by script name.
-    QueryScriptIncludeInActive:
+    QueryScriptIncludeInactive:
       in: query
       name: includeInactive
       required: false

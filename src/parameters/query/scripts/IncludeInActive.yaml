@@ -7,4 +7,3 @@ schema:
      - true
      - false
 description: inculde inactive script. By default it will return only Active Scripts. Pass includeInactive=true to get Active and Inactive Script.
-
