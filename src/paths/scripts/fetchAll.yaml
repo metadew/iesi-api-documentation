@@ -11,6 +11,7 @@ parameters:
   - $ref: "../../parameters/query/pagination/Page.yaml"
   - $ref: "../../parameters/query/pagination/Size.yaml"
   - $ref: "../../parameters/query/scripts/Sort.yaml"
+  - $ref: "../../parameters/query/scripts/IncludeInactive.yaml"
 responses:
   '200':
     description: Expected response to a valid request
