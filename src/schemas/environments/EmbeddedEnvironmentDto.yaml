@@ -1,6 +1,11 @@
 type: object
 properties:
-  embedded:
-    type: array
-    items:
-      $ref: "./EnvironmentDto.yaml"
+  _embedded:
+    type: object
+    properties:
+      scripts:
+        type: array
+        items:
+          $ref: './EnvironmentDto.yaml'
+  page:
+    $ref: '../../schemas/pagination/PaginationProperties.yaml'
