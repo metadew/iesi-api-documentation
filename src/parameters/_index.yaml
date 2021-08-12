@@ -53,6 +53,8 @@ QueryExecutionRequestScript:
   $ref: "./query/executionRequests/Script.yaml"
 QueryExecutionRequestVersion:
   $ref: "./query/executionRequests/Version.yaml"
+QueryExecutionRequestRunId:
+  $ref: "./query/executionRequests/RunId.yaml"
 
 # Script Executions
 PathScriptExecutionProcessId:
