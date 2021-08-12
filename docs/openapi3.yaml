@@ -730,6 +730,9 @@ paths:
       security:
         - bearerAuth:
             - ENVIRONMENTS_READ
+      parameters:
+        - $ref: '#/components/parameters/QueryPaginationPage'
+        - $ref: '#/components/parameters/QueryPaginationSize'
       responses:
         '200':
           description: Expected response to a valid request
@@ -824,6 +827,41 @@ paths:
           $ref: '#/components/responses/TokenResponse'
         '403':
           $ref: '#/components/responses/ResponseEnvironmentForbidden'
+  /environments/list:
+    get:
+      summary: Fetch all environments List
+      tags:
+        - environments
+      operationId: environmentsFetchAllList
+      security:
+        - bearerAuth:
+            - ENVIRONMENTS_READ
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  embedded:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EnvironmentDto'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
+        '403':
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/environments/list
   '/environments/{name}':
     get:
       summary: Fetch a specific environment
@@ -2149,10 +2187,15 @@ components:
     EmbeddedEnvironmentDto:
       type: object
       properties:
-        embedded:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentDto'
+        _embedded:
+          type: object
+          properties:
+            scripts:
+              type: array
+              items:
+                $ref: '#/components/schemas/EnvironmentDto'
+        page:
+          $ref: '#/components/schemas/PaginationProperties'
     ExecutionRequestDto:
       type: object
       properties:
