@@ -730,6 +730,9 @@ paths:
       security:
         - bearerAuth:
             - ENVIRONMENTS_READ
+      parameters:
+        - $ref: '#/components/parameters/QueryPaginationPage'
+        - $ref: '#/components/parameters/QueryPaginationSize'
       responses:
         '200':
           description: Expected response to a valid request
@@ -2149,10 +2152,15 @@ components:
     EmbeddedEnvironmentDto:
       type: object
       properties:
-        embedded:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentDto'
+        _embedded:
+          type: object
+          properties:
+            scripts:
+              type: array
+              items:
+                $ref: '#/components/schemas/EnvironmentDto'
+        page:
+          $ref: '#/components/schemas/PaginationProperties'
     ExecutionRequestDto:
       type: object
       properties:
