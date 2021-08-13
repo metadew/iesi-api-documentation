@@ -844,7 +844,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  embedded:
+                  _embedded:
                     type: array
                     items:
                       $ref: '#/components/schemas/EnvironmentDto'
@@ -2102,7 +2102,7 @@ components:
     EmbeddedComponentDto:
       type: object
       properties:
-        embedded:
+        _embedded:
           type: array
           items:
             $ref: '#/components/schemas/ComponentDto'
@@ -2136,7 +2136,7 @@ components:
     EmbeddedConnectionDto:
       type: object
       properties:
-        embedded:
+        _embedded:
           type: array
           items:
             $ref: '#/components/schemas/ConnectionDto'
@@ -2415,7 +2415,7 @@ components:
     EmbeddedScriptExecutionDto:
       type: object
       properties:
-        embedded:
+        _embedded:
           type: array
           items:
             $ref: '#/components/schemas/ScriptExecutionDto'
