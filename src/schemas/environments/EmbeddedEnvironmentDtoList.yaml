@@ -3,4 +3,4 @@ properties:
   _embedded:
     type: array
     items:
-      $ref: "./ConnectionDto.yaml"
+      $ref: "./EnvironmentDto.yaml"

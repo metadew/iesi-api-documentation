@@ -1,6 +1,6 @@
 type: object
 properties:
-  embedded:
+  _embedded:
     type: array
     items:
       $ref: "./ComponentDto.yaml"
