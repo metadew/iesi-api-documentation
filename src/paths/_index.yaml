@@ -76,6 +76,9 @@
     $ref: "./environments/updateAll.yaml"
   delete:
     $ref: "./environments/deleteAll.yaml"
+'/environments/list':
+  get:
+    $ref: "./environments/fetchAllList.yaml"
 '/environments/{name}':
   get:
     $ref: "./environments/fetchByName.yaml"

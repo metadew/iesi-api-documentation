@@ -4,6 +4,9 @@ tags:
 operationId: environmentsFetchAll
 security:
   - bearerAuth: ["ENVIRONMENTS_READ"]
+parameters:
+  - $ref: "../../parameters/query/pagination/Page.yaml"
+  - $ref: "../../parameters/query/pagination/Size.yaml"
 responses:
   '200':
     description: Expected response to a valid request

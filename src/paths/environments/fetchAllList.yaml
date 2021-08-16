@@ -1,0 +1,17 @@
+summary: Fetch all environments List
+tags:
+  - environments
+operationId: environmentsFetchAllList
+security:
+  - bearerAuth: ["ENVIRONMENTS_READ"]
+responses:
+  '200':
+    description: Expected response to a valid request
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/environments/EmbeddedEnvironmentDtoList.yaml"
+  "401":
+    $ref: "../../responses/TokenResponse.yaml"
+  "403":
+    $ref: "../../responses/environments/ResponseEnvironmentForbiddenList.yaml"
