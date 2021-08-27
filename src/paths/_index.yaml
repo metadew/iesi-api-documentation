@@ -139,6 +139,7 @@
 '/users':
   get:
     $ref: "./users/fetchAll.yaml"
+'/users/create':
   post:
     $ref: "./users/create.yaml"
 '/users/login':

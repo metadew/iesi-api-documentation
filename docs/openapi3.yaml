@@ -1320,6 +1320,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserDtoList'
+  /users/create:
     post:
       summary: Create a user
       tags:
@@ -1545,7 +1546,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RolePostDto'
+              $ref: '#/components/schemas/RoleUserPostDto'
         required: true
       responses:
         '200':
