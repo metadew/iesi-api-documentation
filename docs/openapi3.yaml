@@ -987,6 +987,7 @@ paths:
         - $ref: '#/components/parameters/QueryExecutionRequestLabel'
         - $ref: '#/components/parameters/QueryExecutionRequestEnvironment'
         - $ref: '#/components/parameters/QueryExecutionRequestRunId'
+        - $ref: '#/components/parameters/QueryExecutionRequestStatus'
       responses:
         '200':
           description: Expected response to a valid request
@@ -1853,6 +1854,12 @@ components:
     QueryExecutionRequestRunId:
       in: query
       name: run-id
+      required: false
+      schema:
+        type: string
+    QueryExecutionRequestStatus:
+      in: query
+      name: status
       required: false
       schema:
         type: string
