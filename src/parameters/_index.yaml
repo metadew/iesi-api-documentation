@@ -55,7 +55,7 @@ QueryExecutionRequestVersion:
   $ref: "./query/executionRequests/Version.yaml"
 QueryExecutionRequestRunId:
   $ref: "./query/executionRequests/RunId.yaml"
-QueryExecutionRequestStatus:
+QueryScriptExecutionStatus:
   $ref: "./query/executionRequests/Status.yaml"
 
 # Script Executions

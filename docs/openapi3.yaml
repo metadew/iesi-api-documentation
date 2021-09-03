@@ -987,7 +987,7 @@ paths:
         - $ref: '#/components/parameters/QueryExecutionRequestLabel'
         - $ref: '#/components/parameters/QueryExecutionRequestEnvironment'
         - $ref: '#/components/parameters/QueryExecutionRequestRunId'
-        - $ref: '#/components/parameters/QueryExecutionRequestStatus'
+        - $ref: '#/components/parameters/QueryScriptExecutionStatus'
       responses:
         '200':
           description: Expected response to a valid request
@@ -1857,12 +1857,19 @@ components:
       required: false
       schema:
         type: string
-    QueryExecutionRequestStatus:
+    QueryScriptExecutionStatus:
       in: query
-      name: status
+      name: run-status
       required: false
       schema:
         type: string
+        enum:
+          - RUNNING
+          - SUCCESS
+          - WARNING
+          - ERROR
+          - STOPPED
+          - SKIPPED
     PathScriptExecutionProcessId:
       name: processId
       description: id of the process id
