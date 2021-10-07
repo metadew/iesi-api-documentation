@@ -11,4 +11,5 @@ properties:
   type:
     type: string
     enum:
-      - in_memory
+      - database
+      - in-memory
