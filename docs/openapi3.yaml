@@ -2717,6 +2717,10 @@ components:
           format: uuid
         name:
           type: string
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamSecurityGroupDto'
     PagedUserDto:
       type: object
       properties:
@@ -2738,6 +2742,10 @@ components:
           type: string
         expiresIn:
           type: integer
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserRoleDto'
     AuthenticationRequestDto:
       type: object
       properties:

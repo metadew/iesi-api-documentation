@@ -5,3 +5,7 @@ properties:
     format: uuid
   name:
     type: string
+  securityGroups:
+    type: array
+    items:
+      $ref: '../../schemas/teams/TeamSecurityGroupDto.yaml'

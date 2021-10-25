@@ -4,3 +4,7 @@ properties:
     type: string
   expiresIn:
     type: integer
+  roles:
+    type: array
+    items:
+      $ref: '../../schemas/users/UserRoleDto.yaml'
