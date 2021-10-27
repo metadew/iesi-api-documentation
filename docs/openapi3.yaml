@@ -1751,7 +1751,17 @@ paths:
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
-          $ref: '#/paths/~1scripts/get/responses/403'
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/encrypt/
         '404':
           description: Expected response to a unexisting resource
 components:
