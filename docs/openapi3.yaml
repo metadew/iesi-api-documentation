@@ -1726,8 +1726,7 @@ paths:
           description: Expected response to a valid request
         '404':
           description: no security group found with specified uuid
-  /encrypt: null
-  /encrypt/:
+  /encrypt:
     post:
       summary: Encrypt given password
       tags:

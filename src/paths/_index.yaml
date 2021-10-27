@@ -197,6 +197,5 @@
 
 # Encryption
 '/encrypt':
-'/encrypt/':
   post:
     $ref: "./encrypt/encryptPassword.yaml"
