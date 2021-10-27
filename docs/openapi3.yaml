@@ -1726,6 +1726,35 @@ paths:
           description: Expected response to a valid request
         '404':
           description: no security group found with specified uuid
+  /encrypt: null
+  /encrypt/:
+    post:
+      summary: Encrypt given password
+      tags:
+        - Encryption
+      operationId: encrypt
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Encrypt'
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  encryptedPassword:
+                    type: string
+        '401':
+          $ref: '#/components/responses/TokenResponse'
+        '403':
+          $ref: '#/paths/~1scripts/get/responses/403'
+        '404':
+          description: Expected response to a unexisting resource
 components:
   parameters:
     PathScriptsName:
@@ -2987,6 +3016,12 @@ components:
           format: int32
         message:
           type: string
+    Encrypt:
+      type: object
+      properties:
+        password:
+          type: string
+          format: password
   securitySchemes:
     bearerAuth:
       type: http

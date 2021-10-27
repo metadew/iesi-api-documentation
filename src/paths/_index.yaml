@@ -194,3 +194,9 @@
 '/security-groups/{uuid}/teams/{team-uuid}':
   delete:
     $ref: "./security_groups/deleteTeam.yaml"
+
+# Encryption
+'/encrypt':
+'/encrypt/':
+  post:
+    $ref: "./encrypt/encryptPassword.yaml"

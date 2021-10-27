@@ -188,3 +188,7 @@ ErrorResponse:
 # Errors
 Error:
   $ref: "./Error.yaml"
+
+# Encrypt
+Encrypt:
+  $ref: "./encryption/encryption.yaml"
