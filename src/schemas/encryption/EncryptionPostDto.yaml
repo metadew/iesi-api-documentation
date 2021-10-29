@@ -1,6 +1,5 @@
 type: object
 properties:
   text:
-    - type: string
-    - type: integer
-      format: password
+    type: string
+    format: password
