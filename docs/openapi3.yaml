@@ -1736,7 +1736,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Encrypt'
+              type: object
+              properties:
+                text:
+                  - type: string
+                  - type: integer
+                    format: password
         required: true
       responses:
         '200':
@@ -1744,10 +1749,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  encryptedPassword:
-                    type: string
+                $ref: '#/components/schemas/Encrypt'
         '401':
           $ref: '#/components/responses/TokenResponse'
         '403':
@@ -3028,9 +3030,8 @@ components:
     Encrypt:
       type: object
       properties:
-        password:
+        encryptedText:
           type: string
-          format: password
   securitySchemes:
     bearerAuth:
       type: http

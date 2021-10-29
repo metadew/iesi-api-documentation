@@ -191,4 +191,4 @@ Error:
 
 # Encrypt
 Encrypt:
-  $ref: "./encryption/encryption.yaml"
+  $ref: "./encryption/EncryptionDto.yaml"
