@@ -196,6 +196,6 @@
     $ref: "./security_groups/deleteTeam.yaml"
 
 # Encryption
-'/encrypt':
+'/encryption/encrypt':
   post:
     $ref: "./encrypt/encryptPassword.yaml"
