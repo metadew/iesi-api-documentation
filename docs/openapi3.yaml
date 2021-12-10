@@ -1223,17 +1223,17 @@ paths:
                 $ref: '#/components/schemas/DatasetDto'
         '400':
           description: bad request
-  '/datasets/{uuid}':
+  '/datasets/{name}':
     get:
-      summary: fetch dataset with specified uuid
+      summary: fetch dataset with specified name
       tags:
         - datasets
-      operationId: datasetsFetchById
+      operationId: datasetsFetchByName
       security:
         - bearerAuth:
             - DATASETS_READ
       parameters:
-        - $ref: '#/components/parameters/PathDatasetsUuid'
+        - $ref: '#/components/parameters/PathDatasetsName'
       responses:
         '200':
           description: Expected response to a valid request
@@ -1242,7 +1242,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/DatasetDto'
         '404':
-          description: no dataset found with specified uuid
+          description: no dataset found with specified name
+  '/datasets/{uuid}':
     put:
       summary: update a dataset
       tags:
@@ -1252,7 +1253,13 @@ paths:
         - bearerAuth:
             - DATASETS_WRITE
       parameters:
-        - $ref: '#/components/parameters/PathDatasetsUuid'
+        - name: uuid
+          description: uuid of the dataset
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
       requestBody:
         content:
           application/json:
@@ -1279,7 +1286,7 @@ paths:
         - bearerAuth:
             - DATASETS_WRITE
       parameters:
-        - $ref: '#/components/parameters/PathDatasetsUuid'
+        - $ref: '#/paths/~1datasets~1%7Buuid%7D/put/parameters/0'
       responses:
         '200':
           description: Expected response to a valid request
@@ -1295,7 +1302,7 @@ paths:
         - bearerAuth:
             - DATASETS_READ
       parameters:
-        - $ref: '#/components/parameters/PathDatasetsUuid'
+        - $ref: '#/paths/~1datasets~1%7Buuid%7D/put/parameters/0'
       responses:
         '200':
           description: Expected response to a valid request
@@ -1939,14 +1946,13 @@ components:
         type: number
         default: 20
       description: detemines how many scripts are included in a page
-    PathDatasetsUuid:
-      name: uuid
-      description: uuid of the dataset
+    PathDatasetsName:
+      name: name
+      description: name of the dataset
       in: path
       required: true
       schema:
         type: string
-        format: uuid
     QueryDatasetsUuid:
       name: name
       in: query

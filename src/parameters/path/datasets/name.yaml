@@ -1,0 +1,6 @@
+name: name
+description: name of the dataset
+in: path
+required: true
+schema:
+  type: string

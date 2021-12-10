@@ -73,8 +73,8 @@ QueryPaginationSize:
 
 # Datasets
 ## Path
-PathDatasetsUuid:
-  $ref: './path/datasets/Uuid.yaml'
+PathDatasetsName:
+  $ref: './path/datasets/name.yaml'
 
 ## Query
 QueryDatasetsUuid:
