@@ -1,11 +1,11 @@
-summary: fetch dataset with specified uuid
+summary: fetch dataset with specified name
 tags:
   - datasets
-operationId: datasetsFetchById
+operationId: datasetsFetchByName
 security:
   - bearerAuth: ["DATASETS_READ"]
 parameters:
-  - $ref: "../../parameters/path/datasets/Uuid.yaml"
+  - $ref: "../../parameters/path/datasets/name.yaml"
 
 responses:
   '200':
@@ -15,4 +15,4 @@ responses:
         schema:
           $ref: "../../schemas/datasets/DatasetDto.yaml"
   '404':
-    description: no dataset found with specified uuid
+    description: no dataset found with specified name

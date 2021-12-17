@@ -125,9 +125,10 @@
     $ref: "./datasets/fetchAll.yaml"
   post:
     $ref: "./datasets/create.yaml"
-'/datasets/{uuid}':
+'/datasets/{name}':
   get:
-    $ref: "./datasets/fetchByUuid.yaml"
+    $ref: "./datasets/fetchByName.yaml"
+'/datasets/{uuid}':
   put:
     $ref: "./datasets/updateByUuid.yaml"
   delete:
