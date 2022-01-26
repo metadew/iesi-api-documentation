@@ -6,11 +6,7 @@ properties:
   type:
     type: string
     enum:
-      - in_memory
-  keyValues:
-    type: array
-    items:
-      $ref: '../../schemas/datasets/InMemoryDatasetImplementationKeyValueDto.yaml'
+      - database
   labels:
     type: array
     items:
