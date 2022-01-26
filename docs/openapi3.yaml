@@ -1302,7 +1302,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InMemoryDatasetImplementationDtoList'
+                $ref: '#/components/schemas/DatasetImplementationDtoList'
         '404':
           description: no dataset found with specified uuid
   /users:
@@ -2564,7 +2564,7 @@ components:
         implementations:
           type: array
           items:
-            $ref: '#/components/schemas/InMemoryDatasetImplementationDto'
+            $ref: '#/components/schemas/DatabaseDatasetImplementationDto'
     DatasetImplementationLabelDto:
       type: object
       properties:
@@ -2573,30 +2573,32 @@ components:
           format: uuid
         label:
           type: string
-    InMemoryDatasetImplementationDto:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-        type:
-          type: string
-          enum:
-            - database
-            - in-memory
-        keyValues:
-          type: array
-          items:
-            $ref: '#/components/schemas/InMemoryDatasetImplementationKeyValueDto'
-        labels:
-          type: array
-          items:
-            $ref: '#/components/schemas/DatasetImplementationLabelDto'
-    InMemoryDatasetImplementationDtoList:
+    DatabaseDatasetImplementationDto:
+      allOf:
+        - type: object
+          properties:
+            uuid:
+              type: string
+              format: uuid
+            type:
+              type: string
+              enum:
+                - database
+            labels:
+              type: array
+              items:
+                $ref: '#/components/schemas/DatasetImplementationLabelDto'
+        - type: object
+          properties:
+            keyvalues:
+              type: array
+              items:
+                $ref: '#/components/schemas/DatabaseDatasetImplementationKeyValueDto'
+    DatasetImplementationDtoList:
       type: array
       items:
-        $ref: '#/components/schemas/InMemoryDatasetImplementationDto'
-    InMemoryDatasetImplementationKeyValueDto:
+        $ref: '#/components/schemas/DatabaseDatasetImplementationDto'
+    DatabaseDatasetImplementationKeyValueDto:
       type: object
       properties:
         uuid:
@@ -2628,29 +2630,31 @@ components:
         implementations:
           type: array
           items:
-            $ref: '#/components/schemas/InMemoryDatasetImplementationPostDto'
+            $ref: '#/components/schemas/DatabaseDatasetImplementationPostDto'
     DatasetImplementationLabelPostDto:
       type: object
       properties:
         label:
           type: string
-    InMemoryDatasetImplementationPostDto:
-      type: object
-      properties:
-        keyValues:
-          type: array
-          items:
-            $ref: '#/components/schemas/InMemoryDatasetImplementationKeyValuePostDto'
-        labels:
-          type: array
-          items:
-            $ref: '#/components/schemas/DatasetImplementationLabelPostDto'
-        type:
-          type: string
-          enum:
-            - database
-            - in-memory
-    InMemoryDatasetImplementationKeyValuePostDto:
+    DatabaseDatasetImplementationPostDto:
+      allOf:
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - database
+            labels:
+              type: array
+              items:
+                $ref: '#/components/schemas/DatasetImplementationLabelPostDto'
+        - type: object
+          properties:
+            keyValues:
+              type: array
+              items:
+                $ref: '#/components/schemas/DatabaseDatasetImplementationKeyValuePostDto'
+    DatabaseDatasetImplementationKeyValuePostDto:
       type: object
       properties:
         key:
@@ -2668,7 +2672,7 @@ components:
         implementations:
           type: array
           items:
-            $ref: '#/components/schemas/InMemoryDatasetImplementationPostDto'
+            $ref: '#/components/schemas/DatabaseDatasetImplementationPostDto'
     UserDto:
       type: object
       properties:

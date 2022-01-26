@@ -8,4 +8,4 @@ properties:
   implementations:
     type: array
     items:
-      $ref: '../../schemas/datasets/InMemoryDatasetImplementationDto.yaml'
+      $ref: '../../schemas/datasets/DatabaseDatasetImplementationDto.yaml'

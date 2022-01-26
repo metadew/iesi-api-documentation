@@ -1,0 +1,8 @@
+allOf:
+  - $ref: './DatasetImplementationPostDto.yaml'
+  - type: object
+    properties:
+      keyValues:
+        type: array
+        items:
+          $ref:  '../../schemas/datasets/DatabaseDatasetImplementationKeyValuePostDto.yaml'

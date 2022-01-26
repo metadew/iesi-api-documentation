@@ -1,0 +1,10 @@
+type: object
+properties:
+  type:
+    type: string
+    enum:
+      - database
+  labels:
+    type: array
+    items:
+      $ref: '../../schemas/datasets/DatasetImplementationLabelPostDto.yaml'
