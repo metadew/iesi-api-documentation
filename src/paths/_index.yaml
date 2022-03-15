@@ -125,9 +125,10 @@
     $ref: "./datasets/fetchAll.yaml"
   post:
     $ref: "./datasets/create.yaml"
-'/datasets/{uuid}':
+'/datasets/{name}':
   get:
-    $ref: "./datasets/fetchByUuid.yaml"
+    $ref: "./datasets/fetchByName.yaml"
+'/datasets/{uuid}':
   put:
     $ref: "./datasets/updateByUuid.yaml"
   delete:
@@ -194,3 +195,8 @@
 '/security-groups/{uuid}/teams/{team-uuid}':
   delete:
     $ref: "./security_groups/deleteTeam.yaml"
+
+# Encryption
+'/encryption/encrypt':
+  post:
+    $ref: "./encrypt/encryptPassword.yaml"

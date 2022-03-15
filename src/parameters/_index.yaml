@@ -55,6 +55,8 @@ QueryExecutionRequestVersion:
   $ref: "./query/executionRequests/Version.yaml"
 QueryExecutionRequestRunId:
   $ref: "./query/executionRequests/RunId.yaml"
+QueryScriptExecutionStatus:
+  $ref: "./query/executionRequests/Status.yaml"
 
 # Script Executions
 PathScriptExecutionProcessId:
@@ -71,8 +73,8 @@ QueryPaginationSize:
 
 # Datasets
 ## Path
-PathDatasetsUuid:
-  $ref: './path/datasets/Uuid.yaml'
+PathDatasetsName:
+  $ref: './path/datasets/name.yaml'
 
 ## Query
 QueryDatasetsUuid:

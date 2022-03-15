@@ -987,6 +987,7 @@ paths:
         - $ref: '#/components/parameters/QueryExecutionRequestLabel'
         - $ref: '#/components/parameters/QueryExecutionRequestEnvironment'
         - $ref: '#/components/parameters/QueryExecutionRequestRunId'
+        - $ref: '#/components/parameters/QueryScriptExecutionStatus'
       responses:
         '200':
           description: Expected response to a valid request
@@ -1222,17 +1223,17 @@ paths:
                 $ref: '#/components/schemas/DatasetDto'
         '400':
           description: bad request
-  '/datasets/{uuid}':
+  '/datasets/{name}':
     get:
-      summary: fetch dataset with specified uuid
+      summary: fetch dataset with specified name
       tags:
         - datasets
-      operationId: datasetsFetchById
+      operationId: datasetsFetchByName
       security:
         - bearerAuth:
             - DATASETS_READ
       parameters:
-        - $ref: '#/components/parameters/PathDatasetsUuid'
+        - $ref: '#/components/parameters/PathDatasetsName'
       responses:
         '200':
           description: Expected response to a valid request
@@ -1241,7 +1242,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/DatasetDto'
         '404':
-          description: no dataset found with specified uuid
+          description: no dataset found with specified name
+  '/datasets/{uuid}':
     put:
       summary: update a dataset
       tags:
@@ -1251,7 +1253,13 @@ paths:
         - bearerAuth:
             - DATASETS_WRITE
       parameters:
-        - $ref: '#/components/parameters/PathDatasetsUuid'
+        - name: uuid
+          description: uuid of the dataset
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
       requestBody:
         content:
           application/json:
@@ -1278,7 +1286,7 @@ paths:
         - bearerAuth:
             - DATASETS_WRITE
       parameters:
-        - $ref: '#/components/parameters/PathDatasetsUuid'
+        - $ref: '#/paths/~1datasets~1%7Buuid%7D/put/parameters/0'
       responses:
         '200':
           description: Expected response to a valid request
@@ -1294,14 +1302,14 @@ paths:
         - bearerAuth:
             - DATASETS_READ
       parameters:
-        - $ref: '#/components/parameters/PathDatasetsUuid'
+        - $ref: '#/paths/~1datasets~1%7Buuid%7D/put/parameters/0'
       responses:
         '200':
           description: Expected response to a valid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InMemoryDatasetImplementationDtoList'
+                $ref: '#/components/schemas/DatasetImplementationDtoList'
         '404':
           description: no dataset found with specified uuid
   /users:
@@ -1725,6 +1733,45 @@ paths:
           description: Expected response to a valid request
         '404':
           description: no security group found with specified uuid
+  /encryption/encrypt:
+    post:
+      summary: Encrypt given password
+      tags:
+        - Encryption
+      operationId: encrypt
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  format: password
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Encrypt'
+        '401':
+          $ref: '#/components/responses/TokenResponse'
+        '403':
+          description: Expected response to a forbidden request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                timestamp: '2021-02-09T07:57:01.062+0000'
+                status: 403
+                error: Forbidden
+                message: Access denied
+                path: /api/encrypt/
+        '404':
+          description: Expected response to a unexisting resource
 components:
   parameters:
     PathScriptsName:
@@ -1856,6 +1903,19 @@ components:
       required: false
       schema:
         type: string
+    QueryScriptExecutionStatus:
+      in: query
+      name: run-status
+      required: false
+      schema:
+        type: string
+        enum:
+          - RUNNING
+          - SUCCESS
+          - WARNING
+          - ERROR
+          - STOPPED
+          - SKIPPED
     PathScriptExecutionProcessId:
       name: processId
       description: id of the process id
@@ -1886,14 +1946,13 @@ components:
         type: number
         default: 20
       description: detemines how many scripts are included in a page
-    PathDatasetsUuid:
-      name: uuid
-      description: uuid of the dataset
+    PathDatasetsName:
+      name: name
+      description: name of the dataset
       in: path
       required: true
       schema:
         type: string
-        format: uuid
     QueryDatasetsUuid:
       name: name
       in: query
@@ -2550,7 +2609,7 @@ components:
         implementations:
           type: array
           items:
-            $ref: '#/components/schemas/InMemoryDatasetImplementationDto'
+            $ref: '#/components/schemas/DatabaseDatasetImplementationDto'
     DatasetImplementationLabelDto:
       type: object
       properties:
@@ -2559,29 +2618,32 @@ components:
           format: uuid
         label:
           type: string
-    InMemoryDatasetImplementationDto:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-        type:
-          type: string
-          enum:
-            - in_memory
-        keyValues:
-          type: array
-          items:
-            $ref: '#/components/schemas/InMemoryDatasetImplementationKeyValueDto'
-        labels:
-          type: array
-          items:
-            $ref: '#/components/schemas/DatasetImplementationLabelDto'
-    InMemoryDatasetImplementationDtoList:
+    DatabaseDatasetImplementationDto:
+      allOf:
+        - type: object
+          properties:
+            uuid:
+              type: string
+              format: uuid
+            type:
+              type: string
+              enum:
+                - database
+            labels:
+              type: array
+              items:
+                $ref: '#/components/schemas/DatasetImplementationLabelDto'
+        - type: object
+          properties:
+            keyvalues:
+              type: array
+              items:
+                $ref: '#/components/schemas/DatabaseDatasetImplementationKeyValueDto'
+    DatasetImplementationDtoList:
       type: array
       items:
-        $ref: '#/components/schemas/InMemoryDatasetImplementationDto'
-    InMemoryDatasetImplementationKeyValueDto:
+        $ref: '#/components/schemas/DatabaseDatasetImplementationDto'
+    DatabaseDatasetImplementationKeyValueDto:
       type: object
       properties:
         uuid:
@@ -2613,28 +2675,31 @@ components:
         implementations:
           type: array
           items:
-            $ref: '#/components/schemas/InMemoryDatasetImplementationPostDto'
+            $ref: '#/components/schemas/DatabaseDatasetImplementationPostDto'
     DatasetImplementationLabelPostDto:
       type: object
       properties:
         label:
           type: string
-    InMemoryDatasetImplementationPostDto:
-      type: object
-      properties:
-        keyValues:
-          type: array
-          items:
-            $ref: '#/components/schemas/InMemoryDatasetImplementationKeyValuePostDto'
-        labels:
-          type: array
-          items:
-            $ref: '#/components/schemas/DatasetImplementationLabelPostDto'
-        type:
-          type: string
-          enum:
-            - in_memory
-    InMemoryDatasetImplementationKeyValuePostDto:
+    DatabaseDatasetImplementationPostDto:
+      allOf:
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - database
+            labels:
+              type: array
+              items:
+                $ref: '#/components/schemas/DatasetImplementationLabelPostDto'
+        - type: object
+          properties:
+            keyValues:
+              type: array
+              items:
+                $ref: '#/components/schemas/DatabaseDatasetImplementationKeyValuePostDto'
+    DatabaseDatasetImplementationKeyValuePostDto:
       type: object
       properties:
         key:
@@ -2652,7 +2717,7 @@ components:
         implementations:
           type: array
           items:
-            $ref: '#/components/schemas/InMemoryDatasetImplementationPostDto'
+            $ref: '#/components/schemas/DatabaseDatasetImplementationPostDto'
     UserDto:
       type: object
       properties:
@@ -2703,6 +2768,10 @@ components:
           format: uuid
         name:
           type: string
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamSecurityGroupDto'
     PagedUserDto:
       type: object
       properties:
@@ -2724,6 +2793,10 @@ components:
           type: string
         expiresIn:
           type: integer
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserRoleDto'
     AuthenticationRequestDto:
       type: object
       properties:
@@ -2972,6 +3045,11 @@ components:
           type: integer
           format: int32
         message:
+          type: string
+    Encrypt:
+      type: object
+      properties:
+        encryptedText:
           type: string
   securitySchemes:
     bearerAuth:

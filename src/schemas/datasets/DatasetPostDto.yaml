@@ -5,4 +5,4 @@ properties:
   implementations:
     type: array
     items:
-      $ref: '../../schemas/datasets/InMemoryDatasetImplementationPostDto.yaml'
+      $ref: '../../schemas/datasets/DatabaseDatasetImplementationPostDto.yaml'

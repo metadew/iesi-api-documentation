@@ -10,6 +10,7 @@ parameters:
   - $ref: "../../parameters/query/executionRequests/Label.yaml"
   - $ref: "../../parameters/query/executionRequests/Environment.yaml"
   - $ref: "../../parameters/query/executionRequests/RunId.yaml"
+  - $ref: "../../parameters/query/executionRequests/Status.yaml"
 responses:
   '200':
     description: Expected response to a valid request

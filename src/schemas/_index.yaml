@@ -97,22 +97,22 @@ DatasetDto:
   $ref: "./datasets/DatasetDto.yaml"
 DatasetImplementationLabelDto:
   $ref: "./datasets/DatasetImplementationLabelDto.yaml"
-InMemoryDatasetImplementationDto:
-  $ref: "./datasets/InMemoryDatasetImplementationDto.yaml"
-InMemoryDatasetImplementationDtoList:
-  $ref: "./datasets/InMemoryDatasetImplementationDtoList.yaml"
-InMemoryDatasetImplementationKeyValueDto:
-  $ref: "./datasets/InMemoryDatasetImplementationKeyValueDto.yaml"
+DatabaseDatasetImplementationDto:
+  $ref: "./datasets/DatabaseDatasetImplementationDto.yaml"
+DatasetImplementationDtoList:
+  $ref: "./datasets/DatasetImplementationDtoList.yaml"
+DatabaseDatasetImplementationKeyValueDto:
+  $ref: "./datasets/DatabaseDatasetImplementationKeyValueDto.yaml"
 PagedDatasetDto:
   $ref: "./datasets/PagedDatasetDto.yaml"
 DatasetPostDto:
   $ref: "./datasets/DatasetPostDto.yaml"
 DatasetImplementationLabelPostDto:
   $ref: "./datasets/DatasetImplementationLabelPostDto.yaml"
-InMemoryDatasetImplementationPostDto:
-  $ref: "./datasets/InMemoryDatasetImplementationPostDto.yaml"
-InMemoryDatasetImplementationKeyValuePostDto:
-  $ref: "./datasets/InMemoryDatasetImplementationKeyValuePostDto.yaml"
+DatabaseDatasetImplementationPostDto:
+  $ref: "./datasets/DatabaseDatasetImplementationPostDto.yaml"
+DatabaseDatasetImplementationKeyValuePostDto:
+  $ref: "./datasets/DatabaseDatasetImplementationKeyValuePostDto.yaml"
 DatasetPutDto:
   $ref: "./datasets/DatasetPutDto.yaml"
 
@@ -188,3 +188,7 @@ ErrorResponse:
 # Errors
 Error:
   $ref: "./Error.yaml"
+
+# Encrypt
+Encrypt:
+  $ref: "./encryption/EncryptionDto.yaml"

@@ -1,0 +1,6 @@
+in: query
+name: run-status
+required: false
+schema:
+  type: string
+  enum: [RUNNING, SUCCESS, WARNING, ERROR, STOPPED, SKIPPED]
